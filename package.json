@@ -6,15 +6,19 @@
   "scripts": {
     "start": "nx serve",
     "server": "ts-node-esm ./apps/snaplex-server/src/main.ts",
+    "create": "ts-node-esm ./scripts/create/index.ts",
     "build": "nx build",
     "test": "nx test"
   },
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "core-js": "^3.6.5",
+    "framer-motion": "^7.6.18",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-is": "18.2.0",
+    "react-redux": "^8.0.5",
     "regenerator-runtime": "0.13.7",
     "socket.io": "^4.5.4",
     "socket.io-client": "^4.5.4",
