@@ -1,8 +1,8 @@
 import { Card } from "./Card";
+import { Instance } from "./Instance";
 
-export interface Player {
-    id: string;
-    userName: string;
-
-    cards: Card[]
+export interface Player extends Instance {
+    deck: Card[],
+    hand: Card[],
+    mana: number;
 }

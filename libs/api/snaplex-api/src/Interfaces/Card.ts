@@ -1,7 +1,6 @@
+import { Instance } from "./Instance";
 
-export interface Card {
-    id: string;
-    name: string;
+export interface Card extends Instance {
     cost: number;
     power: number;
 
