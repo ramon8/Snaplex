@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nx serve",
     "server": "ts-node-esm ./apps/snaplex-server/src/main.ts",
-    "create": "ts-node-esm ./scripts/create/index.ts",
+    "create": "node ./scripts/create/index.cjs",
     "build": "nx build",
     "test": "nx test"
   },
