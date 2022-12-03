@@ -9,12 +9,17 @@ const name = myArgs[1]
 const currentDir = process.env.PWD
 const validTemplates = ['component', 'slice']
 
+const templatesLocations = {
+    component: `${__dirname}\\..\\..\\apps\\snaplex-app\\src\\app\\components`,
+    slice: `${__dirname}\\..\\..\\apps\\snaplex-app\\src\\app\\store\\slices`,
+}
+
 if (!validTemplates.includes(template)) throw Error("This template does not exist")
 if (!name) throw Error("Name is not valid")
 
 const sourceDir = `${__dirname}\\templates\\${template}`
 
-const destinationDir = `${currentDir}/${name}`
+const destinationDir = `${templatesLocations[template]}\\${name}`
 
 fs.readdir(sourceDir, function (err, files) {
     const allFilesNames = [];

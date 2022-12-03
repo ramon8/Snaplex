@@ -1,3 +1,3 @@
 export interface TestProps {
-    name: string;
+    name?: string;
 }

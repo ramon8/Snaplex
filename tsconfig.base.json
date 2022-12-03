@@ -10,14 +10,49 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": [
+      "es2017",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "esModuleInterop": true,
     "paths": {
-      "@snaplex/api/snaplex-api": ["libs/api/snaplex-api/src/index.ts"]
+      "@types/*": [
+        "libs/api/snaplex-api/src/interfaces/*"
+      ],
+      "@types": [
+        "libs/api/snaplex-api/src/interfaces"
+      ],
+      "@components/*": [
+        "apps/snaplex-app/src/app/components/*"
+      ],
+      "@components": [
+        "apps/snaplex-app/src/app/components"
+      ],
+      "@pages/*": [
+        "apps/snaplex-app/src/app/pages/*"
+      ],
+      "@pages": [
+        "apps/snaplex-app/src/app/pages"
+      ],
+      "@store/*": [
+        "apps/snaplex-app/src/app/store/*"
+      ],
+      "@store": [
+        "apps/snaplex-app/src/app/store"
+      ],
+      "@mocks/*": [
+        "apps/snaplex-app/src/app/mocks/*"
+      ],
+      "@mocks": [
+        "apps/snaplex-app/src/app/mocks"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }
