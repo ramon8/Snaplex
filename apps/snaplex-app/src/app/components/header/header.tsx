@@ -1,5 +1,6 @@
 import { Profile } from "@components"
 import { RootState } from "@store/index"
+import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { HeaderProps } from "./header.interface"
 import { ContainerHeader } from "./header.styles"

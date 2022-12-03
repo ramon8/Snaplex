@@ -1,1 +1,1 @@
-export * from './lib/api-snaplex-api';
+export * from './Interfaces';

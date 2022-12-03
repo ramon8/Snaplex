@@ -10,6 +10,10 @@ export interface GameState {
     oponent: string,
 }
 
+export interface SetGame {
+    game: GameState
+}
+
 export interface SetId {
     id: string
 }
@@ -36,3 +40,5 @@ export type SetTurnsPayload = PayloadAction<SetTurns>
 
 export type SetLocationsPayload = PayloadAction<SetLocations>
 export type SetLocationPayload = PayloadAction<SetLocation>
+
+export type SetGamePayload = PayloadAction<SetGame>

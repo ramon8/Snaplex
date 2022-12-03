@@ -1,57 +1,38 @@
 {
   "name": "snaplex-server",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/snaplex-server/src",
-  "projectType": "application",
+  "sourceRoot": "libs/snaplex-server/src",
+  "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/apps/snaplex-server",
-        "main": "apps/snaplex-server/src/main.ts",
-        "tsConfig": "apps/snaplex-server/tsconfig.app.json",
-        "assets": ["apps/snaplex-server/src/assets"]
-      },
-      "configurations": {
-        "production": {
-          "optimization": true,
-          "extractLicenses": true,
-          "inspect": false,
-          "fileReplacements": [
-            {
-              "replace": "apps/snaplex-server/src/environments/environment.ts",
-              "with": "apps/snaplex-server/src/environments/environment.prod.ts"
-            }
-          ]
-        }
+        "outputPath": "dist/libs/snaplex-server",
+        "main": "libs/snaplex-server/src/index.ts",
+        "tsConfig": "libs/snaplex-server/tsconfig.lib.json",
+        "assets": ["libs/snaplex-server/*.md"]
       }
     },
-    "serve": {
-      "executor": "@nrwl/js:node",
+    "publish": {
+      "executor": "nx:run-commands",
       "options": {
-        "buildTarget": "snaplex-server:build"
+        "command": "node tools/scripts/publish.mjs snaplex-server {args.ver} {args.tag}"
       },
-      "configurations": {
-        "production": {
-          "buildTarget": "snaplex-server:build:production"
-        }
-      }
+      "dependsOn": ["build"]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/snaplex-server/**/*.ts"]
+        "lintFilePatterns": ["libs/snaplex-server/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/snaplex-server/jest.config.ts",
+        "jestConfig": "libs/snaplex-server/jest.config.ts",
         "passWithNoTests": true
       }
     }

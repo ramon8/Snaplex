@@ -6,7 +6,7 @@ import * as reducers from './playerSlice.reducers'
 const initialState: PlayerState = {
     id: 'player_id',
     deck: [],
-    hand: [Pera, Melocotón, Cerezas],
+    hand: [],
     mana: 1,
 }
 

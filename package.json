@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "nx serve",
-    "server": "ts-node-esm ./apps/snaplex-server/src/main.ts",
+    "server": "ts-node-esm ./apps/snaplex-server/src/index.ts",
     "create": "node ./scripts/create/index.cjs",
     "build": "nx build",
     "test": "nx test"

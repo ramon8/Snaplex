@@ -44,7 +44,6 @@ export const Card = (props: CardProps) => {
                 dispatch(playerActions.setHand({ hand: cards }))
                 dispatch(playerActions.setMana({ mana: mana - cost }))
             }
-            console.log({ location });
         }
         // dispatch(setCardDragging({ card: null }))
     }

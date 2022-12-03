@@ -10,9 +10,9 @@ const initialState: GameState = {
     maxTurns: 6,
     turn: 1,
 
-    locations: locationsMock,
-    player: 'Ramon',
-    oponent: 'Alex',
+    locations: [],
+    player: '',
+    oponent: '',
 }
 
 export const counterSlice = createSlice({

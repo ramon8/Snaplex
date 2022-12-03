@@ -7,10 +7,9 @@ export default {
       tsconfig: '<rootDir>/tsconfig.spec.json',
     },
   },
-  testEnvironment: 'node',
   transform: {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/apps/snaplex-server',
+  coverageDirectory: '../../coverage/libs/snaplex-server',
 };
