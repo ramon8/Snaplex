@@ -1,1 +1,1 @@
-export * from './events.interface'
+export * from './startGameResponse'

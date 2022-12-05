@@ -5,7 +5,7 @@ import * as reducers from './gameSlice.reducers'
 
 
 const initialState: GameState = {
-    id: 'game_id',
+    id: '',
 
     maxTurns: 6,
     turn: 1,

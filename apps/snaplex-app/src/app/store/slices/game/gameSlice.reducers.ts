@@ -11,7 +11,12 @@ export const setLocation = (state: GameState, { payload: { location } }: SetLoca
     const locationIndex = state.locations.findIndex(({ id }: LocationProps) => id === location.id);
     state.locations[locationIndex] = location;
 }
+
 export const setGame = (state: GameState, { payload: { game } }: SetGamePayload) => {
+    state.id = game.id
+    state.turn = game.turn
+    state.maxTurns = game.maxTurns
+
     state.locations = game.locations
     state.player = game.player
     state.oponent = game.oponent

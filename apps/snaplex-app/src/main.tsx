@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import './index.css'
 
 import App from './app/app';
-import { store } from './app/store';
+import { store } from './app/store'
 import { io } from "socket.io-client"
 import { getRandomInt } from './utils/getRandomInt';
 

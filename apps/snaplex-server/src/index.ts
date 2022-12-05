@@ -1,7 +1,7 @@
 import express from 'express';
 import http from 'http';
 import { Server, Socket } from "socket.io";
-import { ConnectionService } from './Service/ConnectionService';
+import { UserConnection } from './Service/UserConnection';
 import { Game } from '@types'
 import { DefaultEventsMap } from 'socket.io/dist/typed-events';
 
@@ -13,15 +13,25 @@ const io = new Server(server, {
     }
 });
 
-export interface GameInstance {
-    socketA: Socket<DefaultEventsMap>;
-    socketB: Socket<DefaultEventsMap> | null;
-    game: Game;
+export interface PlayerInstance {
+    socket: Socket<DefaultEventsMap>;
+    isWaiting?: boolean;
+    id: string;
+    turnData?: any;
 }
 
-const gameInstances: GameInstance[] = []
+//: Record<string, >
 
-io.on('connection', ConnectionService(gameInstances));
+export interface GameRoom {
+    players: PlayerInstance[]
+    game: Game;
+    id: string;
+}
+
+const gameRooms: GameRoom[] = []
+
+io.on('connection', UserConnection(gameRooms, io));
+
 
 server.listen(3000, () => {
     console.log('listening on *:3000');

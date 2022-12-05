@@ -4,7 +4,7 @@ import { Location } from './Location';
 
 export interface Game extends Instance {
     playerA: Player;
-    playerB: Player;
+    playerB: Player | null;
     locations: Location[];
     maxTurns: number;
     turn: number;
