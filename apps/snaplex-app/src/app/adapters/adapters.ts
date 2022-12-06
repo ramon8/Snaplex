@@ -4,10 +4,9 @@ import { GameState, SetLocations } from "@store/slices/game/gameSlice.interface"
 import { PlayerState, SetPlayer } from "@store/slices/player/playerSlice.interface";
 import { Game, Location, Player } from "@types";
 import { SetGame } from "@store/slices/game/gameSlice.interface";
-import { START_GAME_RESPONSE } from "@types";
 import { gameActions } from "@store/slices";
 
-export const adaptGame = ({ id: userId, game: { id, maxTurns, name, playerA, playerB, turn } }: START_GAME_RESPONSE): SetGame => ({
+export const adaptGame = ({ id: userId, game: { id, maxTurns, name, playerA, playerB, turn } }: any): SetGame => ({
     game: {
         locations: [],
         player: userId,
@@ -18,13 +17,13 @@ export const adaptGame = ({ id: userId, game: { id, maxTurns, name, playerA, pla
     },
 })
 
-export const adaptLocation = ({ id, name, playerACards, playerAPower, playerBCards, playerBPower, description }: Location): LocationProps => ({
+export const adaptLocation = ({ id, name, playersCards, playersPower, description }: Location): LocationProps => ({
     id,
     name,
-    playerCards: playerACards,
-    oponentCards: playerBCards,
-    playerPower: playerAPower,
-    oponentPower: playerBPower,
+    playerCards: playersCards[0],
+    oponentCards: playersCards[1],
+    playerPower: playersPower[0],
+    oponentPower: playersPower[1],
     description
 })
 
@@ -50,14 +49,7 @@ export const adaptState = ({ game: { id, locations, maxTurns, oponent, player, t
 })
 
 export const adaptLocationProps = (locations: LocationProps[]): Location[] => {
-    return locations.map(({ id, name, oponentCards, oponentPower, playerCards, playerPower }: LocationProps) => ({
-        id,
-        name,
-        playerACards: playerCards,
-        playerAPower: playerPower,
-        playerBCards: [],
-        playerBPower: 0,
-    }));
+    return []
 }
 
 export const adaptNextTurn = ({ game }: RootState) => {
