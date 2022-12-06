@@ -246,3 +246,8 @@ export const deckPlayerB = [
     ChilePicante,
     Pepino
 ]
+
+export const decks = [
+    deckPlayerA,
+    deckPlayerB
+]

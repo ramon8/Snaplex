@@ -22,7 +22,7 @@ export interface SetMaxTurns {
     value: number
 }
 
-export interface SetTurns {
+export interface SetTurn {
     value: number
 }
 
@@ -36,7 +36,7 @@ export interface SetLocation {
 
 export type SetIdPayload = PayloadAction<SetId>
 export type SetMaxTurnsPayload = PayloadAction<SetMaxTurns>
-export type SetTurnsPayload = PayloadAction<SetTurns>
+export type SetTurnPayload = PayloadAction<SetTurn>
 
 export type SetLocationsPayload = PayloadAction<SetLocations>
 export type SetLocationPayload = PayloadAction<SetLocation>

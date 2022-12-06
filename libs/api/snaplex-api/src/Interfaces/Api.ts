@@ -9,23 +9,23 @@ export interface START_GAME_PAYLOAD {
     id: string
     hand: Card[]
     deck: Card[]
+    mana: number
     locations: Location[]
 }
 
 export interface RECONNECT_GAME_PAYLOAD extends START_GAME_PAYLOAD { }
 
 export interface FINISH_TURN_PAYLOAD {
-    roomId: string;
-    userId: string;
-    locations: Location[]
+    userId: string
+    playersCards: Card[][]
 }
 
 export interface NEXT_TURN_PAYLOAD {
     locations: Location[]
     turn: number
     maxTurns: number
-    playersMana: number[]
-    playersCards: Card[][]
+    mana: number
+    hand: Card[]
 }
 
 export interface FINISH_GAME_PAYLOAD extends NEXT_TURN_PAYLOAD {

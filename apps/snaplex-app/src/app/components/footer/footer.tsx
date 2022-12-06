@@ -9,7 +9,7 @@ import { ContainerFooter, ManaStyled, ButtonStyled, HandStyled } from "./footer.
 export const Footer = (props: FooterProps) => {
     const state = useSelector((state: RootState) => state);
     const onClickButton = () => {
-        socket.emit("NEXT_TURN", adaptNextTurn(state))
+        socket.emit("FINISH_TURN", adaptNextTurn(state))
     }
 
     return <ContainerFooter  {...props}>

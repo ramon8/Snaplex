@@ -1,17 +1,15 @@
 import { Game, GameRoom, START_GAME_PAYLOAD } from "@types";
 import { Server, Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import { initializeGameRoom, joinGameRoom, processInitialData } from "./GameService";
+import { initializeGameRoom, joinGameRoom, processDataById, processInitialData } from "./GameService";
 import { onFinishTurn } from "./NetworkService";
 import util from 'util';
 
 export const onUserConnect = (gameRooms: GameRoom[], io: Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) =>
     (socket: Socket<DefaultEventsMap>) => {
         const userId = getUserId(socket);
-
         // Is user already connected ?
         const userGameRoom = getGameRoom(gameRooms, userId);
-        console.log({ userGameRoom });
         if (userGameRoom) {
             const { id: roomId, users } = userGameRoom
 
@@ -22,7 +20,10 @@ export const onUserConnect = (gameRooms: GameRoom[], io: Server<DefaultEventsMap
                 // Update sokcet, join room, emit RECCONECT
                 user.socket = socket
                 socket.join(roomId)
-                socket.emit("RECONNECT", "RECONNECT")
+                const data: START_GAME_PAYLOAD = processDataById(userGameRoom, userId);
+                socket.emit("RECONNECT", data)
+                socket.on("FINISH_TURN", onFinishTurn(userGameRoom))
+                console.log(`[${userId}]: is reconnected`);
             }
         } else {
             // Is there any player waiting for other player to join ?
@@ -40,6 +41,7 @@ export const onUserConnect = (gameRooms: GameRoom[], io: Server<DefaultEventsMap
                 // Create new room and wait for other player to join
                 const newGameRoom = initializeGameRoom(userId, socket)
                 gameRooms.push(newGameRoom)
+                console.log(`[${userId}]: is connected`);
             }
         }
     }

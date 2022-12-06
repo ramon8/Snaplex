@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import { LocationProps } from "./location.interface"
 import { ContainerLocation, LocationCardsCotnainer, LocationInfoContainer, LocationName, LocationDescription } from "./location.styles"
 
-export const Location = ({ playerPower, oponentPower, name, oponentCards, playerCards, description, id }: LocationProps) => {
-
+export const Location = ({ playersPower, name, playersCards, id }: LocationProps) => {
+    const [playerCards, oponentCards] = playersCards;
+    const [playerPower, oponentPower] = playersPower;
     return <ContainerLocation>
         <LocationCardsCotnainer>
             {oponentCards?.map(card => <Card key={card.id} {...card} type="location" />)}

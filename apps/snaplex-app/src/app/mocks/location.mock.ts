@@ -4,35 +4,24 @@ import { Limón, Mandarina, Mango, Melón, Piña, Plátano, Sandía, Uvas } from
 export const locationObellaNegraMock: LocationProps = {
     id: 'obella_negra',
     name: 'Obella Negra',
-    playerCards: [Mandarina, Piña, Sandía],
-    oponentCards: [],
-
-    playerPower: 0,
-    oponentPower: 0,
-
+    playersCards: [[Mandarina, Piña, Sandía], []],
+    playersPower: [0, 0],
     description: 'A partir de turno 3 no se pueden jugar cartas'
 }
 
 export const locationRazzMock: LocationProps = {
     id: 'razzmatazz',
     name: 'Razzmatazz',
-    playerCards: [Mango],
-    oponentCards: [Plátano],
-
-    playerPower: 0,
-    oponentPower: 0,
-
+    playersCards: [[Mango], [Plátano]],
+    playersPower: [0, 0],
     description: ''
 }
 
 export const locationChurreriaMartosMock: LocationProps = {
     id: 'churreria_martos',
     name: 'Churreria Martos',
-    playerCards: [Uvas, Melón],
-    oponentCards: [Limón],
-
-    playerPower: 0,
-    oponentPower: 0,
+    playersCards: [[Uvas, Melón], [Limón]],
+    playersPower: [0, 0],
 
     description: 'Solo puedes poner cartas en turno 6'
 }
