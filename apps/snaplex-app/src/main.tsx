@@ -18,6 +18,9 @@ root.render(
   </Provider>
 );
 
+const id = localStorage.getItem("id") || getRandomInt(100000);
+localStorage.setItem("id", id.toString())
+
 export const socket = io("http://localhost:3000", {
-  query: { "id": localStorage.getItem("id") || getRandomInt(100000) }
+  query: { id }
 });

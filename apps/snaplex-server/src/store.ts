@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import game from './slices/game/gameSlice'
-import player from './slices/player/playerSlice'
-import actions from './slices/actions/actionsSlice'
+import gameRoomsReducer from './features/gameRooms/gameRooms'
 
 export const store = configureStore({
   reducer: {
-    game,
-    player,
-    actions
-  }
+    gameRooms: gameRoomsReducer,
+  },
+  middleware: getDefaultMiddleware => getDefaultMiddleware({
+    serializableCheck: false
+  })
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -2,36 +2,34 @@ import { HeaderProps, LocationProps } from "@components";
 import { PayloadAction } from "@reduxjs/toolkit"
 
 export interface GameState {
-    id: string
-    maxTurns: number
-    turn: number
-    locations: LocationProps[]
-    player: string,
-    oponent: string,
+  id: string
+  maxTurns: number
+  turn: number
+  locations: LocationProps[]
 }
 
 export interface SetGame {
-    game: GameState
+  game: GameState
 }
 
 export interface SetId {
-    id: string
+  id: string
 }
 
 export interface SetMaxTurns {
-    value: number
+  value: number
 }
 
 export interface SetTurns {
-    value: number
+  value: number
 }
 
 export interface SetLocations {
-    locations: LocationProps[]
+  locations: LocationProps[]
 }
 
 export interface SetLocation {
-    location: LocationProps,
+  location: LocationProps,
 }
 
 export type SetIdPayload = PayloadAction<SetId>

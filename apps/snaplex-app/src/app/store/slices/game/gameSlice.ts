@@ -5,20 +5,18 @@ import * as reducers from './gameSlice.reducers'
 
 
 const initialState: GameState = {
-    id: '',
+  id: '',
 
-    maxTurns: 6,
-    turn: 1,
+  maxTurns: 6,
+  turn: 1,
 
-    locations: [],
-    player: '',
-    oponent: '',
+  locations: [],
 }
 
 export const counterSlice = createSlice({
-    name: 'game',
-    initialState,
-    reducers,
+  name: 'game',
+  initialState,
+  reducers,
 })
 
 // Action creators are generated for each case reducer function

@@ -1,51 +1,46 @@
-import { useEffect } from 'react';
-import { Footer, Header, Main } from "@components"
-import { GameProps } from "./game.interface"
-import { ContainerGame } from "./game.styles"
+import { Footer, Header, Main } from "@components";
+import { gameActions, playerActions } from "@store/slices";
+import { EmitReconnectGamePayload, EmitStartGamePayload } from "@types";
 import { socket } from 'apps/snaplex-app/src/main';
-import { Game as GameInterface, Player, START_GAME_RESPONSE } from '@types';
-import { useDispatch, useSelector } from 'react-redux';
-import { gameActions, playerActions } from '@store/slices';
-import { adaptGame, adaptLocation, adaptLocationProps, adaptLocations, adaptPlayer } from '../../adapters/adapters';
-import { io } from 'socket.io-client';
-import { RootState } from '@store';
+import { useEffect } from 'react';
+import { useDispatch } from "react-redux";
+import { adaptLocations } from "../../adapters";
+import { GameProps } from "./game.interface";
+import { ContainerGame } from "./game.styles";
 
 export const Game = (props: GameProps) => {
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    const hand = useSelector((state: RootState) => state.player.hand);
-    const locations = useSelector((state: RootState) => state.game.locations);
+  const onConnect = (data: EmitStartGamePayload) => {
+    const { deck, hand, locations, mana, maxTurns, turn, userId: id } = data;
 
-    useEffect(() => {
-        const connect = (response: START_GAME_RESPONSE) => {
-            console.log('START_GAME', { response });
-            localStorage.setItem('id', response.id);
+    dispatch(playerActions.setPlayer({
+      player: {
+        deck, hand, id, mana,
+      }
+    }));
 
-            let player = response.game.playerB as Player;
+    dispatch(gameActions.setGame({
+      game: {
+        id: '',
+        locations: adaptLocations(locations),
+        maxTurns,
+        turn
+      }
+    }));
+  }
 
-            if (response.game.playerA.id === response.id)
-                player = response.game.playerA;
+  useEffect(() => {
 
-            dispatch(gameActions.setGame(adaptGame(response)))
-            dispatch(playerActions.setPlayer(adaptPlayer(player)))
-            dispatch(gameActions.setLocations(adaptLocations(response.game.locations)))
-        }
+    socket.on("START_GAME", onConnect)
+    socket.on("RECONNECT", onConnect)
+    socket.on("NEXT_TURN", onConnect)
+  }, []);
 
-        socket.on("START_GAME", connect)
-        socket.on("RECONNECT", connect)
-        socket.on("NEXT_TURN", (data) => {
-            const { locations, mana, card } = data;
-            console.log(data);
-            dispatch(playerActions.setHand({ hand: [...hand, card] }))
-            dispatch(gameActions.setLocations({ locations: adaptLocations(locations).locations }))
-            dispatch(playerActions.setMana({ mana }))
-        })
-    }, []);
-
-    return <ContainerGame {...props}>
-        <Header />
-        <Main />
-        <Footer />
-    </ContainerGame >
+  return <ContainerGame {...props}>
+    <Header />
+    <Main />
+    <Footer />
+  </ContainerGame >
 }
