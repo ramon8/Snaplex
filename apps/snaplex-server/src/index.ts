@@ -3,6 +3,7 @@ import express from 'express';
 import http from 'http';
 import { Server } from "socket.io";
 import { onUserConnect } from './Service/ConnectionService';
+import { DataService } from './Service/DataService';
 
 const initialize = () => {
 
@@ -15,6 +16,7 @@ const initialize = () => {
     });
 
     const gameRooms: GameRoom[] = [];
+    const actions = DataService(gameRooms);
 
     io.on('connection', onUserConnect(gameRooms, io));
 
