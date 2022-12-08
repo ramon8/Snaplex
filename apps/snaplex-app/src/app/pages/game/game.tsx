@@ -1,5 +1,6 @@
 import { Footer, Header, Main } from "@components";
 import { gameActions, playerActions } from "@store/slices";
+import { actionsActions } from "@store/slices/actions/actionsSlice";
 import { EmitReconnectGamePayload, EmitStartGamePayload } from "@types";
 import { socket } from 'apps/snaplex-app/src/main';
 import { useEffect } from 'react';
@@ -13,8 +14,10 @@ export const Game = (props: GameProps) => {
   const dispatch = useDispatch();
 
   const onConnect = (data: EmitStartGamePayload) => {
+    console.log({ data })
     const { deck, hand, locations, mana, maxTurns, turn, userId: id } = data;
 
+    dispatch(actionsActions.clearActions());
     dispatch(playerActions.setPlayer({
       player: {
         deck, hand, id, mana,

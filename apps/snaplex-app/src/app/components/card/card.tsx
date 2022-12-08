@@ -18,12 +18,15 @@ const staticProps = {
 }
 
 export const Card = (props: CardProps) => {
-  const { id, name, cost, power, description, icon, drag = false, type = 'hand' } = props;
+  const { id, name, cost, power, description, icon, drag = false, index, type = 'hand' } = props;
 
   const locations = useSelector((state: RootState) => state.game.locations)
   const { mana, hand } = useSelector((state: RootState) => state.player)
+  const actions = useSelector((state: RootState) => state.actions)
 
   const dispatch = useDispatch();
+
+  console.log('->', { actions });
 
   const onDragEnd = (e: any) => {
     const locationId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-id'])?.attributes['data-id' as any]?.value;
@@ -46,7 +49,7 @@ export const Card = (props: CardProps) => {
         dispatch(playerActions.setHand({ hand: cards }))
         dispatch(playerActions.setMana({ mana: mana - cost }))
 
-
+        console.log({ actions });
         dispatch(actionsActions.setAction({
           action: {
             card: props,
@@ -64,6 +67,7 @@ export const Card = (props: CardProps) => {
     data-type={type}
     onDragEnd={onDragEnd}
     layoutId={id}
+
   >
     {type !== 'location' && <Name>{name}</Name>}
     <StyledPower value={power} />

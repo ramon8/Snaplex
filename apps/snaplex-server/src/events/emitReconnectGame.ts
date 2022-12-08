@@ -40,14 +40,14 @@ export const emitReconnect = (gameRooms: GameRoom[], gameRoom: GameRoom, socket:
   const newLocations = [...locations];
 
   newLocations.forEach((_, i) => {
-    [newLocations[i].playersCards[0], newLocations[i].playersCards[1]] = [locations[i].playersCards[1], locations[i].playersCards[0]]
+    [newLocations[i].playersCards[0], newLocations[i].playersCards[1]] = [newLocations[i].playersCards[1], newLocations[i].playersCards[0]]
   })
 
   const userindex = findUser(gameRooms[gameRoomIndex], userId);
   let data: EmitReconnectGamePayload = {
     deck,
     hand,
-    locations,
+    locations: newLocations,
     mana,
     turn,
     maxTurns,
@@ -57,7 +57,7 @@ export const emitReconnect = (gameRooms: GameRoom[], gameRoom: GameRoom, socket:
     data = {
       deck,
       hand,
-      locations: newLocations,
+      locations: locations,
       mana,
       turn,
       maxTurns,

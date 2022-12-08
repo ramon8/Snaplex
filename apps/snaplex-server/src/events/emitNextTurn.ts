@@ -1,69 +1,88 @@
-import { Action, Card, EmitNextTurnPayload, Location } from "@types";
+import { Action, Card, EmitNextTurnPayload, EmitReconnectGamePayload, Location, User } from "@types";
 import { Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { GameRoom } from "../features/gameRooms/gameRoom.interfaces";
-import { setGame, setLocations, setUser, setUserDeck, setUserHand } from "../features/gameRooms/gameRooms";
+import { setGame, setGameRoom, setLocations, setUser, setUserDeck, setUserHand } from "../features/gameRooms/gameRooms";
 import { store } from "../store";
 import { findLocation, findRoom, findUser } from "../utils";
 
-export const emitNextTurn = (gameRoom: GameRoom, socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>, actions: Action[][]) => {
-  console.log({ actions });
+export const emitNextTurn = (gameRoom: GameRoom) => {
   const { gameRooms } = store.getState();
-  const indexGameRoom = findRoom(gameRooms, gameRoom.id)
-  const locations = gameRooms[indexGameRoom].game.locations;
+  const gameRoomIndex = findRoom(gameRooms, gameRoom.id);
 
-  const newPower = [0, 0];
-  const newTurn = gameRooms[indexGameRoom].game.turn + 1;
+  let { locations, maxTurns, turn } = gameRooms[gameRoomIndex].game
 
-  const newLocations = [...locations]; // kk
-  locations.forEach((location, locationIndex) => {
+  const prevLocations: Location[] = []
 
-    let playersCards: Card[][] = [];
-    gameRooms[indexGameRoom].users.forEach(({ hand, deck, ...user }, userIndex) => {
-      const newPlayerCards = actions[userIndex].filter(action => action.id === location.id).map(action => action.card)
-      playersCards[userIndex] = [...location.playersCards[userIndex], ...newPlayerCards];
-    })
-    newLocations[locationIndex] = {
+  locations.forEach((location, i) => {
+    prevLocations.push({
       ...location,
-      playersCards: playersCards,
-      playersPower: [
-        playersCards[0].reduce((a, b) => a + b.power, 0),
-        playersCards[1].reduce((a, b) => a + b.power, 0)
-      ],
+      playersCards: [location.playersCards[1], location.playersCards[0]]
+    })
+    // [locations[i].playersCards[0], locations[i].playersCards[1]] = [locations[i].playersCards[1], locations[i].playersCards[0]]
+  })
+
+  gameRooms[gameRoomIndex].users.forEach(({ deck, hand, id, mana, socket }, userindex) => {
+    let data: EmitReconnectGamePayload = {
+      deck,
+      hand,
+      locations: locations,
+      mana,
+      turn,
+      maxTurns,
+      userId: id,
     }
+    if (userindex) {
+      data = {
+        deck,
+        hand,
+        locations: prevLocations,
+        mana,
+        turn,
+        maxTurns,
+        userId: id,
+      }
+    }
+    socket.emit("NEXT_TURN", data);
   })
 
-  store.dispatch(setGame({
-    game: {
-      ...gameRooms[indexGameRoom].game,
-      turn: newTurn,
-      locations: newLocations,
-    },
-    roomId: gameRooms[indexGameRoom].id
-  }));
+  // const userId = socket.handshake.query['id'] as string;
+  // const gameRoomIndex = findRoom(gameRooms, gameRoom.id);
 
-  const { gameRooms: newGameRooms } = store.getState();
-  const newIndexGameRoom = findRoom(newGameRooms, gameRoom.id)
+  // const { deck, hand, id, mana } = gameRooms[gameRoomIndex].users[findUser(gameRooms[gameRoomIndex], userId)]
+  // const { locations, maxTurns, turn } = gameRooms[gameRoomIndex].game
 
-  const loc = newGameRooms[newIndexGameRoom].game.locations;
-  newGameRooms[newIndexGameRoom].users.forEach(({ hand, deck, ...user }, userIndex) => {
-    // const newCardsIds = newLocations.map(location => location.playersCards[userIndex].map(cards => cards.id))
-    const newCardsIds = loc.map(location => location.playersCards)[userIndex].flat().map(card => card.id);
+  // const newLocations = [...locations];
 
-    const newDeck = [...deck]
-    const newCard = newDeck.pop();
-    const newHand = hand.filter(card => !newCardsIds.includes(card.id));
-    newCard && newHand.push(newCard);
-    store.dispatch(setUser({
-      user: {
-        ...user,
-        deck: newDeck,
-        hand: newHand,
-        mana: newTurn,
-      },
-      roomId: gameRooms[indexGameRoom].id
-    }))
-  })
+  // newLocations.forEach((_, i) => {
+  //   [newLocations[i].playersCards[0], newLocations[i].playersCards[1]] = [locations[i].playersCards[1], locations[i].playersCards[0]]
+  // })
+
+  // const userindex = findUser(gameRooms[gameRoomIndex], userId);
+  // let data: EmitReconnectGamePayload = {
+  //   deck,
+  //   hand,
+  //   locations: newLocations,
+  //   mana,
+  //   turn,
+  //   maxTurns,
+  //   userId: id,
+  // }
+  // if (userindex) {
+  //   data = {
+  //     deck,
+  //     hand,
+  //     locations: locations,
+  //     mana,
+  //     turn,
+  //     maxTurns,
+  //     userId: id,
+  //   }
+  // }
+
+
+  // console.log({ data });
+  // socket.emit("RECONNECT", data);
 }
 
 

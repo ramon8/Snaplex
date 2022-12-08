@@ -5,7 +5,7 @@ import { emitReconnect } from '../../events/emitReconnectGame'
 import { emitStartGame } from '../../events/emitStartGame'
 import { onFinishTurn } from '../../events/onFinishTurn'
 import { findLocation, findRoom, findUser } from '../../utils'
-import { GameRoom, JoinGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetUserPayload, SetPlayersCardsInLocationPayload, SetTurnPayload, SetUserHandPayload, SetUserDeckPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload, SetGamePayload } from './gameRoom.interfaces'
+import { GameRoom, JoinGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetUserPayload, SetPlayersCardsInLocationPayload, SetTurnPayload, SetUserHandPayload, SetUserDeckPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload, SetGamePayload, SetGameRoomPayload } from './gameRoom.interfaces'
 
 export type GameRoomState = GameRoom[]
 
@@ -102,9 +102,14 @@ const gameRoomsSlice = createSlice({
       const roomIndex = findRoom(state as GameRoom[], roomId)
       const locationIndex = findLocation(state[roomIndex] as GameRoom, locationId)
       state[roomIndex].game.locations[locationIndex].playersCards = playersCards;
+    },
+
+    setGameRoom(state, { payload: { gameRoom } }: PayloadAction<SetGameRoomPayload>) {
+      const roomIndex = findRoom(state as GameRoom[], gameRoom.id)
+      state[roomIndex] = gameRoom;
     }
   }
 })
 
-export const { addGameRoom, joinGameRoom, setGame, setUserSocket, setUserHand, setUserTurnActions, setUser, setUserDeck, setMaxTurn, setTurn, setUserMana, setLocations, setPlayersCardsInLocation } = gameRoomsSlice.actions
+export const { addGameRoom, joinGameRoom, setGameRoom, setGame, setUserSocket, setUserHand, setUserTurnActions, setUser, setUserDeck, setMaxTurn, setTurn, setUserMana, setLocations, setPlayersCardsInLocation } = gameRoomsSlice.actions
 export default gameRoomsSlice.reducer

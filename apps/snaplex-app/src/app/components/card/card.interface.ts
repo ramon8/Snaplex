@@ -12,4 +12,6 @@ export interface CardProps {
 
     type?: CardType;
     drag?: boolean;
+
+    index?: number;
 }

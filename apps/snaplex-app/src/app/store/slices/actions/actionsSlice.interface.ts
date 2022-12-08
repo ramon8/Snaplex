@@ -9,4 +9,9 @@ export interface SetAction {
   action: Action
 }
 
+export interface SetActions {
+  actions: Action[]
+}
+
 export type SetActionPayload = PayloadAction<SetAction>
+export type SetActionsPayload = PayloadAction<SetActions>

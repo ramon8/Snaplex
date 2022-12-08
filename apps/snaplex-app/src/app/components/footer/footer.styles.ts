@@ -2,6 +2,7 @@ import { Mana } from "@components/mana";
 import { Button } from "@components/button"
 import { Hand } from "@components/hand"
 import styled from "styled-components";
+import { Deck } from "@components/deck";
 
 export const ContainerFooter = styled.div`
     display: grid;
@@ -32,4 +33,10 @@ export const ButtonStyled = styled(Button)`
 export const HandStyled = styled(Hand)`
     grid-area: hand;
     height: 180px;
+`
+
+export const DeckStyled = styled(Deck)`
+    position: fixed;
+    bottom: 0;
+    transform: translate(0, 100%)
 `

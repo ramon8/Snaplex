@@ -77,3 +77,9 @@ export interface SetPlayersCardsInLocationPayload {
   locationId: string;
   playersCards: Card[][]
 }
+
+
+
+export interface SetGameRoomPayload {
+  gameRoom: GameRoom;
+}

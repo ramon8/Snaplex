@@ -18,7 +18,7 @@ export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, Def
 
     if (isAnyRoomWaiting === -1) { // No rooms are waiting, create new room
       console.log(`[${userId}] new game created, waiting other player to join...`)
-      store.dispatch(addGameRoom({
+      const newGameRoom = {
         id: `room_${userId}`,
         game: initialGame,
         users: [{ 
@@ -29,7 +29,8 @@ export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, Def
           hand: [], 
           mana: 1 
         }]
-      })) // Obtain the deck from the bd?
+      }; 
+      store.dispatch(addGameRoom(newGameRoom)) // Obtain the deck from the bd?
       socket.on("FINISH_TURN", onFinishTurn(`room_${userId}`, socket, userId))
 
     } else { // Found waiting room, then join that room with the current user
