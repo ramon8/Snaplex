@@ -32,7 +32,6 @@ export const Game = (props: GameProps) => {
   }
 
   useEffect(() => {
-
     socket.on("START_GAME", onConnect)
     socket.on("RECONNECT", onConnect)
     socket.on("NEXT_TURN", onConnect)

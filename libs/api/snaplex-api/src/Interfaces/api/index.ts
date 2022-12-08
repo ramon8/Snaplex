@@ -1,3 +1,4 @@
+import { Action } from '../Action'
 import { Card } from '../Card'
 import { Location } from '../Location'
 
@@ -32,4 +33,9 @@ export interface EmitNextTurnPayload {
   maxTurns: number,
   mana: number,
   userId: string
+}
+
+
+export interface EmitFinishTurnPayload {
+  actions: Action[]
 }

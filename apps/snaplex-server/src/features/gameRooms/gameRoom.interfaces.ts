@@ -37,6 +37,13 @@ export interface SetUserManaPayload {
   mana: number;
 }
 
+
+export interface SetUserHandPayload {
+  roomId: string;
+  userId: string;
+  hand: Card[];
+}
+
 export interface SetTurnPayload {
   roomId: string;
   turn: number;
@@ -50,4 +57,23 @@ export interface SetMaxTurnPayload {
 export interface SetLocationsPayload {
   roomId: string;
   locations: Location[];
+}
+
+
+export interface SetUserPayload {
+  roomId: string;
+  user: User;
+}
+
+
+export interface SetGamePayload {
+  roomId: string;
+  game: Game;
+}
+
+
+export interface SetPlayersCardsInLocationPayload {
+  roomId: string;
+  locationId: string;
+  playersCards: Card[][]
 }

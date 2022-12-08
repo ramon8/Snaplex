@@ -2,9 +2,14 @@ import { EmitStartGamePayload } from "@types";
 import { GameRoom } from "../features/gameRooms/gameRoom.interfaces";
 
 export const emitStartGame = (gameRoom: GameRoom) => {
-  const data: EmitStartGamePayload[] = gameRoom.users.map(({ id, deck, hand, mana }, i) => {
+
+
+  gameRoom.users.forEach(({ id, deck, hand, mana, socket }, i) => {
+
+
+
     const { game: { locations, turn, maxTurns } } = gameRoom;
-    return {
+    const data = {
       deck,
       hand,
       locations,
@@ -12,8 +17,10 @@ export const emitStartGame = (gameRoom: GameRoom) => {
       turn,
       maxTurns,
       userId: id,
-    }
-  });
+    };
+    socket.emit("START_GAME", data)
 
-  gameRoom.users.forEach(({ socket }, i) => socket.emit("START_GAME", data[i]))
+
+    
+  })
 }
