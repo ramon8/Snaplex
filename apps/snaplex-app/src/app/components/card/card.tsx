@@ -51,7 +51,7 @@ export const Card = (props: CardProps) => {
           action: {
             card: props,
             id: location.id,
-            type: 'play'
+            type: 'play',
           }
         }))
       }
