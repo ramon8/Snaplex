@@ -10,6 +10,15 @@ export const Draculex: Card = {
     power: 6,
     image: './../../../assets/dracualex.png',
 }
+export const Fatramothor: Card = {
+    icon: '',
+    name: 'FatRamthor',
+    cost: 6,
+    description: 'Martillo o porra?',
+    id: '🔨',
+    power: 6,
+    image: './../../../assets/fat_ramthor.png',
+}
 export const Uvas: Card = {
     icon: '🍇',
     name: 'Uvas',
@@ -951,6 +960,7 @@ function shuffle(array: any[]) {
 
 export const allCards: Card[] = [
     Draculex,
+    Fatramothor,
     Uvas,
     Melón,
     Sandía,

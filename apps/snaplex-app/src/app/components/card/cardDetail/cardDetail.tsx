@@ -16,7 +16,7 @@ export const CardDetail = ({ id, icon, name, power, cost, description, ...props 
             <Mana size={4} stroke={2}>{cost}</Mana>
             <Power size={4} stroke={2}>{power}</Power>
             <Name size={3.2} stroke={2}>{name}</Name>
-            <Icon size={10} stroke={2}>{icon}</Icon>
+            <Icon size={15} stroke={2}>{icon}</Icon>
             <Description size={1.2}>{description}</Description>
             {/* <Button value="Close" onClick={() => dispatch(playgroundActions.setSelectedCard({}))} /> */}
         </ContainerCardDetail>
