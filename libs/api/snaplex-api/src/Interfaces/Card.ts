@@ -6,4 +6,5 @@ export interface Card extends Instance {
 
     description?: string;
     icon?: string;
+    image?: string;
 }

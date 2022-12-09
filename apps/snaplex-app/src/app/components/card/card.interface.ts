@@ -1,17 +1,12 @@
-export type CardType = 'hand' | 'location';
+export type CardType = 'default' | 'detail';
 
 export interface CardProps {
-    id: string;
-    name: string;
-
-    cost: number;
-    power: number;
-
-    description?: string;
-    icon?: string;
-
+    power: number,
+    cost: number,
+    id?: string;
+    name?: string;
     type?: CardType;
-    drag?: boolean;
-
-    index?: number;
+    icon?: string;
+    image?: string;
+    description?: string;
 }

@@ -1,11 +1,14 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
-import { Text } from './../text'
-import { CardProps } from "./card.interface";
+import { Text } from '../../text'
+import { CardDetailProps } from "./cardDetail.interface";
 
-export const ContainerCard = styled(motion.div)((props: CardProps) => `
+export const ContainerCardDetail = styled(motion.div)((props: Partial<CardDetailProps>) => `
+    z-index: 1;
     display: grid;
     place-items: center;
+    text-align: center;
+
     grid-template: 
         " mana        power       " auto
         " icon        icon        " 1fr
@@ -13,16 +16,17 @@ export const ContainerCard = styled(motion.div)((props: CardProps) => `
         " description description " auto
         / 1fr         1fr;
 
-        
-        width: calc(347px / 4);
-        height: calc(542px / 4);
-        padding: .5rem .75rem;
-        
+    width: 347px;
+    height: 542px;
+    padding: 2rem 2.5rem;
+    text-align: center;
+
     background: #D6D6D6;
+    border-radius: .5rem;
     background-image: url(${props.image});
     background-size: cover;
-    border-radius: .5rem;
     border: 2px solid black;
+    box-shadow: 0px 3px 0px black;
 
     box-sizing: border-box;
     cursor: grab;
@@ -33,40 +37,20 @@ export const ContainerCard = styled(motion.div)((props: CardProps) => `
 
 export const Name = styled(Text)`
     grid-area: name;
-`
-
-export const ContainerCardDetail = styled.div`
-    display: grid;
-    place-items: center;
-
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    text-align: center;
-    
-    width: 100%;
-    height: 100%;
-    
-    background: rgba(0,0,0,0.5);
-`
-
+    `
 export const Power = styled(Text)`
     grid-area: power;
     transform: rotate(15deg);
     place-self: end;
-`
-
+    `
 export const Mana = styled(Text)`
     place-self: end start;
     transform: rotate(-15deg);
     grid-area: mana;
 `
-
 export const Description = styled(Text)`
     grid-area: description;
 `
-
 export const Icon = styled(Text)`
     grid-area: icon;
 `

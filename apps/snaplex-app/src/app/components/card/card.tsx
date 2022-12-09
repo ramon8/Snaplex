@@ -1,78 +1,33 @@
-import { RootState } from "@store/index"
-import { gameActions, playerActions } from "@store/slices"
-import { actionsActions } from "@store/slices/actions/actionsSlice"
-import { useDispatch, useSelector } from "react-redux"
-import { LocationProps } from ".."
+import { Button } from "@components/button";
+import { RootState } from "@store";
+import { playgroundActions } from "@store/slices/playground/playgroundSlice";
+import { AnimatePresence, motion } from "framer-motion"
+import { useDispatch, useSelector } from "react-redux";
 import { CardProps } from "./card.interface"
-import { ContainerCard, Name, Icon, Description, StyledPower, StyledMana } from "./card.styles"
+import { Name, Power, Mana, Description, ContainerCard, Icon, ContainerCardDetail } from "./card.styles"
+import { CardDetail, CardDetailProps } from "./cardDetail";
 
-const staticProps = {
-  dragConstraints: {
-    bottom: 0,
-    left: 0,
-    right: 0,
-    top: 0
-  },
-  dragElastic: 1,
-  dragMomentum: false
-}
 
 export const Card = (props: CardProps) => {
-  const { id, name, cost, power, description, icon, drag = false, index, type = 'hand' } = props;
+    const { id, icon, name, power, cost } = props;
+    const { selectedCard } = useSelector((state: RootState) => state.playground);
+    const dispatch = useDispatch();
 
-  const locations = useSelector((state: RootState) => state.game.locations)
-  const { mana, hand } = useSelector((state: RootState) => state.player)
-  const actions = useSelector((state: RootState) => state.actions)
-
-  const dispatch = useDispatch();
-
-  console.log('->', { actions });
-
-  const onDragEnd = (e: any) => {
-    const locationId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-id'])?.attributes['data-id' as any]?.value;
-    const location: LocationProps = { ...locations?.find((location: LocationProps) => location.id === locationId) } as LocationProps;
-    if (location && cost <= mana && location.playerCards?.length < 4) {
-
-      // The dragged card is not added to the list yet so we need to merge the actual list with the card
-      // eslint-disable-next-line no-unsafe-optional-chaining
-      const powerArray = [...location?.playerCards, props].map((card: CardProps) => card.power) || [];
-      const power = powerArray.reduce((a: number, b: number) => a + b, 0);
-
-      location.playerPower = power;
-      location.playerCards = [...location.playerCards, props]
-
-      const cards = [...hand];
-      cards.splice(hand.findIndex((card: CardProps) => card.id === id), 1);
-      console.log({ location })
-      if (location) {
-        dispatch(gameActions.setLocation({ location: location }))
-        dispatch(playerActions.setHand({ hand: cards }))
-        dispatch(playerActions.setMana({ mana: mana - cost }))
-
-        console.log({ actions });
-        dispatch(actionsActions.setAction({
-          action: {
-            card: props,
-            id: location.id,
-            type: 'play',
-          }
-        }))
-      }
-    }
-    // dispatch(setCardDragging({ card: null }))
-  }
-  return <ContainerCard
-    {...staticProps}
-    drag={type === 'hand'}
-    data-type={type}
-    onDragEnd={onDragEnd}
-    layoutId={id}
-
-  >
-    {type !== 'location' && <Name>{name}</Name>}
-    <StyledPower value={power} />
-    <Icon data-type={type}>{icon}</Icon>
-    {/* {type === 'detail' && <Description>{description}</Description>} */}
-    {type !== 'location' && <StyledMana value={cost} />}
-  </ContainerCard>
+    return <>
+        {/* <CardDetail {...props as CardDetailProps} /> */}
+        <ContainerCard drag layoutId={id} dragElastic={.02} dragMomentum={false} dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }} {...props} onClick={() => id && dispatch(playgroundActions.setSelectedCard({ cardId: id }))}>
+            <Mana size={1} stroke={1}>{cost}</Mana>
+            <Power size={1} stroke={1}>{power}</Power>
+            <Icon size={3} stroke={0}>{icon}</Icon>
+            <Name size={.7} stroke={.7}>{name}</Name>
+            {/* <Description size={.5}>Succión Automática</Description> */}
+        </ContainerCard>
+        <AnimatePresence>
+            {selectedCard === id && (
+                <ContainerCardDetail onClick={() => dispatch(playgroundActions.setSelectedCard({}))}>
+                    <CardDetail {...props as CardDetailProps} />
+                </ContainerCardDetail>
+            )}
+        </AnimatePresence>
+    </>
 }
