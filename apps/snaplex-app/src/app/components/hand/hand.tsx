@@ -6,6 +6,6 @@ import { ContainerHand } from "./hand.styles"
 export const Hand = (props: HandProps) => {
     const hand = useSelector((state: RootState) => state.player.hand)
     return <ContainerHand {...props}>
-        {hand.map((card: CardProps) => <Card {...card} key={card.id} type="hand" drag />)}
+        {hand.map((card: CardProps) => <Card {...card} key={card.id} />)}
     </ContainerHand>
 }

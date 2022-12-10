@@ -51,13 +51,13 @@ export const ContainerCardDetail = styled.div`
     background: rgba(0,0,0,0.5);
 `
 
-export const Power = styled(Text)`
+export const PowerStyled = styled(Text)`
     grid-area: power;
     transform: rotate(15deg);
     place-self: end;
 `
 
-export const Mana = styled(Text)`
+export const ManaValueStyled = styled(Text)`
     place-self: end start;
     transform: rotate(-15deg);
     grid-area: mana;

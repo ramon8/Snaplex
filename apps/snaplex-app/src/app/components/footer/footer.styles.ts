@@ -7,10 +7,10 @@ import { Deck } from "@components/deck";
 export const ContainerFooter = styled.div`
     display: grid;
     grid-template:
-        " mana mana mana " 
-        " .    .    timer  "
-        " hand hand btn  "
-        / 1fr  1fr  auto;
+        " mana mana mana    . " 
+        " .    .    timer   . "
+        " hand hand btn     . "
+        / 2fr  2fr  auto 1fr;
     place-items: center;
         
     padding: 16px;

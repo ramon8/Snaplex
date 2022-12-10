@@ -21,11 +21,13 @@ body,
 
 body {
     font-size: 16px;
-    max-width: 428px;
-    max-height: 926px;
+    /* max-width: 428px;
+    max-height: 926px; */
 
-    width: 428px;
-    height: 926px;
+    /* width: 428px;
+    height: 926px; */
+    /* width: 1000px;
+    height: 1000px; */
 
     padding: 10px;
 

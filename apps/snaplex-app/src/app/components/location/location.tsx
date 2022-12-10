@@ -9,7 +9,7 @@ export const Location = ({ playerPower, oponentPower, name, oponentCards, player
     return <ContainerLocation>
 
         <LocationCardsCotnainer>
-            {oponentCards?.map(card => <Card key={card.id} {...card} type="location" />)}
+            {oponentCards?.map(card => <Card key={card.id} {...card} />)}
         </LocationCardsCotnainer>
 
         <LocationInfoContainer>
@@ -20,7 +20,7 @@ export const Location = ({ playerPower, oponentPower, name, oponentCards, player
         </LocationInfoContainer>
 
         <LocationCardsCotnainer data-id={id}>
-            {playerCards?.map(card => <Card key={card.id} {...card} type="location" />)}
+            {playerCards?.map(card => <Card key={card.id} {...card} />)}
         </LocationCardsCotnainer>
         
     </ContainerLocation>

@@ -1,4 +1,4 @@
-import { CardProps } from "@components/card.old"
+import { CardProps } from "@components"
 import { PayloadAction } from "@reduxjs/toolkit"
 import { Player } from "@types"
 

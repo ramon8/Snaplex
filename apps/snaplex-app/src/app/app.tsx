@@ -4,7 +4,7 @@ import { Playground } from '@pages/playground';
 export function App() {
 
   return (
-    <Playground />
+    <Game />
   );
 }
 

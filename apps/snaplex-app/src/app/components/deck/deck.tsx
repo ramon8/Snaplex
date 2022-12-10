@@ -1,4 +1,4 @@
-import { Card } from "@components/card.old"
+import { Card } from "@components"
 import { RootState } from "@store"
 import { useSelector } from "react-redux"
 import { DeckProps } from "./deck.interface"
