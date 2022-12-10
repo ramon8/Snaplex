@@ -13,7 +13,7 @@ export const onFinishTurn = (roomId: string, socket: any, userId: string) => (ac
   const userWithActions = gameRoom.users.find(({ turnActions }) => turnActions)
   const usersActions: Action[][] = [[], []]
 
-  store.dispatch(setUserTurnActions({ userId, roomId: gameRoom.id, turnActions: actions }));
+  store.dispatch(setUserTurnActions({ userId, roomId: gameRoom.id, turnActions: actions || [] }));
 
   if (userWithActions) {
     clearTimeout(gameRooms[gameRoomIndex].timeOut);
@@ -95,15 +95,18 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
     
     // check how many locations wins every player
     updatedgameRoom.game.locations.forEach(location => {
-      if(location.playersPower[0] > location.playersPower[1]) player1WinLocations = player1WinLocations + 1;
-      if(location.playersPower[1] > location.playersPower[0]) player2WinLocations = player2WinLocations + 1;
+      if(location.playersPower[0] > location.playersPower[1]) player1WinLocations++;
+      if(location.playersPower[1] > location.playersPower[0]) player2WinLocations++;
     } )
 
     // check if any player won directly
-    if(player1WinLocations >= 2 || player2WinLocations >= 2){
-      const winner = player1WinLocations > player2WinLocations ? gameRoom.users[0].id : gameRoom.users[1].id;
+    if(player1WinLocations > player2WinLocations){
+      const winner = gameRoom.users[0].id;
       emitNextTurn(updatedgameRoom, winner);
-    } else {
+    } else if(player2WinLocations > player1WinLocations) {
+      const winner = gameRoom.users[1].id;
+      emitNextTurn(updatedgameRoom, winner);
+    } else{
       let player1TotalPower = 0;
       let player2TotalPower = 0;
 
@@ -113,10 +116,15 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
         player2TotalPower = player2TotalPower + location.playersPower[1];
       });
 
-      let winner;
-      if(player1TotalPower === player2TotalPower) winner = null;
-      if(winner !== null) winner = player1WinLocations > player2WinLocations ? gameRoom.users[0].id : gameRoom.users[1].id;
-      emitNextTurn(updatedgameRoom, winner); // utilizar el mismo emitNextTurn y si pasamos prop winner cambiar code en vez de replicar code?
+      if(player1TotalPower > player2TotalPower){
+        const winner = gameRoom.users[0].id;
+        emitNextTurn(updatedgameRoom, winner);
+      } else if(player2TotalPower > player1TotalPower) {
+        const winner = gameRoom.users[1].id;
+        emitNextTurn(updatedgameRoom, winner);
+      } else {
+        emitNextTurn(updatedgameRoom, null);
+      }
     };
 
     //close socket

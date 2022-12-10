@@ -24,7 +24,7 @@ export interface EmitReconnectGamePayload {
   maxTurns: number,
   mana: number,
   userId: string,
-  winner?: string
+  winner?: string | null
 }
 
 export interface EmitNextTurnPayload {

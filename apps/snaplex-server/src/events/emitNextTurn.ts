@@ -43,7 +43,7 @@ export const emitNextTurn = (gameRoom: GameRoom, winnerId?: string | null) => {
       }
     }
 
-    if(winnerId){
+    if(winnerId !== undefined){
       data.winner = winnerId;
       socket.emit("FINISH_GAME", data)
     }

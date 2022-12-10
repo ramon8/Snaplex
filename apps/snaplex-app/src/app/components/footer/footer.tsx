@@ -20,7 +20,7 @@ export const Footer = (props: FooterProps) => {
 
   return <ContainerFooter  {...props}>
     <ManaStyled value={state.player.mana} />
-    {!state.game.winner && 
+    {state.game.winner === undefined && 
       <>
         <Timer disabled={state.game.timer} />
         <ButtonStyled onClick={onClickButton} value={`Turno ${state.game.turn} / ${state.game.maxTurns}`} />
