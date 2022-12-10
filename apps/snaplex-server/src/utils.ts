@@ -1,4 +1,5 @@
 import { GameRoom } from "./features/gameRooms/gameRoom.interfaces";
+import  {Card} from '@types';
 
 export const findRoom = (gameRooms: GameRoom[], roomId: string): number => {
   return gameRooms.findIndex(gameRoom => gameRoom.id === roomId)
@@ -11,4 +12,8 @@ export const findUser = (gameRoom: GameRoom, userId: string): number => {
 
 export const findLocation = (gameRoom: GameRoom, locationId: string): number => {
   return gameRoom.game.locations.findIndex(location => location.id === locationId)
+}
+
+export const shuffleDeck = (deck: Card[]): any[] => {
+  return deck.sort(() => Math.random() - 0.5);
 }
