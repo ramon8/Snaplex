@@ -6,7 +6,7 @@ import { setGame, setGameRoom, setLocations, setUser, setUserDeck, setUserHand }
 import { store } from "../store";
 import { findLocation, findRoom, findUser } from "../utils";
 
-export const emitNextTurn = (gameRoom: GameRoom) => {
+export const emitNextTurn = (gameRoom: GameRoom, winnerId?: string | null) => {
   const { gameRooms } = store.getState();
   const gameRoomIndex = findRoom(gameRooms, gameRoom.id);
 
@@ -42,6 +42,11 @@ export const emitNextTurn = (gameRoom: GameRoom) => {
         maxTurns,
         userId: id,
       }
+    }
+
+    if(winnerId){
+      data.winner = winnerId;
+      socket.emit("FINISH_GAME", data)
     }
     socket.emit("NEXT_TURN", data);
   })

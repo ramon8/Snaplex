@@ -34,10 +34,17 @@ export const Game = (props: GameProps) => {
     }));
   }
 
+  const onFinish = (data: EmitStartGamePayload) => {
+    onConnect(data)
+    console.log("winnerId of the game is", data.winner)
+    dispatch(gameActions.setWinner({winner: data.winner}))
+  }
+
   useEffect(() => {
     socket.on("START_GAME", onConnect)
     socket.on("RECONNECT", onConnect)
     socket.on("NEXT_TURN", onConnect)
+    socket.on("FINISH_GAME", onFinish);
   }, []);
 
   return <ContainerGame {...props}>

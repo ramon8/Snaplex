@@ -17,7 +17,9 @@ export const Footer = (props: FooterProps) => {
 
   return <ContainerFooter  {...props}>
     <ManaStyled value={state.player.mana} />
-    <ButtonStyled onClick={onClickButton} value={`Turno ${state.game.turn} / ${state.game.maxTurns}`} />
+    {!state.game.winner && 
+      <ButtonStyled onClick={onClickButton} value={`Turno ${state.game.turn} / ${state.game.maxTurns}`} />
+    }
     <HandStyled />
     <DeckStyled />
   </ContainerFooter>

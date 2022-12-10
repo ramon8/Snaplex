@@ -6,11 +6,10 @@ import * as reducers from './gameSlice.reducers'
 
 const initialState: GameState = {
   id: '',
-
   maxTurns: 6,
   turn: 1,
-
   locations: [],
+  winner: undefined
 }
 
 export const counterSlice = createSlice({

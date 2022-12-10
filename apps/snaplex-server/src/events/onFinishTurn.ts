@@ -1,7 +1,5 @@
 import { Action, Card, User } from "@types";
-import { Socket } from "socket.io";
-import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import { setGameRoom, setLocations, setPlayersCardsInLocation, setUserTurnActions } from "../features/gameRooms/gameRooms";
+import { setGameRoom, setUserTurnActions } from "../features/gameRooms/gameRooms";
 import { GameRoom } from "../interfaces/gameRoom";
 import { store } from "../store";
 import { findRoom } from "../utils";
@@ -101,5 +99,39 @@ const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
     gameRoom: updatedgameRoom
   }));
 
-  emitNextTurn(updatedgameRoom);
+  // check if is the last turn
+  if(updatedgameRoom.game.turn > updatedgameRoom.game.maxTurns){
+    let player1WinLocations = 0;
+    let player2WinLocations = 0;
+    
+    // check how many locations wins every player
+    updatedgameRoom.game.locations.forEach(location => {
+      if(location.playersPower[0] > location.playersPower[1]) player1WinLocations = player1WinLocations + 1;
+      if(location.playersPower[1] > location.playersPower[0]) player2WinLocations = player2WinLocations + 1;
+    } )
+
+    // check if any player won directly
+    if(player1WinLocations >= 2 || player2WinLocations >= 2){
+      const winner = player1WinLocations > player2WinLocations ? gameRoom.users[0].id : gameRoom.users[1].id;
+      emitNextTurn(updatedgameRoom, winner);
+    } else {
+      let player1TotalPower = 0;
+      let player2TotalPower = 0;
+
+      // calculate total power of players
+      updatedgameRoom.game.locations.forEach(location => {
+        player1TotalPower = player1TotalPower + location.playersPower[0];
+        player2TotalPower = player2TotalPower + location.playersPower[1];
+      });
+
+      let winner;
+      if(player1TotalPower === player2TotalPower) winner = null;
+      if(winner !== null) winner = player1WinLocations > player2WinLocations ? gameRoom.users[0].id : gameRoom.users[1].id;
+      emitNextTurn(updatedgameRoom, winner); // utilizar el mismo emitNextTurn y si pasamos prop winner cambiar code en vez de replicar code?
+    };
+
+    //close socket
+  } else{
+    emitNextTurn(updatedgameRoom);
+  }
 }
