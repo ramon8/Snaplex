@@ -7,10 +7,12 @@ export interface GameState {
   turn: number
   locations: LocationProps[]
   winner?: string | null
+  timer?: boolean;
 }
 
 export interface SetGame {
   game: GameState
+  timer: boolean
 }
 
 export interface SetId {
@@ -37,6 +39,10 @@ export interface SetWinner {
   winner?: string | null,
 }
 
+export interface SetTimer {
+  timer: boolean,
+}
+
 export type SetIdPayload = PayloadAction<SetId>
 export type SetMaxTurnsPayload = PayloadAction<SetMaxTurns>
 export type SetTurnsPayload = PayloadAction<SetTurns>
@@ -46,3 +52,4 @@ export type SetLocationPayload = PayloadAction<SetLocation>
 
 export type SetGamePayload = PayloadAction<SetGame>
 export type SetGameWinnerPayload = PayloadAction<SetWinner>
+export type SetTimerPayload = PayloadAction<SetTimer>

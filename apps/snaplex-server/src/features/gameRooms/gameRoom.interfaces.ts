@@ -6,6 +6,7 @@ export interface GameRoom {
   id: string;
   users: User[];
   game: Game;
+  timeOut?: any;
 }
 
 export interface JoinGameRoomPayload {
@@ -76,6 +77,11 @@ export interface SetPlayersCardsInLocationPayload {
   roomId: string;
   locationId: string;
   playersCards: Card[][]
+}
+
+export interface SetTimerPayload {
+  roomId: string;
+  timeOut: NodeJS.Timeout;
 }
 
 

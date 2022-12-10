@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { locationsMock } from '@mocks/location.mock'
 import { GameState } from './gameSlice.interface'
 import * as reducers from './gameSlice.reducers'
 
@@ -9,7 +8,8 @@ const initialState: GameState = {
   maxTurns: 6,
   turn: 1,
   locations: [],
-  winner: undefined
+  winner: undefined,
+  timer: false,
 }
 
 export const counterSlice = createSlice({

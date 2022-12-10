@@ -14,7 +14,6 @@ export const Game = (props: GameProps) => {
   const dispatch = useDispatch();
 
   const onConnect = (data: EmitStartGamePayload) => {
-    console.log({ data })
     const { deck, hand, locations, mana, maxTurns, turn, userId: id } = data;
 
     dispatch(actionsActions.clearActions());
@@ -30,7 +29,8 @@ export const Game = (props: GameProps) => {
         locations: adaptLocations(locations),
         maxTurns,
         turn
-      }
+      },
+      timer: true,
     }));
   }
 

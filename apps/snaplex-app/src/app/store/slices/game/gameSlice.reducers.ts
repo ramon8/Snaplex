@@ -1,5 +1,5 @@
-import { GameState, SetGamePayload, SetGameWinnerPayload, SetIdPayload, SetLocationPayload, SetLocationsPayload, SetMaxTurnsPayload, SetTurnsPayload } from './gameSlice.interface'
 import { LocationProps } from '@components/location'
+import { GameState, SetGamePayload, SetGameWinnerPayload, SetIdPayload, SetLocationPayload, SetLocationsPayload, SetMaxTurnsPayload, SetTimerPayload, SetTurnsPayload } from './gameSlice.interface'
 
 export const setId = (state: GameState, { payload: { id } }: SetIdPayload) => { state.id = id }
 export const setMaxTurns = (state: GameState, { payload: { value } }: SetMaxTurnsPayload) => { state.maxTurns = value }
@@ -20,6 +20,11 @@ export const setGame = (state: GameState, { payload: { game } }: SetGamePayload)
   state.id = game.id
   state.turn = game.turn
   state.maxTurns = game.maxTurns
-
   state.locations = game.locations
+  state.timer = game.timer;
+}
+
+
+export const setTimer = (state: GameState, { payload: { timer } }: SetTimerPayload) => {
+  state.timer = timer;
 }
