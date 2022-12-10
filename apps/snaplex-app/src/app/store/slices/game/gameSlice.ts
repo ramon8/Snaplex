@@ -11,6 +11,7 @@ const initialState: GameState = {
   turn: 1,
 
   locations: [],
+  timer: false,
 }
 
 export const counterSlice = createSlice({

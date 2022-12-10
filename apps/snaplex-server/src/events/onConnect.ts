@@ -2,6 +2,7 @@ import { Socket } from "socket.io"
 import { DefaultEventsMap } from "socket.io/dist/typed-events"
 import { initialGame, initialGameRoom } from "../features/gameRooms/gameRoom.mocks";
 import { addGameRoom, joinGameRoom, setUserSocket } from "../features/gameRooms/gameRooms";
+import { startNewTimer } from "../service/timeOutService";
 import { store } from "../store";
 import { onFinishTurn } from "./onFinishTurn";
 
@@ -21,23 +22,25 @@ export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, Def
       const newGameRoom = {
         id: `room_${userId}`,
         game: initialGame,
-        users: [{ 
-          id: userId, 
-          name: 'test-user', 
-          socket, 
-          deck: [], 
-          hand: [], 
-          mana: 1 
+        users: [{
+          id: userId,
+          name: 'test-user',
+          socket,
+          deck: [],
+          hand: [],
+          mana: 1
         }]
-      }; 
+      };
       store.dispatch(addGameRoom(newGameRoom)) // Obtain the deck from the bd?
       socket.on("FINISH_TURN", onFinishTurn(`room_${userId}`, socket, userId))
 
     } else { // Found waiting room, then join that room with the current user
       console.log(`[${userId}] game found, connecting to game ${gameRooms[isAnyRoomWaiting].id}`)
-      store.dispatch(joinGameRoom({ 
-        roomId: gameRooms[isAnyRoomWaiting].id, 
-        user: { id: userId, name: 'test-user', socket, deck: [], hand: [], mana: 1 } }))
+      store.dispatch(joinGameRoom({
+        roomId: gameRooms[isAnyRoomWaiting].id,
+        user: { id: userId, name: 'test-user', socket, deck: [], hand: [], mana: 1 }
+      }))
+      startNewTimer(gameRooms[isAnyRoomWaiting], 15000);
       socket.on("FINISH_TURN", onFinishTurn(gameRooms[isAnyRoomWaiting].id, socket, userId))
 
     }

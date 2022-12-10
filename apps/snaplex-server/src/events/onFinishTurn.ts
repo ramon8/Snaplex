@@ -8,25 +8,17 @@ import { findRoom } from "../utils";
 import { emitNextTurn } from "./emitNextTurn";
 
 export const onFinishTurn = (roomId: string, socket: any, userId: string) => (actions: Action[]) => {
-  console.log({ actions })
-
-  // const newPlayersCards
-
-  // gameRoom.game.locations.forEach(locations => {
-  //   store.dispatch(setPlayersCardsInLocation({ locationId: locations.id, playersCards: [], roomId }))
-  // });
-
   const { gameRooms } = store.getState();
   const gameRoomIndex = findRoom(gameRooms, roomId)
   const gameRoom = gameRooms[gameRoomIndex]
 
-  const userWithActions = gameRoom.users.find(({ turnActions }) => turnActions && turnActions?.length > 0)
+  const userWithActions = gameRoom.users.find(({ turnActions }) => turnActions)
   const usersActions: Action[][] = [[], []]
 
   store.dispatch(setUserTurnActions({ userId, roomId: gameRoom.id, turnActions: actions }));
 
   if (userWithActions) {
-
+    clearTimeout(gameRooms[gameRoomIndex].timeOut);
     const { gameRooms: newGamesRooms } = store.getState();
     const newGameRoomIndex = findRoom(newGamesRooms, roomId)
     const newGameRoom = newGamesRooms[newGameRoomIndex]
@@ -40,7 +32,7 @@ export const onFinishTurn = (roomId: string, socket: any, userId: string) => (ac
   }
 }
 
-const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
+export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
   console.log({ actions });
   const { gameRooms } = store.getState();
   const indexGameRoom = findRoom(gameRooms, gameRoom.id)
@@ -48,7 +40,6 @@ const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
 
   const updatedUsers: User[] = []
 
-  const newPower = [0, 0];
   const newTurn = gameRooms[indexGameRoom].game.turn + 1;
 
   const newLocations = [...locations]; // kk
@@ -69,9 +60,7 @@ const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
     }
   })
 
-
   gameRooms[indexGameRoom].users.forEach(({ hand, deck, ...user }, userIndex) => {
-    // const newCardsIds = newLocations.map(location => location.playersCards[userIndex].map(cards => cards.id))
     const newCardsIds = newLocations.map(location => location.playersCards[userIndex]).flat().map(card => card.id);
 
     const newDeck =  [...deck]
