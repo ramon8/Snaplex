@@ -2,8 +2,8 @@ import { Location } from "@types"
 
 
 export const locationObellaNegraMock: Location = {
-  id: 'obella_negra',
-  name: 'Obella Negra',
+  id: 'ovella_negra',
+  name: 'Ovella Negra',
   playersCards: [[], []],
   playersPower: [0, 0],
   description: 'A partir de turno 3 no se pueden jugar cartas'
