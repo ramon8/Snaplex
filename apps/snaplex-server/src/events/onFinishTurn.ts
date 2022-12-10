@@ -4,7 +4,7 @@ import { DefaultEventsMap } from "socket.io/dist/typed-events";
 import { setGameRoom, setLocations, setPlayersCardsInLocation, setUserTurnActions } from "../features/gameRooms/gameRooms";
 import { GameRoom } from "../interfaces/gameRoom";
 import { store } from "../store";
-import { findRoom, shuffleDeck } from "../utils";
+import { findRoom } from "../utils";
 import { emitNextTurn } from "./emitNextTurn";
 
 export const onFinishTurn = (roomId: string, socket: any, userId: string) => (actions: Action[]) => {
@@ -74,7 +74,7 @@ const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
     // const newCardsIds = newLocations.map(location => location.playersCards[userIndex].map(cards => cards.id))
     const newCardsIds = newLocations.map(location => location.playersCards[userIndex]).flat().map(card => card.id);
 
-    const newDeck =  shuffleDeck([...deck])
+    const newDeck =  [...deck]
     const newCard = newDeck.pop();
     const newHand = hand.filter(card => !newCardsIds.includes(card.id));
     newCard && newHand.push(newCard);

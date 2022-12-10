@@ -14,6 +14,6 @@ export const findLocation = (gameRoom: GameRoom, locationId: string): number => 
   return gameRoom.game.locations.findIndex(location => location.id === locationId)
 }
 
-export const shuffleDeck = (deck: Card[]): any[] => {
+export const shuffleDeck = (deck: Card[]): Card[] => {
   return deck.sort(() => Math.random() - 0.5);
 }

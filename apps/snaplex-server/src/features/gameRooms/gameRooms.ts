@@ -4,7 +4,7 @@ import { locationsMock } from '../../db/locations'
 import { emitReconnect } from '../../events/emitReconnectGame'
 import { emitStartGame } from '../../events/emitStartGame'
 import { onFinishTurn } from '../../events/onFinishTurn'
-import { findLocation, findRoom, findUser } from '../../utils'
+import { findLocation, findRoom, findUser, shuffleDeck } from '../../utils'
 import { GameRoom, JoinGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetUserPayload, SetPlayersCardsInLocationPayload, SetTurnPayload, SetUserHandPayload, SetUserDeckPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload, SetGamePayload, SetGameRoomPayload } from './gameRoom.interfaces'
 
 export type GameRoomState = GameRoom[]
@@ -25,7 +25,7 @@ const gameRoomsSlice = createSlice({
 
       // Initialize players states
       state[roomIndex].users.forEach(({ id, socket }, i) => {
-        const deck = [...decks[i]]
+        const deck = shuffleDeck([...decks[i]])
         const hand = deck.splice(deck.length - 3, 3)
 
         state[roomIndex].users[i].deck = deck;
