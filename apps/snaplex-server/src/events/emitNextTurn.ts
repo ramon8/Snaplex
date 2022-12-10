@@ -44,5 +44,5 @@ export const emitNextTurn = (gameRoom: GameRoom) => {
     }
     socket.emit("NEXT_TURN", data);
   })
-  startNewTimer(gameRooms[gameRoomIndex], 30000);
+  startNewTimer(gameRooms[gameRoomIndex], 100000); // 1 min
 }

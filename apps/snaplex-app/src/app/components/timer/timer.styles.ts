@@ -10,5 +10,5 @@ export const ContainerTimer = styled.div((props: any) => css`
     width: 100%;
     height: 50px;
     background: red; 
-    animation: ${props['data-disabled'] && css`${timerAnimation} 5s infinite linear`}; 
+    animation: ${props['data-disabled'] && css`${timerAnimation} 60s infinite linear`}; 
 `)

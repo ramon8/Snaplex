@@ -40,7 +40,7 @@ export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, Def
         roomId: gameRooms[isAnyRoomWaiting].id,
         user: { id: userId, name: 'test-user', socket, deck: [], hand: [], mana: 1 }
       }))
-      startNewTimer(gameRooms[isAnyRoomWaiting], 15000);
+      startNewTimer(gameRooms[isAnyRoomWaiting], 100000); // 1 min
       socket.on("FINISH_TURN", onFinishTurn(gameRooms[isAnyRoomWaiting].id, socket, userId))
 
     }

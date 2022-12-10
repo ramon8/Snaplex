@@ -63,7 +63,7 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
   gameRooms[indexGameRoom].users.forEach(({ hand, deck, ...user }, userIndex) => {
     const newCardsIds = newLocations.map(location => location.playersCards[userIndex]).flat().map(card => card.id);
 
-    const newDeck =  [...deck]
+    const newDeck = [...deck]
     const newCard = newDeck.pop();
     const newHand = hand.filter(card => !newCardsIds.includes(card.id));
     newCard && newHand.push(newCard);
@@ -72,7 +72,7 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
       deck: newDeck,
       hand: newHand,
       mana: newTurn,
-      turnActions: [],
+      turnActions: undefined,
     });
   })
 

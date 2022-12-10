@@ -15,6 +15,6 @@ export const startNewTimer = (gameRoom: GameRoom, time: number) => {
             const gameRoomIndex = findRoom(gameRooms, gameRoom.id)
             const actions: Action[][] = gameRooms[gameRoomIndex].users.map(user => user.turnActions || []);
             setNewState(gameRooms[gameRoomIndex], actions);
-        }, 5000)
+        }, time)
     }))
 }
