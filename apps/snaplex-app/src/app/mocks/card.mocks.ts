@@ -19,6 +19,7 @@ export const Fatramothor: Card = {
     power: 6,
     image: './../../../assets/fat_ramthor.png',
 }
+
 export const Uvas: Card = {
     icon: '🍇',
     name: 'Uvas',
@@ -1115,3 +1116,33 @@ export const locationCards = [
 ]
 
 export const localizationCards: Card[] = []
+
+const mazoAlex = [
+    Draculex,
+    Melón,
+    Sandía,
+    Mandarina,
+    Limón,
+    Plátano,
+    Piña,
+    Mango,
+    ManzanaRoja,
+    ManzanaVerde,
+    Pera,
+    Melocotón,
+];
+
+const mazoRamon = [
+    Fatramothor,
+    CuñaDeQueso,
+    CarneConHueso,
+    MusloDePollo,
+    CorteDeCarne,
+    Beicon,
+    Hamburguesa,
+    PerritoCaliente,
+    Taco,
+    Burrito,
+    PanRelleno,
+    Falafel,
+];
