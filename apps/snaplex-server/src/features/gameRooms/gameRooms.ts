@@ -3,9 +3,8 @@ import { decks } from '../../db/cards'
 import { locationsMock } from '../../db/locations'
 import { emitReconnect } from '../../events/emitReconnectGame'
 import { emitStartGame } from '../../events/emitStartGame'
-import { onFinishTurn } from '../../events/onFinishTurn'
-import { findLocation, findRoom, findUser } from '../../utils'
-import { GameRoom, JoinGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetUserPayload, SetPlayersCardsInLocationPayload, SetTurnPayload, SetUserHandPayload, SetUserDeckPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload, SetGamePayload, SetGameRoomPayload } from './gameRoom.interfaces'
+import { findLocation, findRoom, findUser, shuffleDeck } from '../../utils'
+import { GameRoom, JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetPlayersCardsInLocationPayload, SetTimerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserIsWaitingPayload, SetUserManaPayload, SetUserPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
 
 export type GameRoomState = GameRoom[]
 
@@ -25,7 +24,7 @@ const gameRoomsSlice = createSlice({
 
       // Initialize players states
       state[roomIndex].users.forEach(({ id, socket }, i) => {
-        const deck = [...decks[i]]
+        const deck = shuffleDeck([...decks[i]])
         const hand = deck.splice(deck.length - 3, 3)
 
         state[roomIndex].users[i].deck = deck;
@@ -107,9 +106,14 @@ const gameRoomsSlice = createSlice({
     setGameRoom(state, { payload: { gameRoom } }: PayloadAction<SetGameRoomPayload>) {
       const roomIndex = findRoom(state as GameRoom[], gameRoom.id)
       state[roomIndex] = gameRoom;
+    },
+
+    setTimer(state, { payload: { roomId, timeOut } }: PayloadAction<SetTimerPayload>) {
+      const roomIndex = findRoom(state as GameRoom[], roomId)
+      state[roomIndex].timeOut = timeOut;
     }
   }
 })
 
-export const { addGameRoom, joinGameRoom, setGameRoom, setGame, setUserSocket, setUserHand, setUserTurnActions, setUser, setUserDeck, setMaxTurn, setTurn, setUserMana, setLocations, setPlayersCardsInLocation } = gameRoomsSlice.actions
+export const { addGameRoom, joinGameRoom, setTimer, setGameRoom, setGame, setUserSocket, setUserHand, setUserTurnActions, setUser, setUserDeck, setMaxTurn, setTurn, setUserMana, setLocations, setPlayersCardsInLocation } = gameRoomsSlice.actions
 export default gameRoomsSlice.reducer

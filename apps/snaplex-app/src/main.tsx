@@ -24,6 +24,3 @@ localStorage.setItem("id", id.toString())
 export const socket = io("http://localhost:3000", {
   query: { id }
 });
-
-// 
-// La casa de la carcasa iphone 14 pro
