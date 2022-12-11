@@ -17,7 +17,8 @@ export const emitReconnect = (gameRooms: GameRoom[], gameRoom: GameRoom, socket:
   locations.forEach((location, i) => {
     newLocations.push({
       ...location,
-      playersCards: [location.playersCards[1], location.playersCards[0]]
+      playersCards: [location.playersCards[1], location.playersCards[0]],
+      playersPower: [location.playersPower[1], location.playersPower[0]]
     })
   })
 

@@ -17,7 +17,8 @@ export const emitNextTurn = (gameRoom: GameRoom, winnerId?: string | null) => {
   locations.forEach((location, i) => {
     prevLocations.push({
       ...location,
-      playersCards: [location.playersCards[1], location.playersCards[0]]
+      playersCards: [location.playersCards[1], location.playersCards[0]],
+      playersPower: [location.playersPower[1], location.playersPower[0]],
     })
   })
 
@@ -43,7 +44,7 @@ export const emitNextTurn = (gameRoom: GameRoom, winnerId?: string | null) => {
       }
     }
 
-    if(winnerId !== undefined){
+    if (winnerId !== undefined) {
       data.winner = winnerId;
       socket.emit("FINISH_GAME", data)
     }

@@ -61,7 +61,7 @@ export const Card = (props: CardProps) => {
             dragElastic={1}
             dragMomentum={false}
             dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-            // onClick={() => id && dispatch(playgroundActions.setSelectedCard({ cardId: id }))}
+            onClick={() => id && dispatch(playgroundActions.setSelectedCard({ cardId: id }))}
             {...props}>
 
             <ManaValueStyled size={1} stroke={1}>{cost}</ManaValueStyled>

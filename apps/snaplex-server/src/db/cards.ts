@@ -30,18 +30,18 @@ export const Uvas: Card = {
 export const Melón: Card = {
   icon: '🍈',
   name: 'Melón',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Melón',
   id: '🍈',
-  power: 1,
+  power: 6,
 }
 export const Sandía: Card = {
   icon: '🍉',
   name: 'Sandía',
-  cost: 1,
+  cost: 5,
   description: 'Descripcion de la carta Sandía',
   id: '🍉',
-  power: 1,
+  power: 9,
 }
 export const Mandarina: Card = {
   icon: '🍊',
@@ -57,23 +57,23 @@ export const Limón: Card = {
   cost: 1,
   description: 'Descripcion de la carta Limón',
   id: '🍋',
-  power: 1,
+  power: 2,
 }
 export const Plátano: Card = {
   icon: '🍌',
   name: 'Plátano',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Plátano',
   id: '🍌',
-  power: 1,
+  power: 3,
 }
 export const Piña: Card = {
   icon: '🍍',
   name: 'Piña',
-  cost: 1,
+  cost: 3,
   description: 'Descripcion de la carta Piña',
   id: '🍍',
-  power: 1,
+  power: 3,
 }
 export const Mango: Card = {
   icon: '🥭',
@@ -86,18 +86,18 @@ export const Mango: Card = {
 export const ManzanaRoja: Card = {
   icon: '🍎',
   name: 'Manzana Roja',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Manzana',
   id: '🍎',
-  power: 1,
+  power: 3,
 }
 export const ManzanaVerde: Card = {
   icon: '🍏',
   name: 'Manzana Verde',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Manzana',
   id: '🍏',
-  power: 1,
+  power: 2,
 }
 export const Pera: Card = {
   icon: '🍐',
@@ -110,26 +110,26 @@ export const Pera: Card = {
 export const Melocotón: Card = {
   icon: '🍑',
   name: 'Melocotón',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Melocotón',
   id: '🍑',
-  power: 1,
+  power: 4,
 }
 export const Cerezas: Card = {
   icon: '🍒',
   name: 'Cerezas',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Cerezas',
   id: '🍒',
-  power: 1,
+  power: 4,
 }
 export const Fresa: Card = {
   icon: '🍓',
   name: 'Fresa',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Fresa',
   id: '🍓',
-  power: 1,
+  power: 3,
 }
 export const Kiwi: Card = {
   icon: '🥝',
@@ -326,18 +326,18 @@ export const Gofre: Card = {
 export const CuñaDeQueso: Card = {
   icon: '🧀',
   name: 'Cuña De Queso',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Cuña',
   id: '🧀',
-  power: 1,
+  power: 6,
 }
 export const CarneConHueso: Card = {
   icon: '🍖',
   name: 'Carne Con Hueso',
-  cost: 1,
+  cost: 5,
   description: 'Descripcion de la carta Carne',
   id: '🍖',
-  power: 1,
+  power: 9,
 }
 export const MusloDePollo: Card = {
   icon: '🍗',
@@ -353,23 +353,23 @@ export const CorteDeCarne: Card = {
   cost: 1,
   description: 'Descripcion de la carta Corte',
   id: '🥩',
-  power: 1,
+  power: 2,
 }
 export const Beicon: Card = {
   icon: '🥓',
   name: 'Beicon',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Beicon',
   id: '🥓',
-  power: 1,
+  power: 3,
 }
 export const Hamburguesa: Card = {
   icon: '🍔',
   name: 'Hamburguesa',
-  cost: 1,
+  cost: 3,
   description: 'Descripcion de la carta Hamburguesa',
   id: '🍔',
-  power: 1,
+  power: 3,
 }
 export const PatatasFritas: Card = {
   icon: '🍟',
@@ -390,10 +390,10 @@ export const Pizza: Card = {
 export const PerritoCaliente: Card = {
   icon: '🌭',
   name: 'Perrito Caliente',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Perrito',
   id: '🌭',
-  power: 1,
+  power: 4,
 }
 export const Sándwich: Card = {
   icon: '🥪',
@@ -406,34 +406,34 @@ export const Sándwich: Card = {
 export const Taco: Card = {
   icon: '🌮',
   name: 'Taco',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Taco',
   id: '🌮',
-  power: 1,
+  power: 3,
 }
 export const Burrito: Card = {
   icon: '🌯',
   name: 'Burrito',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Burrito',
   id: '🌯',
-  power: 1,
+  power: 2,
 }
 export const PanRelleno: Card = {
   icon: '🥙',
   name: 'Pan Relleno',
-  cost: 1,
+  cost: 2,
   description: 'Descripcion de la carta Pan',
   id: '🥙',
-  power: 1,
+  power: 3,
 }
 export const Falafel: Card = {
   icon: '🧆',
   name: 'Falafel',
-  cost: 1,
+  cost: 4,
   description: 'Descripcion de la carta Falafel',
   id: '🧆',
-  power: 1,
+  power: 4,
 }
 export const Huevo: Card = {
   icon: '🥚',
@@ -996,33 +996,33 @@ export const locationCards = [
 export const localizationCards: Card[] = []
 
 const mazoAlex = [
-  Draculex,
-  Melón,
-  Sandía,
-  Mandarina,
-  Limón,
-  Plátano,
-  Piña,
-  Mango,
-  ManzanaRoja,
-  ManzanaVerde,
-  Pera,
-  Melocotón,
+  Draculex, // 6 - 6
+  Melón, // 4 - 6
+  Sandía, // 5 - 9
+  Mandarina, // 1 - 1
+  Limón, // 1 - 2
+  Plátano, // 2-3
+  Piña, // 3-3
+  Cerezas, // 4-4
+  ManzanaRoja, // 2-3
+  ManzanaVerde, // 2-2
+  Fresa, //2-3
+  Melocotón, //4-4
 ];
 
 const mazoRamon = [
-  Fatramothor,
-  CuñaDeQueso,
-  CarneConHueso,
-  MusloDePollo,
-  CorteDeCarne,
-  Beicon,
-  Hamburguesa,
-  PerritoCaliente,
-  Taco,
-  Burrito,
-  PanRelleno,
-  Falafel,
+  Fatramothor, // 6 - 6
+  CuñaDeQueso, // 4 - 6
+  CarneConHueso, // 5 - 9
+  MusloDePollo, // 1 - 1
+  CorteDeCarne, // 1 - 2
+  Beicon, // 2-3
+  Hamburguesa, // 3-3
+  PerritoCaliente, // 4-4
+  Taco, // 2-3
+  Burrito, // 2-2
+  PanRelleno, //2-3
+  Falafel, //4-4
 ];
 
 export const decks = [mazoAlex, mazoRamon];
