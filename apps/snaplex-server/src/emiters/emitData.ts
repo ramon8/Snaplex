@@ -3,12 +3,12 @@ import { GameRoom, EmitData, Site } from "@types";
 export const emitGameData = ({ player, oponent, game: { sites, firstToReveal, ...game }, ...gameRoom }: GameRoom) => {
     const players = [player, oponent]
     const sitesArr = [sites, flipSitesData(sites)]
-    players.forEach(({ id, socket, ...player }) => {
+    players.forEach(({ id, socket, ...player }, i) => {
         const data: EmitData = {
             ...player,
             ...game,
             userId: id,
-            sites: sitesArr[0],
+            sites: sitesArr[i],
             turnStartedAt: 0,
             isfirstToReveal: id === firstToReveal,
         };

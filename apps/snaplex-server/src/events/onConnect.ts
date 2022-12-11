@@ -19,18 +19,8 @@ export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, Def
     console.log(`[${userId}] searching for game`)
     const isAnyRoomWaiting = gameRooms.findIndex(({ isWaiting }) => isWaiting)
 
-    // No rooms are waiting, create new room
-    if (isAnyRoomWaiting === -1) newGame(socket)
-    else { // Found waiting room, then join that room with the current user
-      console.log(`[${userId}] game found, connecting to game ${gameRooms[isAnyRoomWaiting].id}`)
-      store.dispatch(joinGameRoom({
-        roomId: gameRooms[isAnyRoomWaiting].id,
-        user: { id: userId, name: 'test-user', socket, deck: [], hand: [], mana: 1 }
-      }))
-      startNewTimer(gameRooms[isAnyRoomWaiting], 100000); // 1 min
-      socket.on("FINISH_TURN", onFinishTurn(gameRooms[isAnyRoomWaiting].id, socket, userId))
-
-    }
+    if (isAnyRoomWaiting === -1) newGame(socket) // No rooms are waiting, create new room
+    else joinGame(socket, roomId) // Found waiting room, then join that room with the current user
   } else { // Reconnect the user, update socket and initialize listeners
     console.log(`[${userId}] reconnecting`)
     socket.on("FINISH_TURN", onFinishTurn(gameRooms[isUserInRoomAlready].id, socket, userId))
