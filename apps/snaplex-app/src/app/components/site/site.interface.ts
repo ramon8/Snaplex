@@ -1,7 +1,7 @@
-import { Instance } from '@types'
+import { Site } from '@types'
 import { CardProps } from '..';
 
-export interface LocationProps extends Instance {
+export interface SiteProps extends Site {
     playerPower: number;
     oponentPower: number;
 

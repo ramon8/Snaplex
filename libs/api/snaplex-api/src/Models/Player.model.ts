@@ -1,6 +1,6 @@
 import { Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import { Action, Card } from "../Models";
+import { Action, Card } from ".";
 import { Entity } from "./Entity.model";
 
 export interface Player extends Entity {
@@ -12,7 +12,7 @@ export interface Player extends Entity {
     turnFinished: boolean;
 
     /** The list of actions that the player has done during the game */
-    actions: Action[][];
+    actions: Action[];
 
     hand: Card[];
     deck: Card[];

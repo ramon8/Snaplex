@@ -10,7 +10,6 @@ export interface JoinGameRoomPayload {
 
 export interface UpdateUserSocketPayload {
   roomIndex: number,
-  userId: string,
   socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>
 }
 

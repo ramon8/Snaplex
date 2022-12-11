@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { GameRoom } from '@types'
 import { decks } from '../../db/cards'
 import { sitesMock } from '../../db/locations'
-import { emitReconnect } from '../../events/emitReconnectGame'
-import { emitStartGame } from '../../events/emitStartGame'
-import { findSite, findRoom, findUser, shuffleDeck } from '../../utils'
-import { JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, setPlayerPayload, SetPlayersCardsInLocationPayload, SetTimerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
-import { Card, GameRoom, Player, User } from '@types'
 import { emitGameData } from '../../emiters/emitData'
+import { emitGameDataToUser } from '../../emiters/emitDataToUser'
+import { findRoom, shuffleDeck } from '../../utils'
+import { JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, setPlayerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserManaPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
 
 export type GameRoomState = GameRoom[]
 
@@ -47,7 +46,7 @@ const gameRoomsSlice = createSlice({
       if (id === player.id) state[roomIndex].player.socket = socket;
       state[roomIndex].oponent.socket = socket;
 
-      emitReconnect(state as GameRoom[], state[roomIndex] as GameRoom, socket)
+      emitGameDataToUser(state[roomIndex] as GameRoom, id)
     },
 
     setUserHand(state, { payload: { hand, roomId, userId } }: PayloadAction<SetUserHandPayload>) {
@@ -111,3 +110,5 @@ const gameRoomsSlice = createSlice({
 
 export const { addGameRoom, joinGameRoom, setGameRoom, setGame, setUserSocket, setUserHand, setPlayer, setUserDeck, setMaxTurn, setTurn, setUserMana, setSites } = gameRoomsSlice.actions
 export default gameRoomsSlice.reducer
+
+

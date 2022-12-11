@@ -1,21 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { PlayerState, } from './playerSlice.interface'
-import * as reducers from './playerSlice.reducers'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Action, Player } from '@types'
 
-const initialState: PlayerState = {
-  id: 'player_id',
+export interface SetPlayer { player: Player }
+export type SetPlayerPayload = PayloadAction<SetPlayer>
+
+const initialState: Player = {
+  id: '',
   deck: [],
   hand: [],
   mana: 1,
+  actions: [],
+  power: 0,
+  turnFinished: false,
+  socket: undefined,
 }
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
-  reducers,
+  reducers: {
+    setPlayer: (state, { payload: { player: { actions, deck, hand, id, mana, power, turnFinished, name } } }: SetPlayerPayload) => {
+      state.id = id
+      state.deck = deck
+      state.hand = hand
+      state.mana = mana
+      state.actions = actions
+      state.name = name
+      state.power = power
+      state.turnFinished = turnFinished;
+    },
+  },
 })
 
-// Action creators are generated for each case reducer function
 export const playerActions = playerSlice.actions
 
 export default playerSlice.reducer

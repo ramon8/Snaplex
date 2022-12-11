@@ -1,996 +1,132 @@
 import { Card } from '@types'
+import { createCard } from '../initializers/card.initializer'
 
-export const Draculex: Card = {
-  icon: '',
-  name: 'Draculex',
-  cost: 6,
-  description: 'Succión automática',
-  id: '🧛‍♂️',
-  power: 6,
-  image: './../../../assets/dracualex.png',
-}
-export const Fatramothor: Card = {
-  icon: '',
-  name: 'FatRamthor',
-  cost: 6,
-  description: 'Martillo o porra?',
-  id: '🔨',
-  power: 6,
-  image: './../../../assets/fat_ramthor.png',
-}
-
-export const Uvas: Card = {
-  icon: '🍇',
-  name: 'Uvas',
-  cost: 1,
-  description: 'La uva sale de la parra',
-  id: '🍇',
-  power: 1,
-}
-export const Melón: Card = {
-  icon: '🍈',
-  name: 'Melón',
-  cost: 4,
-  description: 'Descripcion de la carta Melón',
-  id: '🍈',
-  power: 6,
-}
-export const Sandía: Card = {
-  icon: '🍉',
-  name: 'Sandía',
-  cost: 5,
-  description: 'Descripcion de la carta Sandía',
-  id: '🍉',
-  power: 9,
-}
-export const Mandarina: Card = {
-  icon: '🍊',
-  name: 'Mandarina',
-  cost: 1,
-  description: 'Descripcion de la carta Mandarina',
-  id: '🍊',
-  power: 1,
-}
-export const Limón: Card = {
-  icon: '🍋',
-  name: 'Limón',
-  cost: 1,
-  description: 'Descripcion de la carta Limón',
-  id: '🍋',
-  power: 2,
-}
-export const Plátano: Card = {
-  icon: '🍌',
-  name: 'Plátano',
-  cost: 2,
-  description: 'Descripcion de la carta Plátano',
-  id: '🍌',
-  power: 3,
-}
-export const Piña: Card = {
-  icon: '🍍',
-  name: 'Piña',
-  cost: 3,
-  description: 'Descripcion de la carta Piña',
-  id: '🍍',
-  power: 3,
-}
-export const Mango: Card = {
-  icon: '🥭',
-  name: 'Mango',
-  cost: 1,
-  description: 'Descripcion de la carta Mango',
-  id: '🥭',
-  power: 1,
-}
-export const ManzanaRoja: Card = {
-  icon: '🍎',
-  name: 'Manzana Roja',
-  cost: 2,
-  description: 'Descripcion de la carta Manzana',
-  id: '🍎',
-  power: 3,
-}
-export const ManzanaVerde: Card = {
-  icon: '🍏',
-  name: 'Manzana Verde',
-  cost: 2,
-  description: 'Descripcion de la carta Manzana',
-  id: '🍏',
-  power: 2,
-}
-export const Pera: Card = {
-  icon: '🍐',
-  name: 'Pera',
-  cost: 1,
-  description: 'Descripcion de la carta Pera',
-  id: '🍐',
-  power: 1,
-}
-export const Melocotón: Card = {
-  icon: '🍑',
-  name: 'Melocotón',
-  cost: 4,
-  description: 'Descripcion de la carta Melocotón',
-  id: '🍑',
-  power: 4,
-}
-export const Cerezas: Card = {
-  icon: '🍒',
-  name: 'Cerezas',
-  cost: 4,
-  description: 'Descripcion de la carta Cerezas',
-  id: '🍒',
-  power: 4,
-}
-export const Fresa: Card = {
-  icon: '🍓',
-  name: 'Fresa',
-  cost: 2,
-  description: 'Descripcion de la carta Fresa',
-  id: '🍓',
-  power: 3,
-}
-export const Kiwi: Card = {
-  icon: '🥝',
-  name: 'Kiwi',
-  cost: 1,
-  description: 'Descripcion de la carta Kiwi',
-  id: '🥝',
-  power: 1,
-}
-export const Tomate: Card = {
-  icon: '🍅',
-  name: 'Tomate',
-  cost: 1,
-  description: 'Descripcion de la carta Tomate',
-  id: '🍅',
-  power: 1,
-}
-export const Coco: Card = {
-  icon: '🥥',
-  name: 'Coco',
-  cost: 1,
-  description: 'Descripcion de la carta Coco',
-  id: '🥥',
-  power: 1,
-}
-export const Aguacate: Card = {
-  icon: '🥑',
-  name: 'Aguacate',
-  cost: 1,
-  description: 'Descripcion de la carta Aguacate',
-  id: '🥑',
-  power: 1,
-}
-export const Berenjena: Card = {
-  icon: '🍆',
-  name: 'Berenjena',
-  cost: 1,
-  description: 'Descripcion de la carta Berenjena',
-  id: '🍆',
-  power: 1,
-}
-export const Patata: Card = {
-  icon: '🥔',
-  name: 'Patata',
-  cost: 1,
-  description: 'Descripcion de la carta Patata',
-  id: '🥔',
-  power: 1,
-}
-export const Zanahoria: Card = {
-  icon: '🥕',
-  name: 'Zanahoria',
-  cost: 1,
-  description: 'Descripcion de la carta Zanahoria',
-  id: '🥕',
-  power: 1,
-}
-export const EspigaDeMaíz: Card = {
-  icon: '🌽',
-  name: 'Espiga De Maíz',
-  cost: 1,
-  description: 'Descripcion de la carta Espiga',
-  id: '🌽',
-  power: 1,
-}
-export const ChilePicante: Card = {
-  icon: '🌶️',
-  name: 'Chile Picante',
-  cost: 1,
-  description: 'Descripcion de la carta Chile',
-  id: '🌶️',
-  power: 1,
-}
-export const Pepino: Card = {
-  icon: '🥒',
-  name: 'Pepino',
-  cost: 1,
-  description: 'Descripcion de la carta Pepino',
-  id: '🥒',
-  power: 1,
-}
-export const Verdura: Card = {
-  icon: '🥬',
-  name: 'Verdura',
-  cost: 1,
-  description: 'Descripcion de la carta Verdura',
-  id: '🥬',
-  power: 1,
-}
-export const Brócoli: Card = {
-  icon: '🥦',
-  name: 'Brócoli',
-  cost: 1,
-  description: 'Descripcion de la carta Brócoli',
-  id: '🥦',
-  power: 1,
-}
-export const Ajo: Card = {
-  icon: '🧄',
-  name: 'Ajo',
-  cost: 1,
-  description: 'Descripcion de la carta Ajo',
-  id: '🧄',
-  power: 1,
-}
-export const Cebolla: Card = {
-  icon: '🧅',
-  name: 'Cebolla',
-  cost: 1,
-  description: 'Descripcion de la carta Cebolla',
-  id: '🧅',
-  power: 1,
-}
-export const Champiñón: Card = {
-  icon: '🍄',
-  name: 'Champiñón',
-  cost: 1,
-  description: 'Descripcion de la carta Champiñón',
-  id: '🍄',
-  power: 1,
-}
-export const Cacahuetes: Card = {
-  icon: '🥜',
-  name: 'Cacahuetes',
-  cost: 1,
-  description: 'Descripcion de la carta Cacahuetes',
-  id: '🥜',
-  power: 1,
-}
-export const Castaña: Card = {
-  icon: '🌰',
-  name: 'Castaña',
-  cost: 1,
-  description: 'Descripcion de la carta Castaña',
-  id: '🌰',
-  power: 1,
-}
-export const PanDeMolde: Card = {
-  icon: '🍞',
-  name: 'Pan De Molde',
-  cost: 1,
-  description: 'Descripcion de la carta Pan',
-  id: '🍞',
-  power: 1,
-}
-export const Cruasán: Card = {
-  icon: '🥐',
-  name: 'Cruasán',
-  cost: 1,
-  description: 'Descripcion de la carta Cruasán',
-  id: '🥐',
-  power: 1,
-}
-export const Baguete: Card = {
-  icon: '🥖',
-  name: 'Baguete',
-  cost: 1,
-  description: 'Descripcion de la carta Baguete',
-  id: '🥖',
-  power: 1,
-}
-export const Bretzel: Card = {
-  icon: '🥨',
-  name: 'Bretzel',
-  cost: 1,
-  description: 'Descripcion de la carta Bretzel',
-  id: '🥨',
-  power: 1,
-}
-export const Bagel: Card = {
-  icon: '🥯',
-  name: 'Bagel',
-  cost: 1,
-  description: 'Descripcion de la carta Bagel',
-  id: '🥯',
-  power: 1,
-}
-export const Tortitas: Card = {
-  icon: '🥞',
-  name: 'Tortitas',
-  cost: 1,
-  description: 'Descripcion de la carta Tortitas',
-  id: '🥞',
-  power: 1,
-}
-export const Gofre: Card = {
-  icon: '🧇',
-  name: 'Gofre',
-  cost: 1,
-  description: 'Descripcion de la carta Gofre',
-  id: '🧇',
-  power: 1,
-}
-export const CuñaDeQueso: Card = {
-  icon: '🧀',
-  name: 'Cuña De Queso',
-  cost: 4,
-  description: 'Descripcion de la carta Cuña',
-  id: '🧀',
-  power: 6,
-}
-export const CarneConHueso: Card = {
-  icon: '🍖',
-  name: 'Carne Con Hueso',
-  cost: 5,
-  description: 'Descripcion de la carta Carne',
-  id: '🍖',
-  power: 9,
-}
-export const MusloDePollo: Card = {
-  icon: '🍗',
-  name: 'Muslo De Pollo',
-  cost: 1,
-  description: 'Descripcion de la carta Muslo',
-  id: '🍗',
-  power: 1,
-}
-export const CorteDeCarne: Card = {
-  icon: '🥩',
-  name: 'Corte De Carne',
-  cost: 1,
-  description: 'Descripcion de la carta Corte',
-  id: '🥩',
-  power: 2,
-}
-export const Beicon: Card = {
-  icon: '🥓',
-  name: 'Beicon',
-  cost: 2,
-  description: 'Descripcion de la carta Beicon',
-  id: '🥓',
-  power: 3,
-}
-export const Hamburguesa: Card = {
-  icon: '🍔',
-  name: 'Hamburguesa',
-  cost: 3,
-  description: 'Descripcion de la carta Hamburguesa',
-  id: '🍔',
-  power: 3,
-}
-export const PatatasFritas: Card = {
-  icon: '🍟',
-  name: 'Patatas Fritas',
-  cost: 1,
-  description: 'Descripcion de la carta Patatas',
-  id: '🍟',
-  power: 1,
-}
-export const Pizza: Card = {
-  icon: '🍕',
-  name: 'Pizza',
-  cost: 1,
-  description: 'Descripcion de la carta Pizza',
-  id: '🍕',
-  power: 1,
-}
-export const PerritoCaliente: Card = {
-  icon: '🌭',
-  name: 'Perrito Caliente',
-  cost: 4,
-  description: 'Descripcion de la carta Perrito',
-  id: '🌭',
-  power: 4,
-}
-export const Sándwich: Card = {
-  icon: '🥪',
-  name: 'Sándwich',
-  cost: 1,
-  description: 'Descripcion de la carta Sándwich',
-  id: '🥪',
-  power: 1,
-}
-export const Taco: Card = {
-  icon: '🌮',
-  name: 'Taco',
-  cost: 2,
-  description: 'Descripcion de la carta Taco',
-  id: '🌮',
-  power: 3,
-}
-export const Burrito: Card = {
-  icon: '🌯',
-  name: 'Burrito',
-  cost: 2,
-  description: 'Descripcion de la carta Burrito',
-  id: '🌯',
-  power: 2,
-}
-export const PanRelleno: Card = {
-  icon: '🥙',
-  name: 'Pan Relleno',
-  cost: 2,
-  description: 'Descripcion de la carta Pan',
-  id: '🥙',
-  power: 3,
-}
-export const Falafel: Card = {
-  icon: '🧆',
-  name: 'Falafel',
-  cost: 4,
-  description: 'Descripcion de la carta Falafel',
-  id: '🧆',
-  power: 4,
-}
-export const Huevo: Card = {
-  icon: '🥚',
-  name: 'Huevo',
-  cost: 1,
-  description: 'Descripcion de la carta Huevo',
-  id: '🥚',
-  power: 1,
-}
-export const Cocinar: Card = {
-  icon: '🍳',
-  name: 'Cocinar',
-  cost: 1,
-  description: 'Descripcion de la carta Cocinar',
-  id: '🍳',
-  power: 1,
-}
-export const Paella: Card = {
-  icon: '🥘',
-  name: 'Paella',
-  cost: 1,
-  description: 'Descripcion de la carta Paella',
-  id: '🥘',
-  power: 1,
-}
-export const OllaDeComida: Card = {
-  icon: '🍲',
-  name: 'Olla De Comida',
-  cost: 1,
-  description: 'Descripcion de la carta Olla',
-  id: '🍲',
-  power: 1,
-}
-export const Cuenco: Card = {
-  icon: '🥣',
-  name: 'Cuenco',
-  cost: 1,
-  description: 'Descripcion de la carta Cuenco',
-  id: '🥣',
-  power: 1,
-}
-export const Ensalada: Card = {
-  icon: '🥗',
-  name: 'Ensalada',
-  cost: 1,
-  description: 'Descripcion de la carta Ensalada',
-  id: '🥗',
-  power: 1,
-}
-export const Palomitas: Card = {
-  icon: '🍿',
-  name: 'Palomitas',
-  cost: 1,
-  description: 'Descripcion de la carta Palomitas',
-  id: '🍿',
-  power: 1,
-}
-export const Mantequilla: Card = {
-  icon: '🧈',
-  name: 'Mantequilla',
-  cost: 1,
-  description: 'Descripcion de la carta Mantequilla',
-  id: '🧈',
-  power: 1,
-}
-export const Sal: Card = {
-  icon: '🧂',
-  name: 'Sal',
-  cost: 1,
-  description: 'Descripcion de la carta Sal',
-  id: '🧂',
-  power: 1,
-}
-export const ComidaEnlatada: Card = {
-  icon: '🥫',
-  name: 'Comida Enlatada',
-  cost: 1,
-  description: 'Descripcion de la carta Comida',
-  id: '🥫',
-  power: 1,
-}
-export const CajaDeBento: Card = {
-  icon: '🍱',
-  name: 'Caja De Bento',
-  cost: 1,
-  description: 'Descripcion de la carta Caja',
-  id: '🍱',
-  power: 1,
-}
-export const GalletaDeArroz: Card = {
-  icon: '🍘',
-  name: 'Galleta De Arroz',
-  cost: 1,
-  description: 'Descripcion de la carta Galleta',
-  id: '🍘',
-  power: 1,
-}
-export const BolaDeArroz: Card = {
-  icon: '🍙',
-  name: 'Bola De Arroz',
-  cost: 1,
-  description: 'Descripcion de la carta Bola',
-  id: '🍙',
-  power: 1,
-}
-export const ArrozCocido: Card = {
-  icon: '🍚',
-  name: 'Arroz Cocido',
-  cost: 1,
-  description: 'Descripcion de la carta Arroz',
-  id: '🍚',
-  power: 1,
-}
-export const ArrozConCurry: Card = {
-  icon: '🍛',
-  name: 'Arroz Con Curry',
-  cost: 1,
-  description: 'Descripcion de la carta Arroz',
-  id: '🍛',
-  power: 1,
-}
-export const TazónDeFideos: Card = {
-  icon: '🍜',
-  name: 'Tazón De Fideos',
-  cost: 1,
-  description: 'Descripcion de la carta Tazón',
-  id: '🍜',
-  power: 1,
-}
-export const Espagueti: Card = {
-  icon: '🍝',
-  name: 'Espagueti',
-  cost: 1,
-  description: 'Descripcion de la carta Espagueti',
-  id: '🍝',
-  power: 1,
-}
-export const PatataAsada: Card = {
-  icon: '🍠',
-  name: 'Patata Asada',
-  cost: 1,
-  description: 'Descripcion de la carta Patata',
-  id: '🍠',
-  power: 1,
-}
-export const Brocheta: Card = {
-  icon: '🍢',
-  name: 'Brocheta',
-  cost: 1,
-  description: 'Descripcion de la carta Brocheta',
-  id: '🍢',
-  power: 1,
-}
-export const Sushi: Card = {
-  icon: '🍣',
-  name: 'Sushi',
-  cost: 1,
-  description: 'Descripcion de la carta Sushi',
-  id: '🍣',
-  power: 1,
-}
-export const GambaFrita: Card = {
-  icon: '🍤',
-  name: 'Gamba Frita',
-  cost: 1,
-  description: 'Descripcion de la carta Gamba',
-  id: '🍤',
-  power: 1,
-}
-export const Naruto: Card = {
-  icon: '🍥',
-  name: 'Naruto',
-  cost: 1,
-  description: 'Descripcion de la carta Pastel',
-  id: '🍥',
-  power: 1,
-}
-export const PastelDeLuna: Card = {
-  icon: '🥮',
-  name: 'Pastel De Luna',
-  cost: 1,
-  description: 'Descripcion de la carta Pastel',
-  id: '🥮',
-  power: 1,
-}
-export const Dango: Card = {
-  icon: '🍡',
-  name: 'Dango',
-  cost: 1,
-  description: 'Descripcion de la carta Dango',
-  id: '🍡',
-  power: 1,
-}
-export const Dumpling: Card = {
-  icon: '🥟',
-  name: 'Dumpling',
-  cost: 1,
-  description: 'Descripcion de la carta Dumpling',
-  id: '🥟',
-  power: 1,
-}
-export const GalletaFortuna: Card = {
-  icon: '🥠',
-  name: 'Galleta Fortuna',
-  cost: 1,
-  description: 'Descripcion de la carta Galleta',
-  id: '🥠',
-  power: 1,
-}
-export const CajaParaLlevar: Card = {
-  icon: '🥡',
-  name: 'Caja Para Llevar',
-  cost: 1,
-  description: 'Descripcion de la carta Caja',
-  id: '🥡',
-  power: 1,
-}
-export const Ostra: Card = {
-  icon: '🦪',
-  name: 'Ostra',
-  cost: 1,
-  description: 'Descripcion de la carta Ostra',
-  id: '🦪',
-  power: 1,
-}
-export const CucuruchoDeHelado: Card = {
-  icon: '🍦',
-  name: 'Cucurucho De Helado',
-  cost: 1,
-  description: 'Descripcion de la carta Cucurucho',
-  id: '🍦',
-  power: 1,
-}
-export const GranizadoHawaiano: Card = {
-  icon: '🍧',
-  name: 'Granizado Hawaiano',
-  cost: 1,
-  description: 'Descripcion de la carta Granizado',
-  id: '🍧',
-  power: 1,
-}
-export const Helado: Card = {
-  icon: '🍨',
-  name: 'Helado',
-  cost: 1,
-  description: 'Descripcion de la carta Helado',
-  id: '🍨',
-  power: 1,
-}
-export const Dónut: Card = {
-  icon: '🍩',
-  name: 'Dónut',
-  cost: 1,
-  description: 'Descripcion de la carta Dónut',
-  id: '🍩',
-  power: 1,
-}
-export const Galleta: Card = {
-  icon: '🍪',
-  name: 'Galleta',
-  cost: 1,
-  description: 'Descripcion de la carta Galleta',
-  id: '🍪',
-  power: 1,
-}
-export const TartaDeCumpleaños: Card = {
-  icon: '🎂',
-  name: 'Tarta De Cumpleaños',
-  cost: 1,
-  description: 'Descripcion de la carta Tarta',
-  id: '🎂',
-  power: 1,
-}
-export const TrozoDeTarta: Card = {
-  icon: '🍰',
-  name: 'Trozo De Tarta',
-  cost: 1,
-  description: 'Descripcion de la carta Trozo',
-  id: '🍰',
-  power: 1,
-}
-export const Magdalena: Card = {
-  icon: '🧁',
-  name: 'Magdalena',
-  cost: 1,
-  description: 'Descripcion de la carta Magdalena',
-  id: '🧁',
-  power: 1,
-}
-export const Pastel: Card = {
-  icon: '🥧',
-  name: 'Pastel',
-  cost: 1,
-  description: 'Descripcion de la carta Pastel',
-  id: '🥧',
-  power: 1,
-}
-export const Chocolate: Card = {
-  icon: '🍫',
-  name: 'Chocolate',
-  cost: 1,
-  description: 'Descripcion de la carta Tableta',
-  id: '🍫',
-  power: 1,
-}
-export const Caramelo: Card = {
-  icon: '🍬',
-  name: 'Caramelo',
-  cost: 1,
-  description: 'Descripcion de la carta Caramelo',
-  id: '🍬',
-  power: 1,
-}
-export const Piruleta: Card = {
-  icon: '🍭',
-  name: 'Piruleta',
-  cost: 1,
-  description: 'Descripcion de la carta Piruleta',
-  id: '🍭',
-  power: 1,
-}
-export const Flan: Card = {
-  icon: '🍮',
-  name: 'Flan',
-  cost: 1,
-  description: 'Descripcion de la carta Flan',
-  id: '🍮',
-  power: 1,
-}
-export const TarroDeMiel: Card = {
-  icon: '🍯',
-  name: 'Tarro De Miel',
-  cost: 1,
-  description: 'Descripcion de la carta Tarro',
-  id: '🍯',
-  power: 1,
-}
-export const Biberón: Card = {
-  icon: '🍼',
-  name: 'Biberón',
-  cost: 1,
-  description: 'Descripcion de la carta Biberón',
-  id: '🍼',
-  power: 1,
-}
-export const VasoDeLeche: Card = {
-  icon: '🥛',
-  name: 'Vaso De Leche',
-  cost: 1,
-  description: 'Descripcion de la carta Vaso',
-  id: '🥛',
-  power: 1,
-}
-export const BebidaCaliente: Card = {
-  icon: '☕',
-  name: 'Bebida Caliente',
-  cost: 1,
-  description: 'Descripcion de la carta Bebida',
-  id: '☕',
-  power: 1,
-}
-export const Tazon: Card = {
-  icon: '🍵',
-  name: 'Tazón',
-  cost: 1,
-  description: 'Descripcion de la carta Tazón',
-  id: '🍵',
-  power: 1,
-}
-export const Sake: Card = {
-  icon: '🍶',
-  name: 'Sake',
-  cost: 1,
-  description: 'Descripcion de la carta Sake',
-  id: '🍶',
-  power: 1,
-}
-export const Botella: Card = {
-  icon: '🍾',
-  name: 'Botella',
-  cost: 1,
-  description: 'Descripcion de la carta Botella',
-  id: '🍾',
-  power: 1,
-}
-export const CopaDeVino: Card = {
-  icon: '🍷',
-  name: 'Copa De Vino',
-  cost: 1,
-  description: 'Descripcion de la carta Copa',
-  id: '🍷',
-  power: 1,
-}
-export const CopaDeCóctel: Card = {
-  icon: '🍸',
-  name: 'Copa De Cóctel',
-  cost: 1,
-  description: 'Descripcion de la carta Copa',
-  id: '🍸',
-  power: 1,
-}
-export const BebidaTropical: Card = {
-  icon: '🍹',
-  name: 'Bebida Tropical',
-  cost: 1,
-  description: 'Descripcion de la carta Bebida',
-  id: '🍹',
-  power: 1,
-}
-export const JarraDeCerveza: Card = {
-  icon: '🍺',
-  name: 'Jarra De Cerveza',
-  cost: 1,
-  description: 'Descripcion de la carta Jarra',
-  id: '🍺',
-  power: 1,
-}
-export const JarrasDeCerveza: Card = {
-  icon: '🍻',
-  name: 'Jarras De Cerveza Brindando',
-  cost: 1,
-  description: 'Descripcion de la carta Jarras',
-  id: '🍻',
-  power: 1,
-}
-export const CopasBrindando: Card = {
-  icon: '🥂',
-  name: 'Copas Brindando',
-  cost: 1,
-  description: 'Descripcion de la carta Copas',
-  id: '🥂',
-  power: 1,
-}
-export const VasoDeWhisky: Card = {
-  icon: '🥃',
-  name: 'Vaso De Whisky',
-  cost: 1,
-  description: 'Descripcion de la carta Vaso',
-  id: '🥃',
-  power: 1,
-}
-export const VasoConPajita: Card = {
-  icon: '🥤',
-  name: 'Vaso Con Pajita',
-  cost: 1,
-  description: 'Descripcion de la carta Vaso',
-  id: '🥤',
-  power: 1,
-}
-export const Tetrabrik: Card = {
-  icon: '🧃',
-  name: 'Tetrabrik',
-  cost: 1,
-  description: 'Descripcion de la carta Tetrabrik',
-  id: '🧃',
-  power: 1,
-}
-export const Mate: Card = {
-  icon: '🧉',
-  name: 'Mate',
-  cost: 1,
-  description: 'Descripcion de la carta Mate',
-  id: '🧉',
-  power: 1,
-}
-export const CubitoDeHielo: Card = {
-  icon: '🧊',
-  name: 'Cubito De Hielo',
-  cost: 1,
-  description: 'Descripcion de la carta Cubito',
-  id: '🧊',
-  power: 1,
-}
-export const Palillos: Card = {
-  icon: '🥢',
-  name: 'Palillos',
-  cost: 1,
-  description: 'Descripcion de la carta Palillos',
-  id: '🥢',
-  power: 1,
-}
-export const Cubierto: Card = {
-  icon: '🍽️',
-  name: 'Cubierto',
-  cost: 1,
-  description: 'Descripcion de la carta Cuchillo',
-  id: '🍽️',
-  power: 1,
-}
-export const TenedorYCuchillo: Card = {
-  icon: '🍴',
-  name: 'Tenedor Y Cuchillo',
-  cost: 1,
-  description: 'Descripcion de la carta Tenedor',
-  id: '🍴',
-  power: 1,
-}
-export const Cuchara: Card = {
-  icon: '🥄',
-  name: 'Cuchara',
-  cost: 1,
-  description: 'Descripcion de la carta Cuchara',
-  id: '🥄',
-  power: 1,
-}
-
-// function shuffle(array: any[]) {
-//     let currentIndex = array.length, randomIndex;
-
-//     // While there remain elements to shuffle.
-//     while (currentIndex != 0) {
-
-//         // Pick a remaining element.
-//         randomIndex = Math.floor(Math.random() * currentIndex);
-//         currentIndex--;
-
-//         // And swap it with the current element.
-//         [array[currentIndex], array[randomIndex]] = [
-//             array[randomIndex], array[currentIndex]];
-//     }
-
-//     return array;
-// }
+export const Draculex: Card = createCard({ icon: '', name: 'Draculex', description: 'Succión automática', id: '🧛‍♂️', image: './../../../assets/dracualex.png', })
+export const Fatramothor: Card = createCard({ icon: '', name: 'FatRamthor', description: 'Martillo o porra?', id: '🔨', image: './../../../assets/fat_ramthor.png' })
+export const Uvas: Card = createCard({ icon: '🍇', name: 'Uvas', description: 'La uva sale de la parra', id: '🍇', })
+export const Melón: Card = createCard({ icon: '🍈', name: 'Melón', description: 'Descripcion de la carta Melón', id: '🍈', })
+export const Sandía: Card = createCard({ icon: '🍉', name: 'Sandía', description: 'Descripcion de la carta Sandía', id: '🍉', })
+export const Mandarina: Card = createCard({ icon: '🍊', name: 'Mandarina', description: 'Descripcion de la carta Mandarina', id: '🍊', })
+export const Limón: Card = createCard({ icon: '🍋', name: 'Limón', description: 'Descripcion de la carta Limón', id: '🍋', })
+export const Plátano: Card = createCard({ icon: '🍌', name: 'Plátano', description: 'Descripcion de la carta Plátano', id: '🍌', })
+export const Piña: Card = createCard({ icon: '🍍', name: 'Piña', description: 'Descripcion de la carta Piña', id: '🍍', })
+export const Mango: Card = createCard({ icon: '🥭', name: 'Mango', description: 'Descripcion de la carta Mango', id: '🥭', })
+export const ManzanaRoja: Card = createCard({ icon: '🍎', name: 'Manzana Roja', description: 'Descripcion de la carta Manzana', id: '🍎', })
+export const ManzanaVerde: Card = createCard({ icon: '🍏', name: 'Manzana Verde', description: 'Descripcion de la carta Manzana', id: '🍏', })
+export const Pera: Card = createCard({ icon: '🍐', name: 'Pera', description: 'Descripcion de la carta Pera', id: '🍐', })
+export const Melocotón: Card = createCard({ icon: '🍑', name: 'Melocotón', description: 'Descripcion de la carta Melocotón', id: '🍑', })
+export const Cerezas: Card = createCard({ icon: '🍒', name: 'Cerezas', description: 'Descripcion de la carta Cerezas', id: '🍒', })
+export const Fresa: Card = createCard({ icon: '🍓', name: 'Fresa', description: 'Descripcion de la carta Fresa', id: '🍓', })
+export const Kiwi: Card = createCard({ icon: '🥝', name: 'Kiwi', description: 'Descripcion de la carta Kiwi', id: '🥝', })
+export const Tomate: Card = createCard({ icon: '🍅', name: 'Tomate', description: 'Descripcion de la carta Tomate', id: '🍅', })
+export const Coco: Card = createCard({ icon: '🥥', name: 'Coco', description: 'Descripcion de la carta Coco', id: '🥥', })
+export const Aguacate: Card = createCard({ icon: '🥑', name: 'Aguacate', description: 'Descripcion de la carta Aguacate', id: '🥑', })
+export const Berenjena: Card = createCard({ icon: '🍆', name: 'Berenjena', description: 'Descripcion de la carta Berenjena', id: '🍆', })
+export const Patata: Card = createCard({ icon: '🥔', name: 'Patata', description: 'Descripcion de la carta Patata', id: '🥔', })
+export const Zanahoria: Card = createCard({ icon: '🥕', name: 'Zanahoria', description: 'Descripcion de la carta Zanahoria', id: '🥕', })
+export const EspigaDeMaíz: Card = createCard({ icon: '🌽', name: 'Espiga De Maíz', description: 'Descripcion de la carta Espiga', id: '🌽', })
+export const ChilePicante: Card = createCard({ icon: '🌶️', name: 'Chile Picante', description: 'Descripcion de la carta Chile', id: '🌶️', })
+export const Pepino: Card = createCard({ icon: '🥒', name: 'Pepino', description: 'Descripcion de la carta Pepino', id: '🥒', })
+export const Verdura: Card = createCard({ icon: '🥬', name: 'Verdura', description: 'Descripcion de la carta Verdura', id: '🥬', })
+export const Brócoli: Card = createCard({ icon: '🥦', name: 'Brócoli', description: 'Descripcion de la carta Brócoli', id: '🥦', })
+export const Ajo: Card = createCard({ icon: '🧄', name: 'Ajo', description: 'Descripcion de la carta Ajo', id: '🧄', })
+export const Cebolla: Card = createCard({ icon: '🧅', name: 'Cebolla', description: 'Descripcion de la carta Cebolla', id: '🧅', })
+export const Champiñón: Card = createCard({ icon: '🍄', name: 'Champiñón', description: 'Descripcion de la carta Champiñón', id: '🍄', })
+export const Cacahuetes: Card = createCard({ icon: '🥜', name: 'Cacahuetes', description: 'Descripcion de la carta Cacahuetes', id: '🥜', })
+export const Castaña: Card = createCard({ icon: '🌰', name: 'Castaña', description: 'Descripcion de la carta Castaña', id: '🌰', })
+export const PanDeMolde: Card = createCard({ icon: '🍞', name: 'Pan De Molde', description: 'Descripcion de la carta Pan', id: '🍞', })
+export const Cruasán: Card = createCard({ icon: '🥐', name: 'Cruasán', description: 'Descripcion de la carta Cruasán', id: '🥐', })
+export const Baguete: Card = createCard({ icon: '🥖', name: 'Baguete', description: 'Descripcion de la carta Baguete', id: '🥖', })
+export const Bretzel: Card = createCard({ icon: '🥨', name: 'Bretzel', description: 'Descripcion de la carta Bretzel', id: '🥨', })
+export const Bagel: Card = createCard({ icon: '🥯', name: 'Bagel', description: 'Descripcion de la carta Bagel', id: '🥯', })
+export const Tortitas: Card = createCard({ icon: '🥞', name: 'Tortitas', description: 'Descripcion de la carta Tortitas', id: '🥞', })
+export const Gofre: Card = createCard({ icon: '🧇', name: 'Gofre', description: 'Descripcion de la carta Gofre', id: '🧇', })
+export const CuñaDeQueso: Card = createCard({ icon: '🧀', name: 'Cuña De Queso', description: 'Descripcion de la carta Cuña', id: '🧀', })
+export const CarneConHueso: Card = createCard({ icon: '🍖', name: 'Carne Con Hueso', description: 'Descripcion de la carta Carne', id: '🍖', })
+export const MusloDePollo: Card = createCard({ icon: '🍗', name: 'Muslo De Pollo', description: 'Descripcion de la carta Muslo', id: '🍗', })
+export const CorteDeCarne: Card = createCard({ icon: '🥩', name: 'Corte De Carne', description: 'Descripcion de la carta Corte', id: '🥩', })
+export const Beicon: Card = createCard({ icon: '🥓', name: 'Beicon', description: 'Descripcion de la carta Beicon', id: '🥓', })
+export const Hamburguesa: Card = createCard({ icon: '🍔', name: 'Hamburguesa', description: 'Descripcion de la carta Hamburguesa', id: '🍔', })
+export const PatatasFritas: Card = createCard({ icon: '🍟', name: 'Patatas Fritas', description: 'Descripcion de la carta Patatas', id: '🍟', })
+export const Pizza: Card = createCard({ icon: '🍕', name: 'Pizza', description: 'Descripcion de la carta Pizza', id: '🍕', })
+export const PerritoCaliente: Card = createCard({ icon: '🌭', name: 'Perrito Caliente', description: 'Descripcion de la carta Perrito', id: '🌭', })
+export const Sándwich: Card = createCard({ icon: '🥪', name: 'Sándwich', description: 'Descripcion de la carta Sándwich', id: '🥪', })
+export const Taco: Card = createCard({ icon: '🌮', name: 'Taco', description: 'Descripcion de la carta Taco', id: '🌮', })
+export const Burrito: Card = createCard({ icon: '🌯', name: 'Burrito', description: 'Descripcion de la carta Burrito', id: '🌯', })
+export const PanRelleno: Card = createCard({ icon: '🥙', name: 'Pan Relleno', description: 'Descripcion de la carta Pan', id: '🥙', })
+export const Falafel: Card = createCard({ icon: '🧆', name: 'Falafel', description: 'Descripcion de la carta Falafel', id: '🧆', })
+export const Huevo: Card = createCard({ icon: '🥚', name: 'Huevo', description: 'Descripcion de la carta Huevo', id: '🥚', })
+export const Cocinar: Card = createCard({ icon: '🍳', name: 'Cocinar', description: 'Descripcion de la carta Cocinar', id: '🍳', })
+export const Paella: Card = createCard({ icon: '🥘', name: 'Paella', description: 'Descripcion de la carta Paella', id: '🥘', })
+export const OllaDeComida: Card = createCard({ icon: '🍲', name: 'Olla De Comida', description: 'Descripcion de la carta Olla', id: '🍲', })
+export const Cuenco: Card = createCard({ icon: '🥣', name: 'Cuenco', description: 'Descripcion de la carta Cuenco', id: '🥣', })
+export const Ensalada: Card = createCard({ icon: '🥗', name: 'Ensalada', description: 'Descripcion de la carta Ensalada', id: '🥗', })
+export const Palomitas: Card = createCard({ icon: '🍿', name: 'Palomitas', description: 'Descripcion de la carta Palomitas', id: '🍿', })
+export const Mantequilla: Card = createCard({ icon: '🧈', name: 'Mantequilla', description: 'Descripcion de la carta Mantequilla', id: '🧈', })
+export const Sal: Card = createCard({ icon: '🧂', name: 'Sal', description: 'Descripcion de la carta Sal', id: '🧂', })
+export const ComidaEnlatada: Card = createCard({ icon: '🥫', name: 'Comida Enlatada', description: 'Descripcion de la carta Comida', id: '🥫', })
+export const CajaDeBento: Card = createCard({ icon: '🍱', name: 'Caja De Bento', description: 'Descripcion de la carta Caja', id: '🍱', })
+export const GalletaDeArroz: Card = createCard({ icon: '🍘', name: 'Galleta De Arroz', description: 'Descripcion de la carta Galleta', id: '🍘', })
+export const BolaDeArroz: Card = createCard({ icon: '🍙', name: 'Bola De Arroz', description: 'Descripcion de la carta Bola', id: '🍙', })
+export const ArrozCocido: Card = createCard({ icon: '🍚', name: 'Arroz Cocido', description: 'Descripcion de la carta Arroz', id: '🍚', })
+export const ArrozConCurry: Card = createCard({ icon: '🍛', name: 'Arroz Con Curry', description: 'Descripcion de la carta Arroz', id: '🍛', })
+export const TazónDeFideos: Card = createCard({ icon: '🍜', name: 'Tazón De Fideos', description: 'Descripcion de la carta Tazón', id: '🍜', })
+export const Espagueti: Card = createCard({ icon: '🍝', name: 'Espagueti', description: 'Descripcion de la carta Espagueti', id: '🍝', })
+export const PatataAsada: Card = createCard({ icon: '🍠', name: 'Patata Asada', description: 'Descripcion de la carta Patata', id: '🍠', })
+export const Brocheta: Card = createCard({ icon: '🍢', name: 'Brocheta', description: 'Descripcion de la carta Brocheta', id: '🍢', })
+export const Sushi: Card = createCard({ icon: '🍣', name: 'Sushi', description: 'Descripcion de la carta Sushi', id: '🍣', })
+export const GambaFrita: Card = createCard({ icon: '🍤', name: 'Gamba Frita', description: 'Descripcion de la carta Gamba', id: '🍤', })
+export const Naruto: Card = createCard({ icon: '🍥', name: 'Naruto', description: 'Descripcion de la carta Pastel', id: '🍥', })
+export const PastelDeLuna: Card = createCard({ icon: '🥮', name: 'Pastel De Luna', description: 'Descripcion de la carta Pastel', id: '🥮', })
+export const Dango: Card = createCard({ icon: '🍡', name: 'Dango', description: 'Descripcion de la carta Dango', id: '🍡', })
+export const Dumpling: Card = createCard({ icon: '🥟', name: 'Dumpling', description: 'Descripcion de la carta Dumpling', id: '🥟', })
+export const GalletaFortuna: Card = createCard({ icon: '🥠', name: 'Galleta Fortuna', description: 'Descripcion de la carta Galleta', id: '🥠', })
+export const CajaParaLlevar: Card = createCard({ icon: '🥡', name: 'Caja Para Llevar', description: 'Descripcion de la carta Caja', id: '🥡', })
+export const Ostra: Card = createCard({ icon: '🦪', name: 'Ostra', description: 'Descripcion de la carta Ostra', id: '🦪', })
+export const CucuruchoDeHelado: Card = createCard({ icon: '🍦', name: 'Cucurucho De Helado', description: 'Descripcion de la carta Cucurucho', id: '🍦', })
+export const GranizadoHawaiano: Card = createCard({ icon: '🍧', name: 'Granizado Hawaiano', description: 'Descripcion de la carta Granizado', id: '🍧', })
+export const Helado: Card = createCard({ icon: '🍨', name: 'Helado', description: 'Descripcion de la carta Helado', id: '🍨', })
+export const Dónut: Card = createCard({ icon: '🍩', name: 'Dónut', description: 'Descripcion de la carta Dónut', id: '🍩', })
+export const Galleta: Card = createCard({ icon: '🍪', name: 'Galleta', description: 'Descripcion de la carta Galleta', id: '🍪', })
+export const TartaDeCumpleaños: Card = createCard({ icon: '🎂', name: 'Tarta De Cumpleaños', description: 'Descripcion de la carta Tarta', id: '🎂', })
+export const TrozoDeTarta: Card = createCard({ icon: '🍰', name: 'Trozo De Tarta', description: 'Descripcion de la carta Trozo', id: '🍰', })
+export const Magdalena: Card = createCard({ icon: '🧁', name: 'Magdalena', description: 'Descripcion de la carta Magdalena', id: '🧁', })
+export const Pastel: Card = createCard({ icon: '🥧', name: 'Pastel', description: 'Descripcion de la carta Pastel', id: '🥧', })
+export const Chocolate: Card = createCard({ icon: '🍫', name: 'Chocolate', description: 'Descripcion de la carta Tableta', id: '🍫', })
+export const Caramelo: Card = createCard({ icon: '🍬', name: 'Caramelo', description: 'Descripcion de la carta Caramelo', id: '🍬', })
+export const Piruleta: Card = createCard({ icon: '🍭', name: 'Piruleta', description: 'Descripcion de la carta Piruleta', id: '🍭', })
+export const Flan: Card = createCard({ icon: '🍮', name: 'Flan', description: 'Descripcion de la carta Flan', id: '🍮', })
+export const TarroDeMiel: Card = createCard({ icon: '🍯', name: 'Tarro De Miel', description: 'Descripcion de la carta Tarro', id: '🍯', })
+export const Biberón: Card = createCard({ icon: '🍼', name: 'Biberón', description: 'Descripcion de la carta Biberón', id: '🍼', })
+export const VasoDeLeche: Card = createCard({ icon: '🥛', name: 'Vaso De Leche', description: 'Descripcion de la carta Vaso', id: '🥛', })
+export const BebidaCaliente: Card = createCard({ icon: '☕', name: 'Bebida Caliente', description: 'Descripcion de la carta Bebida', id: '☕', })
+export const Tazon: Card = createCard({ icon: '🍵', name: 'Tazón', description: 'Descripcion de la carta Tazón', id: '🍵', })
+export const Sake: Card = createCard({ icon: '🍶', name: 'Sake', description: 'Descripcion de la carta Sake', id: '🍶', })
+export const Botella: Card = createCard({ icon: '🍾', name: 'Botella', description: 'Descripcion de la carta Botella', id: '🍾', })
+export const CopaDeVino: Card = createCard({ icon: '🍷', name: 'Copa De Vino', description: 'Descripcion de la carta Copa', id: '🍷', })
+export const CopaDeCóctel: Card = createCard({ icon: '🍸', name: 'Copa De Cóctel', description: 'Descripcion de la carta Copa', id: '🍸', })
+export const BebidaTropical: Card = createCard({ icon: '🍹', name: 'Bebida Tropical', description: 'Descripcion de la carta Bebida', id: '🍹', })
+export const JarraDeCerveza: Card = createCard({ icon: '🍺', name: 'Jarra De Cerveza', description: 'Descripcion de la carta Jarra', id: '🍺', })
+export const JarrasDeCerveza: Card = createCard({ icon: '🍻', name: 'Jarras De Cerveza Brindando', description: 'Descripcion de la carta Jarras', id: '🍻', })
+export const CopasBrindando: Card = createCard({ icon: '🥂', name: 'Copas Brindando', description: 'Descripcion de la carta Copas', id: '🥂', })
+export const VasoDeWhisky: Card = createCard({ icon: '🥃', name: 'Vaso De Whisky', description: 'Descripcion de la carta Vaso', id: '🥃', })
+export const VasoConPajita: Card = createCard({ icon: '🥤', name: 'Vaso Con Pajita', description: 'Descripcion de la carta Vaso', id: '🥤', })
+export const Tetrabrik: Card = createCard({ icon: '🧃', name: 'Tetrabrik', description: 'Descripcion de la carta Tetrabrik', id: '🧃', })
+export const Mate: Card = createCard({ icon: '🧉', name: 'Mate', description: 'Descripcion de la carta Mate', id: '🧉', })
+export const CubitoDeHielo: Card = createCard({ icon: '🧊', name: 'Cubito De Hielo', description: 'Descripcion de la carta Cubito', id: '🧊', })
+export const Palillos: Card = createCard({ icon: '🥢', name: 'Palillos', description: 'Descripcion de la carta Palillos', id: '🥢', })
+export const Cubierto: Card = createCard({ icon: '🍽️', name: 'Cubierto', description: 'Descripcion de la carta Cuchillo', id: '🍽️', })
+export const TenedorYCuchillo: Card = createCard({ icon: '🍴', name: 'Tenedor Y Cuchillo', description: 'Descripcion de la carta Tenedor', id: '🍴', })
+export const Cuchara: Card = createCard({ icon: '🥄', name: 'Cuchara', description: 'Descripcion de la carta Cuchara', id: '🥄', })
 
 export const locationCards = [
-  [
-    Palillos,
-    TenedorYCuchillo,
-    Cuchara,
-  ],
-  [
-    Sake,
-    Botella,
-  ],
-  [
-    Falafel,
-    Huevo,
-    Cocinar,
-    Paella,
-  ],
-  [
-    Galleta,
-    TartaDeCumpleaños,
-  ],
-  [
-    Palillos,
-    Sake,
-    TenedorYCuchillo
-  ],
-  [
-    Magdalena,
-  ],
-  [
-    ChilePicante,
-    Pepino,
-    Verdura,
-  ],
+  [Palillos, TenedorYCuchillo, Cuchara],
+  [Sake, Botella],
+  [Falafel, Huevo, Cocinar, Paella],
+  [Galleta, TartaDeCumpleaños],
+  [Palillos, Sake, TenedorYCuchillo],
+  [Magdalena],
+  [ChilePicante, Pepino, Verdura],
 ]
 
 export const localizationCards: Card[] = []

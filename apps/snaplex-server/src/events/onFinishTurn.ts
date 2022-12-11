@@ -1,4 +1,33 @@
 import { Action, Card, User } from "@types";
+import { setGameRoom, setPlayer } from "../features/gameRooms/gameRooms";
+import { GameRoom } from "../interfaces/gameRoom";
+import { store } from "../store";
+import { findRoom } from "../utils";
+
+export const onFinishTurn = (roomId: string, socket: any) => (actions: Action[]) => {
+  const id = socket.handshake.query['id'] as string;
+  const { gameRooms } = store.getState();
+  const gameRoomIndex = findRoom(gameRooms, roomId);
+  const gameRoom = gameRooms[gameRoomIndex];
+  const players = [gameRoom.player, gameRoom.oponent]
+
+  let player = gameRoom.player;
+  if (id !== player.id) player = gameRoom.oponent;
+
+  store.dispatch(setPlayer({
+    player: {
+      ...player,
+      actions: actions,
+      turnFinished: true,
+    }, roomId: gameRoom.id
+  }));
+  if (players.find(player => player.turnFinished)) {
+    
+  }
+}
+
+/**
+ * import { Action, Card, User } from "@types";
 import { setGameRoom, setUserTurnActions } from "../features/gameRooms/gameRooms";
 import { GameRoom } from "../interfaces/gameRoom";
 import { store } from "../store";
@@ -132,3 +161,4 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
     emitNextTurn(updatedgameRoom);
   }
 }
+ */

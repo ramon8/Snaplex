@@ -1,2 +1,2 @@
 // export * from './Interfaces';
-export * from './Models';
+export * from './models';

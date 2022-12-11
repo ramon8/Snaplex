@@ -1,24 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { GameState } from './gameSlice.interface'
-import * as reducers from './gameSlice.reducers'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { Game } from '@types'
 
 
-const initialState: GameState = {
-  id: '',
-  maxTurns: 6,
-  turn: 1,
-  locations: [],
-  winner: undefined,
-  timer: false,
+export interface SetGame { game: Game }
+export type SetGamePayload = PayloadAction<SetGame>
+
+const initialState: Game = {
+  firstToReveal: '',
+  maxTurns: 0,
+  sites: [],
+  turn: 0,
+  turnStartedAt: 0,
+  winner: ''
 }
 
 export const counterSlice = createSlice({
   name: 'game',
   initialState,
-  reducers,
+  reducers: {
+    setGame: (state, { payload: { game: { firstToReveal, maxTurns, sites, turn, turnStartedAt, winner } } }: SetGamePayload) => {
+      state.firstToReveal = firstToReveal;
+      state.maxTurns = maxTurns;
+      state.sites = sites;
+      state.turn = turn;
+      state.turnStartedAt = turnStartedAt;
+      state.winner = winner;
+    }
+  },
 })
 
-// Action creators are generated for each case reducer function
 export const gameActions = counterSlice.actions
 
 export default counterSlice.reducer

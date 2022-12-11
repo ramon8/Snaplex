@@ -16,4 +16,5 @@ export interface Card extends Entity {
     effect: Effect; // TODO: Post MVP, could a card have more than one effect? Effect[]
     description?: string;
     image?: string;
+    icon?: string; // Testing porpouse
 }

@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const ContainerLocation = styled.div`
+export const ContainerSite = styled.div`
     display: grid;
     place-items: center;
     gap: 16px;
 `
 
-export const LocationInfoContainer = styled.div`
+export const SiteInfoContainer = styled.div`
     display: grid;
     place-items: center;
     
@@ -19,13 +19,13 @@ export const LocationInfoContainer = styled.div`
     font-size: 16px;
 `
 
-export const LocationName = styled.div`
+export const SiteName = styled.div`
 `
 
-export const LocationDescription = styled.div`
+export const SiteDescription = styled.div`
 `
 
-export const LocationCardsCotnainer = styled.div`
+export const SiteCardsCotnainer = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;

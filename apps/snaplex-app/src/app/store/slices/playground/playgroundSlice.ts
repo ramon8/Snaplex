@@ -1,6 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { PlaygroundState, } from './playgroundSlice.interface'
-import * as reducers from './playgroundSlice.reducers'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+interface PlaygroundState {
+    selectedCard?: string;
+}
+
+interface SetPlayground {
+    playground: PlaygroundState
+}
+
+type SetPlaygroundPayload = PayloadAction<SetPlayground>
 
 const initialState: PlaygroundState = {
     selectedCard: undefined
@@ -9,7 +17,11 @@ const initialState: PlaygroundState = {
 export const playgroundSlice = createSlice({
     name: 'playground',
     initialState,
-    reducers,
+    reducers: {
+        setPlayground: (state, { payload: { playground: { selectedCard } } }: SetPlaygroundPayload) => {
+            state.selectedCard = selectedCard;
+        }
+    },
 })
 
 // Action creators are generated for each case reducer function

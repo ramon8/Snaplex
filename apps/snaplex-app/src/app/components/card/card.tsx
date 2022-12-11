@@ -1,7 +1,6 @@
-import { LocationProps } from "@components/location";
+import { SiteProps } from "@components/site";
 import { RootState } from "@store";
 import { gameActions, playerActions } from "@store/slices";
-import { actionsActions } from "@store/slices/actions/actionsSlice";
 import { playgroundActions } from "@store/slices/playground/playgroundSlice";
 import { Card as CardI } from "@types";
 import { AnimatePresence } from "framer-motion";
@@ -13,42 +12,50 @@ import { CardDetail, CardDetailProps } from "./cardDetail";
 
 export const Card = (props: CardProps) => {
     const { id, icon, name, power, cost } = props;
-    const { selectedCard } = useSelector((state: RootState) => state.playground);
-    const locations = useSelector((state: RootState) => state.game.locations)
-    const { mana, hand } = useSelector((state: RootState) => state.player)
-    const actions = useSelector((state: RootState) => state.actions)
+    const {
+        game: { sites, ...game },
+        player: { mana, hand, actions, ...player },
+        playground: { selectedCard }
+    } = useSelector((state: RootState) => state);
 
     const dispatch = useDispatch();
 
     const onDragEnd = (e: any) => {
-        const locationId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-id'])?.attributes['data-id' as any]?.value;
-        const location: LocationProps = { ...locations?.find((location: LocationProps) => location.id === locationId) } as LocationProps;
-        if (location && cost <= mana && location.playerCards?.length < 4) {
+        const siteId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-id'])?.attributes['data-id' as any]?.value;
+        const site: SiteProps = { ...sites?.find((site: SiteProps) => site.id === siteId) } as SiteProps;
+        if (site && cost <= mana && site.playerCards?.length < 4) {
 
             // The dragged card is not added to the list yet so we need to merge the actual list with the card
-            // eslint-disable-next-line no-unsafe-optional-chaining
-            const powerArray = [...location?.playerCards, props].map((card: CardI) => card.power) || [];
+            const powerArray = [...site?.playerCards, props].map((card: CardI) => card.power) || [];
             const power = powerArray.reduce((a: number, b: number) => a + b, 0);
 
-            location.playerPower = power;
-            location.playerCards = [...location.playerCards, props] as CardI[]
+            site.playerPower = power;
+            site.playerCards = [...site.playerCards, props] as CardI[]
 
             const cards = [...hand];
             cards.splice(hand.findIndex((card: CardI) => card.id === id), 1);
-            console.log({ location })
-            if (location) {
-                dispatch(gameActions.setLocation({ location: location }))
-                dispatch(playerActions.setHand({ hand: cards }))
-                dispatch(playerActions.setMana({ mana: mana - cost }))
 
-                console.log({ actions });
-                dispatch(actionsActions.setAction({
-                    action: {
-                        card: props,
-                        id: location.id,
-                        type: 'play',
-                    }
+            const newSites = [...sites];
+            const siteIndex = newSites.findIndex(site => site.id === siteId)
+            newSites[siteIndex] = site;
+
+            if (site) {
+                dispatch(gameActions.setGame({
+                    game: { ...game, sites: newSites }
                 }))
+                dispatch(playerActions.setPlayer({
+                    player: {
+                        ...player,
+                        hand: cards,
+                        mana: mana - cost,
+                        actions: [...actions, {
+                            card: props,
+                            locationId: site.id,
+                            type: 'play',
+                            id: ''
+                        }]
+                    }
+                }));
             }
         }
 
@@ -61,7 +68,7 @@ export const Card = (props: CardProps) => {
             dragElastic={1}
             dragMomentum={false}
             dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-            onClick={() => id && dispatch(playgroundActions.setSelectedCard({ cardId: id }))}
+            onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { selectedCard: id } }))}
             {...props}>
 
             <ManaValueStyled size={1} stroke={1}>{cost}</ManaValueStyled>
@@ -72,7 +79,7 @@ export const Card = (props: CardProps) => {
         </ContainerCard>
         <AnimatePresence>
             {selectedCard === id && (
-                <ContainerCardDetail onClick={() => dispatch(playgroundActions.setSelectedCard({}))}>
+                <ContainerCardDetail onClick={() => dispatch(playgroundActions.setPlayground({ playground: { selectedCard: undefined } }))}>
                     <CardDetail {...props as CardDetailProps} />
                 </ContainerCardDetail>
             )}

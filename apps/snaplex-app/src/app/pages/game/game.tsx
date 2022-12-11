@@ -1,43 +1,42 @@
 import { Footer, Header, Main } from "@components";
+import { RootState } from "@store";
 import { gameActions, playerActions } from "@store/slices";
-import { actionsActions } from "@store/slices/actions/actionsSlice";
-import { EmitReconnectGamePayload, EmitStartGamePayload } from "@types";
 import { socket } from 'apps/snaplex-app/src/main';
 import { useEffect } from 'react';
-import { useDispatch } from "react-redux";
-import { adaptLocations } from "../../adapters";
+import { useDispatch, useSelector } from "react-redux";
 import { GameProps } from "./game.interface";
 import { ContainerGame } from "./game.styles";
 
 export const Game = (props: GameProps) => {
 
+  const { player, game } = useSelector((state: RootState) => state)
+
   const dispatch = useDispatch();
 
-  const onConnect = (data: EmitStartGamePayload) => {
-    const { deck, hand, locations, mana, maxTurns, turn, userId: id } = data;
+  const onConnect = (data: any) => {
+    const { deck, hand, sites, mana, maxTurns, turn, userId: id } = data;
 
-    dispatch(actionsActions.clearActions());
     dispatch(playerActions.setPlayer({
       player: {
+        ...player,
         deck, hand, id, mana,
       }
     }));
 
     dispatch(gameActions.setGame({
       game: {
-        id: '',
-        locations: adaptLocations(locations),
+        ...game,
+        sites,
         maxTurns,
         turn
       },
-      timer: true,
     }));
   }
 
-  const onFinish = (data: EmitStartGamePayload) => {
+  const onFinish = (data: any) => {
     onConnect(data)
     console.log("winnerId of the game is", data.winner)
-    dispatch(gameActions.setWinner({winner: data.winner}))
+    dispatch(gameActions.setGame({ game: { ...game, winner: data.winner } }))
   }
 
   useEffect(() => {

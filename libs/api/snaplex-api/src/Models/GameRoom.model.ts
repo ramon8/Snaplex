@@ -1,4 +1,4 @@
-import { Entity, Game, Player } from "../Models";
+import { Entity, Game, Player } from ".";
 
 export interface GameRoom extends Entity {
     game: Game;

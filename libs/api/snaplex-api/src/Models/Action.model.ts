@@ -1,4 +1,4 @@
-import { Card } from "../Models";
+import { Card } from ".";
 import { Entity } from "./Entity.model";
 
 export type ActionType = 'play' | 'move';
