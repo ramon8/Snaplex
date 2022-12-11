@@ -5,36 +5,23 @@ import { addGameRoom, joinGameRoom, setUserSocket } from "../features/gameRooms/
 import { startNewTimer } from "../service/timeOutService";
 import { store } from "../store";
 import { onFinishTurn } from "./onFinishTurn";
+import { joinGame, newGame, reconnecGame } from './../service/Connection.service'
 
 export const onConnect = (socket: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>) => {
   const userId = socket.handshake.query['id'] as string;
   const { gameRooms } = store.getState();
   console.log(`[${userId}] connected`)
 
-  const isUserInRoomAlready = gameRooms?.findIndex(gameRoom => gameRoom.users.map(({ id }) => id).includes(userId))
+  const isUserInRoomAlready = gameRooms?.findIndex(({ player, oponent }) =>
+    [player, oponent].map(({ id }) => id).includes(userId))
 
   if (isUserInRoomAlready === -1) { // User not found in any room, try to join waiting room
     console.log(`[${userId}] searching for game`)
-    const isAnyRoomWaiting = gameRooms.findIndex(gameRoom => gameRoom.users.length <= 1)
+    const isAnyRoomWaiting = gameRooms.findIndex(({ isWaiting }) => isWaiting)
 
-    if (isAnyRoomWaiting === -1) { // No rooms are waiting, create new room
-      console.log(`[${userId}] new game created, waiting other player to join...`)
-      const newGameRoom = {
-        id: `room_${userId}`,
-        game: initialGame,
-        users: [{
-          id: userId,
-          name: 'test-user',
-          socket,
-          deck: [],
-          hand: [],
-          mana: 1
-        }]
-      };
-      store.dispatch(addGameRoom(newGameRoom)) // Obtain the deck from the bd?
-      socket.on("FINISH_TURN", onFinishTurn(`room_${userId}`, socket, userId))
-
-    } else { // Found waiting room, then join that room with the current user
+    // No rooms are waiting, create new room
+    if (isAnyRoomWaiting === -1) newGame(socket)
+    else { // Found waiting room, then join that room with the current user
       console.log(`[${userId}] game found, connecting to game ${gameRooms[isAnyRoomWaiting].id}`)
       store.dispatch(joinGameRoom({
         roomId: gameRooms[isAnyRoomWaiting].id,

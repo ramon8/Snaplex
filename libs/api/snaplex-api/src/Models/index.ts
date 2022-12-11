@@ -6,3 +6,5 @@ export * from './Site.model';
 export * from './Game.model';
 export * from './User.model';
 export * from './Player.model';
+export * from './GameRoom.model';
+export * from './EmmitData.model';

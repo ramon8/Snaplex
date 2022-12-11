@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { decks } from '../../db/cards'
-import { locationsMock } from '../../db/locations'
+import { sitesMock } from '../../db/locations'
 import { emitReconnect } from '../../events/emitReconnectGame'
 import { emitStartGame } from '../../events/emitStartGame'
-import { findLocation, findRoom, findUser, shuffleDeck } from '../../utils'
-import { GameRoom, JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, SetPlayersCardsInLocationPayload, SetTimerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserIsWaitingPayload, SetUserManaPayload, SetUserPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
+import { findSite, findRoom, findUser, shuffleDeck } from '../../utils'
+import { JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, setPlayerPayload, SetPlayersCardsInLocationPayload, SetTimerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserIsWaitingPayload, SetUserManaPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
+import { Card, GameRoom, Player, User } from '@types'
+import { emitGameData } from '../../emiters/emitData'
 
 export type GameRoomState = GameRoom[]
 
@@ -14,61 +16,62 @@ const gameRoomsSlice = createSlice({
   name: 'gameRoom',
   initialState: initialState,
   reducers: {
-    addGameRoom(state, { payload }: PayloadAction<GameRoom>) {
-      state.push(payload)
-    },
+    addGameRoom(state, { payload }: PayloadAction<GameRoom>) { state.push(payload) },
 
-    joinGameRoom(state, { payload: { roomId, user } }: PayloadAction<JoinGameRoomPayload>) {
+    joinGameRoom(state, { payload: { roomId, oponent } }: PayloadAction<JoinGameRoomPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId);
-      state[roomIndex].users.push(user);
+      const { player } = state[roomIndex];
+      state[roomIndex].oponent = oponent;
 
-      // Initialize players states
-      state[roomIndex].users.forEach(({ id, socket }, i) => {
+      [player, oponent].forEach(({ id }, i, users) => {
         const deck = shuffleDeck([...decks[i]])
         const hand = deck.splice(deck.length - 3, 3)
 
-        state[roomIndex].users[i].deck = deck;
-        state[roomIndex].users[i].hand = hand;
-        state[roomIndex].users[i].mana = 1;
-        state[roomIndex].users[i].id = id;
+        users[i].deck = deck;
+        users[i].hand = hand;
+        users[i].mana = 1;
+        users[i].id = id;
 
         state[roomIndex].game.turn = 1;
         state[roomIndex].game.maxTurns = 6;
-        state[roomIndex].game.locations = locationsMock;
-        //socket.on("FINISH_TURN", onFinishTurn(state[roomIndex] as GameRoom, socket, id))
+        state[roomIndex].game.sites = sitesMock;
       });
 
-      emitStartGame(state[roomIndex] as GameRoom)
+      emitGameData(state[roomIndex] as GameRoom)
     },
 
-    setUserSocket(state, { payload: { socket, userId, roomIndex } }: PayloadAction<UpdateUserSocketPayload>) {
-      const userIndex = findUser(state[roomIndex] as GameRoom, userId)
-      state[roomIndex].users[userIndex].socket = socket
+    setUserSocket(state, { payload: { socket, roomIndex } }: PayloadAction<UpdateUserSocketPayload>) {
+      const id = socket.handshake.query["id"] as string;
+
+      const { player } = state[roomIndex];
+      if (id === player.id) state[roomIndex].player.socket = socket;
+      state[roomIndex].oponent.socket = socket;
+
       emitReconnect(state as GameRoom[], state[roomIndex] as GameRoom, socket)
     },
 
     setUserHand(state, { payload: { hand, roomId, userId } }: PayloadAction<SetUserHandPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId)
-      const userIndex = findUser(state[roomIndex] as GameRoom, userId)
-      state[roomIndex].users[userIndex].hand = hand
-    },
 
-    setUserTurnActions(state, { payload: { roomId, userId, turnActions } }: PayloadAction<SetUserIsWaitingPayload>) {
-      const roomIndex = findRoom(state as GameRoom[], roomId)
-      const userIndex = findUser(state[roomIndex] as GameRoom, userId)
-      state[roomIndex].users[userIndex].turnActions = turnActions
+      const { player } = state[roomIndex];
+      if (userId === player.id) state[roomIndex].player.hand = hand;
+      state[roomIndex].oponent.hand = hand;
     },
 
     setUserDeck(state, { payload: { roomId, userId, deck } }: PayloadAction<SetUserDeckPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId)
-      const userIndex = findUser(state[roomIndex] as GameRoom, userId)
-      state[roomIndex].users[userIndex].deck = deck
+
+      const { player } = state[roomIndex];
+      if (userId === player.id) state[roomIndex].player.deck = deck;
+      state[roomIndex].oponent.deck = deck;
     },
 
     setUserMana(state, { payload: { roomId, userId, mana } }: PayloadAction<SetUserManaPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId)
-      const userIndex = findUser(state[roomIndex] as GameRoom, userId)
-      state[roomIndex].users[userIndex].mana = mana
+
+      const { player } = state[roomIndex];
+      if (userId === player.id) state[roomIndex].player.mana = mana;
+      state[roomIndex].oponent.mana = mana;
     },
 
     setTurn(state, { payload: { roomId, turn } }: PayloadAction<SetTurnPayload>) {
@@ -81,15 +84,17 @@ const gameRoomsSlice = createSlice({
       state[roomIndex].game.maxTurns = maxTurns
     },
 
-    setLocations(state, { payload: { roomId, locations } }: PayloadAction<SetLocationsPayload>) {
+    setSites(state, { payload: { roomId, sites } }: PayloadAction<SetLocationsPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId)
-      state[roomIndex].game.locations = locations
+      state[roomIndex].game.sites = sites
     },
 
-    setUser(state, { payload: { roomId, user } }: PayloadAction<SetUserPayload>) {
+    setPlayer(state, { payload: { roomId, player } }: PayloadAction<setPlayerPayload>) {
       const roomIndex = findRoom(state as GameRoom[], roomId)
-      const userIndex = findUser(state[roomIndex] as GameRoom, user.id)
-      state[roomIndex].users[userIndex] = user;
+
+      const { player: currentPlayer } = state[roomIndex];
+      if (player.id === currentPlayer.id) state[roomIndex].player = player;
+      state[roomIndex].oponent = player;
     },
 
     setGame(state, { payload: { roomId, game } }: PayloadAction<SetGamePayload>) {
@@ -97,23 +102,12 @@ const gameRoomsSlice = createSlice({
       state[roomIndex].game = game;
     },
 
-    setPlayersCardsInLocation(state, { payload: { roomId, locationId, playersCards } }: PayloadAction<SetPlayersCardsInLocationPayload>) {
-      const roomIndex = findRoom(state as GameRoom[], roomId)
-      const locationIndex = findLocation(state[roomIndex] as GameRoom, locationId)
-      state[roomIndex].game.locations[locationIndex].playersCards = playersCards;
-    },
-
     setGameRoom(state, { payload: { gameRoom } }: PayloadAction<SetGameRoomPayload>) {
       const roomIndex = findRoom(state as GameRoom[], gameRoom.id)
       state[roomIndex] = gameRoom;
     },
-
-    setTimer(state, { payload: { roomId, timeOut } }: PayloadAction<SetTimerPayload>) {
-      const roomIndex = findRoom(state as GameRoom[], roomId)
-      state[roomIndex].timeOut = timeOut;
-    }
   }
 })
 
-export const { addGameRoom, joinGameRoom, setTimer, setGameRoom, setGame, setUserSocket, setUserHand, setUserTurnActions, setUser, setUserDeck, setMaxTurn, setTurn, setUserMana, setLocations, setPlayersCardsInLocation } = gameRoomsSlice.actions
+export const { addGameRoom, joinGameRoom, setGameRoom, setGame, setUserSocket, setUserHand, setPlayer, setUserDeck, setMaxTurn, setTurn, setUserMana, setSites } = gameRoomsSlice.actions
 export default gameRoomsSlice.reducer

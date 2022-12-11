@@ -1,4 +1,6 @@
-import { Action, Card } from "../Interfaces";
+import { Socket } from "socket.io";
+import { DefaultEventsMap } from "socket.io/dist/typed-events";
+import { Action, Card } from "../Models";
 import { Entity } from "./Entity.model";
 
 export interface Player extends Entity {
@@ -14,4 +16,6 @@ export interface Player extends Entity {
 
     hand: Card[];
     deck: Card[];
+
+    socket?: Socket<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>;
 }

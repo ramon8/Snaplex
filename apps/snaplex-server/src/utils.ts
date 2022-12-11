@@ -1,20 +1,13 @@
-import { GameRoom } from "./features/gameRooms/gameRoom.interfaces";
-import { Card } from '@types';
+import { Card, GameRoom } from '@types';
 
-export const findRoom = (gameRooms: GameRoom[], roomId: string): number => {
-  return gameRooms.findIndex(gameRoom => gameRoom.id === roomId)
-}
+export const findRoom = (gameRooms: GameRoom[], roomId: string): number =>
+  gameRooms.findIndex(gameRoom => gameRoom.id === roomId)
 
-export const findUser = (gameRoom: GameRoom, userId: string): number => {
-  return gameRoom.users.findIndex(user => user.id === userId)
-}
+export const findUser = ({ player, oponent }: GameRoom, userId: string): number =>
+  [player, oponent].findIndex(user => user.id === userId)
 
+export const findSite = (gameRoom: GameRoom, locationId: string): number =>
+  gameRoom.game.sites.findIndex(location => location.id === locationId)
 
-export const findLocation = (gameRoom: GameRoom, locationId: string): number => {
-  return gameRoom.game.locations.findIndex(location => location.id === locationId)
-}
-
-export const shuffleDeck = (deck: Card[]): Card[] => {
-  const newDeck = deck.sort(() => Math.random() - 0.5);
-  return newDeck;
-}
+export const shuffleDeck = (deck: Card[]): Card[] =>
+  deck.sort(() => Math.random() - 0.5);

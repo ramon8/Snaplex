@@ -1,7 +1,6 @@
-import { EmitReconnectGamePayload, Location } from "@types";
+import { GameRoom, Site } from "@types";
 import { Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
-import { GameRoom } from "../features/gameRooms/gameRoom.interfaces";
 import { findRoom, findUser } from "../utils";
 
 

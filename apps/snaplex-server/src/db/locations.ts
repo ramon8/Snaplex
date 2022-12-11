@@ -1,28 +1,23 @@
-import { Location } from "@types"
+import { Site } from "@types"
+import { createSite } from "../initializers/site.initializer";
 
 
-export const locationObellaNegraMock: Location = {
+export const siteObellaNegraMock: Site = createSite({
   id: 'ovella_negra',
   name: 'Ovella Negra',
-  playersCards: [[], []],
-  playersPower: [0, 0],
   description: 'A partir de turno 3 no se pueden jugar cartas'
 }
-
-export const locationRazzMock: Location = {
+);
+export const siteRazzMock: Site = createSite({
   id: 'razzmatazz',
   name: 'Razzmatazz',
-  playersCards: [[], []],
-  playersPower: [0, 0],
   description: ''
-}
+})
 
-export const locationChurreriaMartosMock: Location = {
+export const siteChurreriaMartosMock: Site = createSite({
   id: 'churreria_martos',
   name: 'Churreria Martos',
-  playersCards: [[], []],
-  playersPower: [0, 0],
   description: 'Solo puedes poner cartas en turno 6'
-}
+})
 
-export const locationsMock = [locationObellaNegraMock, locationRazzMock, locationChurreriaMartosMock]
+export const sitesMock = [siteObellaNegraMock, siteRazzMock, siteChurreriaMartosMock]

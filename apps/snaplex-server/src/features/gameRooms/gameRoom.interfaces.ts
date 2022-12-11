@@ -1,17 +1,11 @@
-import { User, Game, Card, Location, Action } from "@types";
+import { User, Game, Card, Action, Player, Site, GameRoom } from "@types";
 import { Socket } from "socket.io";
 import { DefaultEventsMap } from "socket.io/dist/typed-events";
 
-export interface GameRoom {
-  id: string;
-  users: User[];
-  game: Game;
-  timeOut?: any;
-}
 
 export interface JoinGameRoomPayload {
   roomId: string,
-  user: User,
+  oponent: Player,
 }
 
 export interface UpdateUserSocketPayload {
@@ -57,13 +51,13 @@ export interface SetMaxTurnPayload {
 
 export interface SetLocationsPayload {
   roomId: string;
-  locations: Location[];
+  sites: Site[];
 }
 
 
-export interface SetUserPayload {
+export interface setPlayerPayload {
   roomId: string;
-  user: User;
+  player: Player;
 }
 
 

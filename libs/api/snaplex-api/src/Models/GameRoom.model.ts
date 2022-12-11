@@ -1,6 +1,6 @@
-import { Game, Player } from "../Models";
+import { Entity, Game, Player } from "../Models";
 
-export interface GameRoom {
+export interface GameRoom extends Entity {
     game: Game;
 
     /** store snapShots for each turn */
