@@ -6,25 +6,25 @@ import { CardProps } from "./card.interface";
 export const ContainerCard = styled(motion.div)((props: CardProps) => `
     display: grid;
     place-items: center;
-    grid-template: 
+    grid-template:
         " mana        power       " auto
         " icon        icon        " 1fr
         " name        name        " auto
         " description description " auto
         / 1fr         1fr;
 
-        
-    padding: .5rem .75rem;    
+
+    padding: .1rem .25rem;
     background: #D6D6D6;
     background-image: url(${props.image});
     background-size: cover;
-    border-radius: .5rem; 
+    border-radius: .5rem;
     border: 2px solid black;
-    
+
     aspect-ratio: 4 / 6;
     height: auto;
     width: 100%;
-    
+
     max-width: 70px;
     max-height: 97px;
 
@@ -47,10 +47,10 @@ export const ContainerCardDetail = styled.div`
     top: 0;
     left: 0;
     text-align: center;
-    
+
     width: 100%;
     height: 100%;
-    
+
     background: rgba(0,0,0,0.5);
 `
 

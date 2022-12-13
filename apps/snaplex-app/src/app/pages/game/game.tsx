@@ -1,6 +1,7 @@
 import { Footer, Header, Main } from "@components";
 import { RootState } from "@store";
 import { gameActions, playerActions } from "@store/slices";
+import { EmitData } from "@types";
 import { socket } from 'apps/snaplex-app/src/main';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
@@ -13,8 +14,8 @@ export const Game = (props: GameProps) => {
 
   const dispatch = useDispatch();
 
-  const onConnect = (data: any) => {
-    const { deck, hand, sites, mana, maxTurns, turn, userId: id } = data;
+  const onConnect = (data: EmitData) => {
+    const { deck, hand, sites, mana, maxTurns, turn, userId: id, turnStartedAt } = data;
 
     dispatch(playerActions.setPlayer({
       player: {
@@ -28,7 +29,8 @@ export const Game = (props: GameProps) => {
         ...game,
         sites,
         maxTurns,
-        turn
+        turn,
+        turnStartedAt
       },
     }));
   }

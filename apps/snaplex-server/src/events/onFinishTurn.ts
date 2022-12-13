@@ -1,8 +1,5 @@
-import { Action, Card, User } from "@types";
-import { emitGameData } from "../emiters/emitData";
-import { setGame, setGameRoom, setPlayer } from "../features/gameRooms/gameRooms";
-import { createSite } from "../initializers/site.initializer";
-import { GameRoom } from "../interfaces/gameRoom";
+import { Action } from "@types";
+import { setPlayer } from "../features/gameRooms/gameRooms";
 import { resolveTurn } from "../resolver/resolveTurn";
 import { store } from "../store";
 import { findRoom } from "../utils";
@@ -123,7 +120,7 @@ export const setNewState = (gameRoom: GameRoom, actions: Action[][]) => {
   if(updatedgameRoom.game.turn > updatedgameRoom.game.maxTurns){
     let player1WinLocations = 0;
     let player2WinLocations = 0;
-    
+
     // check how many locations wins every player
     updatedgameRoom.game.locations.forEach(location => {
       if(location.playersPower[0] > location.playersPower[1]) player1WinLocations++;

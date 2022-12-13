@@ -3,7 +3,7 @@ import { createCard } from '../initializers/card.initializer'
 import { setRandomPowerToDeck, shuffleDeck } from '../utils'
 
 export const Draculex: Card = createCard({ icon: '', name: 'Draculex', description: 'Succión automática', id: '🧛‍♂️', image: './../../../assets/dracualex.png', })
-export const Fatramothor: Card = createCard({ icon: '', name: 'FatRamthor', description: 'Martillo o porra?', id: '🔨', image: './../../../assets/fat_ramthor.png' })
+export const Fatramothor: Card = createCard({ icon: '', name: 'Ramthor', description: 'Martillo o porra?', id: '🔨', image: './../../../assets/fat_ramthor.png' })
 export const Uvas: Card = createCard({ icon: '🍇', name: 'Uvas', description: 'La uva sale de la parra', id: '🍇', })
 export const Melón: Card = createCard({ icon: '🍈', name: 'Melón', description: 'Descripcion de la carta Melón', id: '🍈', })
 export const Sandía: Card = createCard({ icon: '🍉', name: 'Sandía', description: 'Descripcion de la carta Sandía', id: '🍉', })
