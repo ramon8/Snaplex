@@ -1,4 +1,5 @@
 import { Card, GameRoom } from '@types';
+import { randomInt } from 'crypto';
 
 export const findRoom = (gameRooms: GameRoom[], roomId: string): number =>
   gameRooms.findIndex(gameRoom => gameRoom.id === roomId)
@@ -26,3 +27,14 @@ export const shuffleDeck = (array: any[]) => {
 
   return array;
 }
+
+export const getRandomInt = (max: number): number => {
+  return Math.floor(Math.random() * max);
+}
+
+export const setRandomPowerToCard = (card: Card): Card => ({
+  ...card,
+  power: randomInt(6)
+})
+
+export const setRandomPowerToDeck = (deck: Card[]): Card[] => deck.map(card => ({ ...setRandomPowerToCard(card) }));

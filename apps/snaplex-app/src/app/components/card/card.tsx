@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardProps } from "./card.interface";
 import { ContainerCard, ContainerCardDetail, Icon, ManaValueStyled, Name, PowerStyled } from "./card.styles";
 import { CardDetail, CardDetailProps } from "./cardDetail";
+import { CardSmall } from "./cardSmall";
 
 
 export const Card = (props: CardProps) => {
@@ -61,22 +62,23 @@ export const Card = (props: CardProps) => {
 
     }
     return <>
-        <ContainerCard
+        {props.type !== 'small' ? <ContainerCard
             onDragEnd={onDragEnd}
             drag
             layoutId={id}
+            whileDrag={{ zIndex: 100 }}
             dragElastic={1}
             dragMomentum={false}
             dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
             onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { selectedCard: id } }))}
             {...props}>
 
-            <ManaValueStyled size={1} stroke={1}>{cost}</ManaValueStyled>
-            <PowerStyled size={1} stroke={1}>{power}</PowerStyled>
-            <Icon size={3} stroke={0}>{icon}</Icon>
-            <Name size={.7} stroke={.7}>{name}</Name>
+            <ManaValueStyled stroke={5}>{cost}</ManaValueStyled>
+            <PowerStyled stroke={5}>{power}</PowerStyled>
+            <Icon stroke={0}>{icon}</Icon>
+            <Name stroke={4}>{name}</Name>
             {/* <Description size={.5}>Succión Automática</Description> */}
-        </ContainerCard>
+        </ContainerCard> : <CardSmall onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { selectedCard: id } }))} {...props} />}
         <AnimatePresence>
             {selectedCard === id && (
                 <ContainerCardDetail onClick={() => dispatch(playgroundActions.setPlayground({ playground: { selectedCard: undefined } }))}>

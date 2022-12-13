@@ -4,13 +4,13 @@ import { createSite } from "../initializers/site.initializer";
 
 export const siteObellaNegraMock: Site = createSite({
   id: 'ovella_negra',
-  name: 'Ovella Negra',
+  name: 'La Ovella Negra',
   description: 'A partir de turno 3 no se pueden jugar cartas'
 }
 );
 export const siteRazzMock: Site = createSite({
   id: 'razzmatazz',
-  name: 'Razzmatazz',
+  name: 'Razz',
   description: ''
 })
 
@@ -20,4 +20,4 @@ export const siteChurreriaMartosMock: Site = createSite({
   description: 'Solo puedes poner cartas en turno 6'
 })
 
-export const sitesMock = [siteObellaNegraMock, siteRazzMock, siteChurreriaMartosMock]
+export const sitesMock = [siteRazzMock, siteObellaNegraMock, siteChurreriaMartosMock]

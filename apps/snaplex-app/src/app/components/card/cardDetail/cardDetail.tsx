@@ -13,10 +13,10 @@ export const CardDetail = ({ id, icon, name, power, cost, description, ...props 
     const dispatch = useDispatch();
     return <>
         <ContainerCardDetail drag layoutId={id} dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }} {...props}>
-            <Mana size={4} stroke={2}>{cost}</Mana>
-            <Power size={4} stroke={2}>{power}</Power>
-            <Name size={3.2} stroke={2}>{name}</Name>
-            <Icon size={15} stroke={2}>{icon}</Icon>
+            <Mana size={4} stroke={20}>{cost}</Mana>
+            <Power size={4} stroke={20}>{power}</Power>
+            <Name size={3.2} stroke={20}>{name}</Name>
+            <Icon size={15}>{icon}</Icon>
             <Description size={1.2}>{description}</Description>
             {/* <Button value="Close" onClick={() => dispatch(playgroundActions.setSelectedCard({}))} /> */}
         </ContainerCardDetail>

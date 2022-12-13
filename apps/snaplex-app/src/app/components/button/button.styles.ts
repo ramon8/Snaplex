@@ -12,7 +12,7 @@ export const ContainerButton = styled(motion.div)`
     width: fit-content;
     height: 80px;
     padding: .5rem 4rem;
-    /* margin: .25rem; */
+    
     border-radius: .5rem;
     box-shadow:
         0 7px 0 #a6532b,
@@ -40,7 +40,7 @@ export const ContainerButton = styled(motion.div)`
             0px 0px 0px 2px black,
             0px 0px 0px 2px black,
             0px 3px 0px 2px black,
-            1px 1px 1px black;;
+            1px 1px 1px black;
         & div{
             position: relative;
             top: 3px;

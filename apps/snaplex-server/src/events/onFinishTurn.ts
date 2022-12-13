@@ -1,14 +1,16 @@
 import { Action, Card, User } from "@types";
-import { setGameRoom, setPlayer } from "../features/gameRooms/gameRooms";
+import { emitGameData } from "../emiters/emitData";
+import { setGame, setGameRoom, setPlayer } from "../features/gameRooms/gameRooms";
+import { createSite } from "../initializers/site.initializer";
 import { GameRoom } from "../interfaces/gameRoom";
+import { resolveTurn } from "../resolver/resolveTurn";
 import { store } from "../store";
 import { findRoom } from "../utils";
 
 export const onFinishTurn = (roomId: string, socket: any) => (actions: Action[]) => {
   const id = socket.handshake.query['id'] as string;
   const { gameRooms } = store.getState();
-  const gameRoomIndex = findRoom(gameRooms, roomId);
-  const gameRoom = gameRooms[gameRoomIndex];
+  const gameRoom = gameRooms[findRoom(gameRooms, roomId)];
   const players = [gameRoom.player, gameRoom.oponent]
 
   let player = gameRoom.player;
@@ -22,7 +24,7 @@ export const onFinishTurn = (roomId: string, socket: any) => (actions: Action[])
     }, roomId: gameRoom.id
   }));
   if (players.find(player => player.turnFinished)) {
-    
+    resolveTurn(gameRoom.id);
   }
 }
 

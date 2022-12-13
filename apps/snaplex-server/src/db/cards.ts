@@ -1,5 +1,6 @@
 import { Card } from '@types'
 import { createCard } from '../initializers/card.initializer'
+import { setRandomPowerToDeck, shuffleDeck } from '../utils'
 
 export const Draculex: Card = createCard({ icon: '', name: 'Draculex', description: 'Succión automática', id: '🧛‍♂️', image: './../../../assets/dracualex.png', })
 export const Fatramothor: Card = createCard({ icon: '', name: 'FatRamthor', description: 'Martillo o porra?', id: '🔨', image: './../../../assets/fat_ramthor.png' })
@@ -160,5 +161,34 @@ const mazoRamon = [
   PanRelleno, //2-3
   Falafel, //4-4
 ];
+const mazoTestA = [
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+].map((card, i) => ({ ...card, id: `${i}_A` }));
 
-export const decks = [mazoAlex, mazoRamon];
+const mazoTestB = [
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Fatramothor,
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+  Draculex,
+].map((card, i) => ({ ...card, id: `${i}_B` }));
+
+export const decks = [shuffleDeck(setRandomPowerToDeck(mazoTestA)), shuffleDeck(setRandomPowerToDeck(mazoTestB))];

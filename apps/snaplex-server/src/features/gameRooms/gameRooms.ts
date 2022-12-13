@@ -44,7 +44,7 @@ const gameRoomsSlice = createSlice({
 
       const { player } = state[roomIndex];
       if (id === player.id) state[roomIndex].player.socket = socket;
-      state[roomIndex].oponent.socket = socket;
+      else state[roomIndex].oponent.socket = socket;
 
       emitGameDataToUser(state[roomIndex] as GameRoom, id)
     },
@@ -54,7 +54,7 @@ const gameRoomsSlice = createSlice({
 
       const { player } = state[roomIndex];
       if (userId === player.id) state[roomIndex].player.hand = hand;
-      state[roomIndex].oponent.hand = hand;
+      else state[roomIndex].oponent.hand = hand;
     },
 
     setUserDeck(state, { payload: { roomId, userId, deck } }: PayloadAction<SetUserDeckPayload>) {
@@ -62,7 +62,7 @@ const gameRoomsSlice = createSlice({
 
       const { player } = state[roomIndex];
       if (userId === player.id) state[roomIndex].player.deck = deck;
-      state[roomIndex].oponent.deck = deck;
+      else state[roomIndex].oponent.deck = deck;
     },
 
     setUserMana(state, { payload: { roomId, userId, mana } }: PayloadAction<SetUserManaPayload>) {
@@ -70,7 +70,7 @@ const gameRoomsSlice = createSlice({
 
       const { player } = state[roomIndex];
       if (userId === player.id) state[roomIndex].player.mana = mana;
-      state[roomIndex].oponent.mana = mana;
+      else state[roomIndex].oponent.mana = mana;
     },
 
     setTurn(state, { payload: { roomId, turn } }: PayloadAction<SetTurnPayload>) {
@@ -93,7 +93,7 @@ const gameRoomsSlice = createSlice({
 
       const { player: currentPlayer } = state[roomIndex];
       if (player.id === currentPlayer.id) state[roomIndex].player = player;
-      state[roomIndex].oponent = player;
+      else state[roomIndex].oponent = player;
     },
 
     setGame(state, { payload: { roomId, game } }: PayloadAction<SetGamePayload>) {

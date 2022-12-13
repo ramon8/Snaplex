@@ -4,4 +4,7 @@ export interface TextProps {
     size?: number;
     stroke?: number;
     children?: string | number;
+    bottomShadow?: number;
+    shouldAnimate?: boolean;
+    color?: string;
 }

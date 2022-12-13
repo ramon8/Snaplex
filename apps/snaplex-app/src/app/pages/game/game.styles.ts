@@ -7,5 +7,5 @@ export const ContainerGame = styled.div`
     width: 100%;
     height: 100%;
 
-    background: lightsalmon;
+    background: #313131;
 `

@@ -40,12 +40,10 @@ export const Name = styled(Text)`
     `
 export const Power = styled(Text)`
     grid-area: power;
-    transform: rotate(15deg);
     place-self: end;
     `
 export const Mana = styled(Text)`
     place-self: end start;
-    transform: rotate(-15deg);
     grid-area: mana;
 `
 export const Description = styled(Text)`

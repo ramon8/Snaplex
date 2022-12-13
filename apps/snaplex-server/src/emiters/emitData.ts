@@ -4,9 +4,9 @@ import { GameRoom, EmitData, Site } from "@types";
 export const emitGameData = ({ player, oponent, game: { sites, firstToReveal, ...game } }: GameRoom) => {
     const players = [player, oponent]
     const sitesArr = [sites, flipSitesData(sites)]
-    players.forEach(({ id, socket, ...player }, i) => {
+    players.forEach(({ id, socket, ...updatedPlayer }, i) => {
         const data: EmitData = {
-            ...player,
+            ...updatedPlayer,
             ...game,
             userId: id,
             sites: sitesArr[i],

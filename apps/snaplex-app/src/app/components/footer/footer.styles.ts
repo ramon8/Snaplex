@@ -3,41 +3,76 @@ import { Button } from "@components/button"
 import { Hand } from "@components/hand"
 import styled, { keyframes } from "styled-components";
 import { Deck } from "@components/deck";
+import { motion } from "framer-motion";
+import { Timer } from "@components/timer";
 
-export const ContainerFooter = styled.div`
+export const ContainerFooter = styled(motion.div)`
     display: grid;
-    grid-template:
-        " mana mana mana    . " 
-        " .    .    timer   . "
-        " hand hand btn     . "
-        / 2fr  2fr  auto 1fr;
     place-items: center;
-        
-    padding: 16px;
     gap: 32px 8px;
+    position: relative;
+    &:before{
+        content: '';
+        position: absolute;
+        top: 185px;
+        width: 5rem;
+        height: 5rem;
+        background: #212121;
+        rotate: 45deg;
+        box-shadow: 0 0 0 4px black;
+    }
+`
+
+export const ContainerButtonTurn = styled(motion.div)`
+    display: grid;
+    background: #212121;
+    width: 100%;
+    box-shadow: 0 0 0 4px black;
+    box-sizing: border-box;
+    grid-template:
+        " mana  " 0px
+        " timer "
+        " btn   " ;
+    place-items: center;
+    
+    padding: 16px;
+    gap: 1rem;
+    z-index: 1;
+    &:after{
+        content: '';
+        z-index: 2;
+        position: absolute;
+        width: 5rem;
+        height: 5rem;
+        background: #212121;
+        top: 185px;
+        left: 174px;
+        width: 5rem;
+        rotate: 45deg;
+    }
 `
 
 export const ManaStyled = styled(Mana)`
-    grid-area: mana;
-    font-size: 42px;
-    width: 64px;
-    height: 64px;
-
-    place-self: center;
+    top: -2rem;
+    z-index: 3;
 `
 
 export const ButtonStyled = styled(Button)`
     grid-area: btn;
     height: fit-content;
+    z-index: 3;
 `
 
 export const HandStyled = styled(Hand)`
-    grid-area: hand;
     height: 180px;
 `
 
 export const DeckStyled = styled(Deck)`
-    position: fixed;
     bottom: 0;
-    transform: translate(0, 100%)
+    transform: translate(0, 100%);
+`
+
+export const TimerStyled = styled(Timer)`
+    grid-area: timer;
+    z-index: 3;
 `

@@ -3,10 +3,7 @@ import { ContainerButton } from "./button.styles"
 import { Text } from './../text'
 
 export const Button = ({ onClick, value, ...props }: ButtonProps) => {
-    return <ContainerButton
-        onClick={onClick}
-        // whileTap={{ scale: 1.1 }}
-        {...props}>{
-            <Text>{value}</Text>
-        }</ContainerButton>
+    return <ContainerButton onClick={onClick} {...props}>
+        <Text size={1} stroke={3} bottomShadow={3}>{value}</Text>
+    </ContainerButton>
 }

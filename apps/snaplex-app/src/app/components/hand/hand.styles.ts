@@ -5,4 +5,6 @@ export const ContainerHand = styled.div`
     grid-auto-flow: column;
     place-items: center;
     gap: 8px;
+    justify-content: center;
+    padding: 0 1rem;
 `

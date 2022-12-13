@@ -17,19 +17,14 @@ body,
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     user-select: none;
     font-family: titan;
+    font-weight: 100;
 }
 
 body {
     font-size: 16px;
-    /* max-width: 428px;
-    max-height: 926px; */
 
-    /* width: 428px;
-    height: 926px; */
-    /* width: 1000px;
-    height: 1000px; */
-
-    padding: 10px;
+    max-width: 428px;
+    max-height: 926px;
 
     position: relative;
 }
