@@ -77,7 +77,7 @@ export const Card = (props: CardProps) => {
       onDragEnd={onDragEnd}
       onDrag={onDrag}
       onDragStart={onDragStart}
-      drag
+      drag={mana >= cost}
       layoutId={id}
       whileDrag={{ zIndex: 100 }}
       dragElastic={1}

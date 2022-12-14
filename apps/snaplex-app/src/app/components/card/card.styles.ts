@@ -32,8 +32,9 @@ export const ContainerCard = styled(motion.div)((props: CardProps) => `
     position: relative;
     
     box-sizing: border-box;
+    top: auto !important;
     
-    pointer-events: ${props.disabled ? 'none' : 'default'}; 
+    /* pointer-events: ${props.disabled ? 'none' : 'default'};  */
     &:before ${props.disabled ? `{
         content: '';
         position: absolute;
