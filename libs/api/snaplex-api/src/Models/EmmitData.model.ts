@@ -13,6 +13,7 @@ export interface EmitData {
     mana: number;
 
     turnStartedAt: number;
+    maxTurnTime: number;
 
     isfirstToReveal?: boolean;
     winner?: string;

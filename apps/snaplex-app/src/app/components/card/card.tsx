@@ -82,14 +82,17 @@ export const Card = (props: CardProps) => {
       whileDrag={{ zIndex: 100 }}
       dragElastic={1}
       dragMomentum={false}
+      disabled={mana < cost}
+      initial={{
+        top: '-100px'
+      }}
       dragConstraints={{ top: 0, bottom: 0, left: 0, right: 0 }}
-      // onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { selectedCard: id } }))}
+      onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { selectedCard: id } }))}
       {...props}>
-
       <ManaValueStyled stroke={5}>{cost}</ManaValueStyled>
+      <div />
       <PowerStyled stroke={5}>{power}</PowerStyled>
-      <Icon stroke={0}>{icon}</Icon>
-      <Name stroke={4}>{name}</Name>
+      <Name stroke={3}>{name}</Name>
     </ContainerCard> : <CardSmall onClick={() => id && dispatch(playgroundActions.setPlayground({ playground: { ...playground, selectedCard: id } }))} {...props} />}
     <AnimatePresence>
       {playground.selectedCard === id && (

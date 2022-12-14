@@ -1,7 +1,30 @@
 import { Effect } from "./Effect.model";
 import { Entity } from "./Entity.model";
 
-export type CardType = 'blueMarvel' | 'ironMan'
+export type CardType =
+    'hulk' |
+    'theThing' |
+    'cyclops' |
+    'pg' |
+    'mistyKnight' |
+    'morph' |
+    'hawkEye' |
+    'rocketRacoon' |
+    'Klaw' |
+    'captainAmerica' |
+    'ironMan' |
+    'kazar' |
+    'blueMarvel' |
+    'misterFantastic' |
+    'antMan' |
+    'thePunisher' |
+    'kraven' |
+    'nightcrawler' |
+    'vision' |
+    'jpg' |
+    'quicksilver' |
+    'americaChavez' |
+    'domino'
 
 export interface Card extends Entity {
     cost: number;

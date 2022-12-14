@@ -9,10 +9,10 @@ export const ContainerCardSmall = styled(motion.div)((props: PartialProps) => `
     place-items: center;
     rotate: ${props.rotation}deg;
     grid-template:
-        " .           power       " auto
-        " icon        icon        " 1fr
-        " name        name        " auto
-        / 1fr         1fr;
+        " .    power " auto
+        " .    .     " 1fr
+        " name name  " auto
+        / 1fr  1fr;
 
     background: #D6D6D6;
     background-image: url(${props.image});

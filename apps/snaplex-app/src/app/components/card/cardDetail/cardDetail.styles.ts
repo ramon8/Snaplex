@@ -11,8 +11,8 @@ export const ContainerCardDetail = styled(motion.div)((props: Partial<CardDetail
 
     grid-template: 
         " mana        power       " auto
-        " icon        icon        " 1fr
-        " name        name        " auto
+        " .           .           " 2fr
+        " name        name        " 1fr
         " description description " auto
         / 1fr         1fr;
 
@@ -48,6 +48,7 @@ export const Mana = styled(Text)`
 `
 export const Description = styled(Text)`
     grid-area: description;
+    margin: 1rem 0;
 `
 export const Icon = styled(Text)`
     grid-area: icon;

@@ -15,7 +15,8 @@ export const Game = (props: GameProps) => {
   const dispatch = useDispatch();
 
   const onConnect = (data: EmitData) => {
-    const { deck, hand, sites, mana, maxTurns, turn, userId: id, turnStartedAt } = data;
+    const { deck, hand, sites, mana, maxTurns, turn, userId: id, turnStartedAt, maxTurnTime } = data;
+    console.log({ data })
 
     dispatch(playerActions.setPlayer({
       player: {
@@ -30,7 +31,8 @@ export const Game = (props: GameProps) => {
         sites,
         maxTurns,
         turn,
-        turnStartedAt
+        turnStartedAt,
+        maxTurnTime
       },
     }));
   }

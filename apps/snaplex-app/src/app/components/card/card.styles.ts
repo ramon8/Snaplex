@@ -8,7 +8,7 @@ export const ContainerCard = styled(motion.div)((props: CardProps) => `
     place-items: center;
     grid-template:
         " mana        power       " auto
-        " icon        icon        " 1fr
+        " .           .           " 1fr
         " name        name        " auto
         " description description " auto
         / 1fr         1fr;
@@ -30,8 +30,20 @@ export const ContainerCard = styled(motion.div)((props: CardProps) => `
 
     font-size: 100%;
     position: relative;
-
+    
     box-sizing: border-box;
+    
+    pointer-events: ${props.disabled ? 'none' : 'default'}; 
+    &:before ${props.disabled ? `{
+        content: '';
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }` : '{}'};
     cursor: grab;
     &:active{
         cursor: grabbing;
@@ -63,7 +75,9 @@ export const PowerStyled = styled(Text)`
 export const Name = styled(Text)`
     grid-area: name;
     text-align: center;
-    font-size: 10px;
+    font-size: 7px;
+    width: 38px;
+    letter-spacing: 0.5px;
 `
 
 export const ManaValueStyled = styled(Text)`

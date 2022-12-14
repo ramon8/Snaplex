@@ -77,8 +77,6 @@ export interface SetTimerPayload {
   timeOut: NodeJS.Timeout;
 }
 
-
-
 export interface SetGameRoomPayload {
   gameRoom: GameRoom;
 }

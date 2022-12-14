@@ -1,30 +1,27 @@
 import { RootState } from "@store/index"
+import { playerActions } from "@store/slices"
 import { socket } from "apps/snaplex-app/src/main"
-import { mapRange } from "apps/snaplex-app/src/utils/mapRange"
-import { useMemo } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { FooterProps } from "./footer.interface"
-import { ButtonStyled, ContainerButtonTurn, ContainerFooter, HandStyled, ManaStyled, TimerStyled } from "./footer.styles"
+import { ButtonStyled, ContainerButtonTurn, ContainerFooter, DeckStyled, HandStyled, ManaStyled, TimerStyled } from "./footer.styles"
 
 export const Footer = (props: FooterProps) => {
-  const { game: { turn, maxTurns, turnStartedAt }, player: { actions, mana } } = useSelector((state: RootState) => state);
-
-  const turnEndsAt = useMemo(() => turnStartedAt + 30000, [turnStartedAt])
-  const timerValue = mapRange(turnEndsAt - new Date().getTime(), 0, 30000, 0, 30);
-  console.log(timerValue);
-
+  const { game: { turn, maxTurns }, player } = useSelector((state: RootState) => state);
+  const { actions, mana, turnFinished } = player;
+  const dispatch = useDispatch();
 
   const onClickButton = () => {
+    dispatch(playerActions.setPlayer({ player: { ...player, turnFinished: true } }));
     socket.emit("FINISH_TURN", actions)
   }
 
   return <ContainerFooter  {...props}>
     <HandStyled />
     <ContainerButtonTurn>
-      <TimerStyled type={turnEndsAt > 80 ? 'danger' : 'default'} value={timerValue} max={100} disabled={false} />
+      {!turnFinished && <TimerStyled />}
       <ButtonStyled onClick={onClickButton} value={`END TURN ${turn}/${maxTurns}`} />
       <ManaStyled value={mana} />
     </ContainerButtonTurn>
-    {/* <DeckStyled /> */}
+    <DeckStyled />
   </ContainerFooter>
 }

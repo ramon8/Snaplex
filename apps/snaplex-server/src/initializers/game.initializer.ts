@@ -5,6 +5,7 @@ const initialGame: Game = {
     maxTurns: 0,
     sites: [],
     turn: 0,
+    maxTurnTime: 60000, // 60 seconds
     turnStartedAt: 0,
 };
 

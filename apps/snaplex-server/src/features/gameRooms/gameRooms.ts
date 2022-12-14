@@ -4,8 +4,9 @@ import { decks } from '../../db/cards'
 import { sitesMock } from '../../db/locations'
 import { emitGameData } from '../../emiters/emitData'
 import { emitGameDataToUser } from '../../emiters/emitDataToUser'
+import { resolveTurn } from '../../resolver/resolveTurn'
 import { findRoom, shuffleDeck } from '../../utils'
-import { JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, setPlayerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserManaPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
+import { JoinGameRoomPayload, SetGamePayload, SetGameRoomPayload, SetLocationsPayload, SetMaxTurnPayload, setPlayerPayload, SetTimerPayload, SetTurnPayload, SetUserDeckPayload, SetUserHandPayload, SetUserManaPayload, UpdateUserSocketPayload } from './gameRoom.interfaces'
 
 export type GameRoomState = GameRoom[]
 
@@ -34,6 +35,13 @@ const gameRoomsSlice = createSlice({
         state[roomIndex].game.turn = 1;
         state[roomIndex].game.maxTurns = 6;
         state[roomIndex].game.sites = sitesMock;
+      });
+      state[roomIndex].game.turnStartedAt = new Date().getTime();
+
+      state[roomIndex].timeOut = setTimeOut({
+        roomId: roomId, timeOut: setTimeout(() => {
+          resolveTurn(roomId);
+        }, state[roomIndex].game.maxTurnTime)
       });
 
       emitGameData(state[roomIndex] as GameRoom)
@@ -105,10 +113,13 @@ const gameRoomsSlice = createSlice({
       const roomIndex = findRoom(state as GameRoom[], gameRoom.id)
       state[roomIndex] = gameRoom;
     },
+
+    setTimeOut(state, { payload: { timeOut, roomId } }: PayloadAction<SetTimerPayload>) {
+      const roomIndex = findRoom(state as GameRoom[], roomId)
+      state[roomIndex].timeOut = timeOut;
+    },
   }
 })
 
-export const { addGameRoom, joinGameRoom, setGameRoom, setGame, setUserSocket, setUserHand, setPlayer, setUserDeck, setMaxTurn, setTurn, setUserMana, setSites } = gameRoomsSlice.actions
+export const { addGameRoom, joinGameRoom, setGameRoom, setTimeOut, setGame, setUserSocket, setUserHand, setPlayer, setUserDeck, setMaxTurn, setTurn, setUserMana, setSites } = gameRoomsSlice.actions
 export default gameRoomsSlice.reducer
-
-

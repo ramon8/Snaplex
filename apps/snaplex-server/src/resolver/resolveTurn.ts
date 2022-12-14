@@ -1,6 +1,6 @@
 import { Card } from "@types";
 import { emitGameData } from "../emiters/emitData";
-import { setGame, setPlayer } from "../features/gameRooms/gameRooms";
+import { setGame, setPlayer, setTimeOut } from "../features/gameRooms/gameRooms";
 import { store } from "../store";
 import { findRoom } from "../utils";
 
@@ -71,6 +71,13 @@ export const resolveTurn = (roomId: string) => {
 
   gameRooms = store.getState().gameRooms;
   gameRoom = gameRooms[findRoom(gameRooms, roomId)];
+
+  clearTimeout(gameRoom.timeOut)
+  store.dispatch(setTimeOut({
+    roomId: gameRoom.id, timeOut: setTimeout(() => {
+      resolveTurn(gameRoom.id);
+    }, gameRoom.game.maxTurnTime)
+  }))
 
   emitGameData(gameRoom);
 }

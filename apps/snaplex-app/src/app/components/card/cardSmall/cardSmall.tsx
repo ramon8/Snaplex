@@ -10,6 +10,5 @@ export const CardSmall = ({ id, power, name, icon, onClick, ...props }: CardSmal
     return <ContainerCardSmall rotation={rotation} layoutId={id} onClick={onClick} {...props}>
         <StyledPower stroke={2}>{power}</StyledPower>
         <StyledName stroke={2}>{name}</StyledName>
-        <StyledIcon>{icon}</StyledIcon>
     </ContainerCardSmall>
 }

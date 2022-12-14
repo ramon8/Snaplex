@@ -14,5 +14,8 @@ export interface GameRoom extends Entity {
     /** The player that joins the GameRoom */
     oponent: Player;
 
+    /** The setTimeOut listener so we can cancelit */
+    timeOut?: any
+
 
 }

@@ -1,5 +1,5 @@
 import { Action } from "@types";
-import { setPlayer } from "../features/gameRooms/gameRooms";
+import { setPlayer, setTimeOut } from "../features/gameRooms/gameRooms";
 import { resolveTurn } from "../resolver/resolveTurn";
 import { store } from "../store";
 import { findRoom } from "../utils";
@@ -20,6 +20,7 @@ export const onFinishTurn = (roomId: string, socket: any) => (actions: Action[])
       turnFinished: true,
     }, roomId: gameRoom.id
   }));
+
   if (players.find(player => player.turnFinished)) {
     resolveTurn(gameRoom.id);
   }

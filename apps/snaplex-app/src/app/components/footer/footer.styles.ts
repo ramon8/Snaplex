@@ -31,7 +31,7 @@ export const ContainerButtonTurn = styled(motion.div)`
     box-sizing: border-box;
     grid-template:
         " mana  " 0px
-        " timer "
+        " timer " 1rem
         " btn   " ;
     place-items: center;
     
@@ -69,6 +69,7 @@ export const HandStyled = styled(Hand)`
 
 export const DeckStyled = styled(Deck)`
     bottom: 0;
+    position: absolute;
     transform: translate(0, 100%);
 `
 

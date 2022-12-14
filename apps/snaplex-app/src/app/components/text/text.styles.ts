@@ -9,19 +9,17 @@ export const ContainerText = styled(motion.div)((props: TextProps) => `
     font-size: ${props.size}rem;
     position: relative;
     z-index: 1;
+    place-items:center;
     &:before{
         content: "${props.children}";
         position: absolute;
-        top: 0;
-        left: 0;
         -webkit-text-stroke: ${props.stroke}px black; 
         z-index: -1;
     }
     &:after{
         content: "${props.children}";
         position: absolute;
-        top: ${props.bottomShadow}px;
-        left: 0;
+        ${props.bottomShadow && `top: ${props.bottomShadow}px`};
         z-index: -2;
         -webkit-text-stroke: ${props.stroke}px black; 
     }
