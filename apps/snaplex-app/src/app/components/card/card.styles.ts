@@ -1,97 +1,69 @@
 import { motion } from "framer-motion";
-import styled from "styled-components";
-import { Text } from './../text'
-import { CardProps } from "./card.interface";
+import styled, { css, keyframes } from "styled-components";
 
-export const ContainerCard = styled(motion.div)((props: CardProps) => `
-    display: grid;
-    place-items: center;
-    grid-template:
-        " mana        power       " auto
-        " .           .           " 1fr
-        " name        name        " auto
-        " description description " auto
-        / 1fr         1fr;
+const animationKeyframes = keyframes`
+    0% { 
+        background-position: 
+            -2em 0, 
+            2em 100%, 
+            0 2em, 
+            100% 0; 
+        }
+    100% { 
+        background-position: 
+            0 0, 
+            0 100%,
+            0 0,
+            100% 2em;
+        }
+`
 
+export const ContainerCard = styled(motion.div)((props: any) => css`
+    width: 5.4em;
+    height: 7em;
+    background: black;
+    border-radius: .3em;
 
-    padding: .1rem .25rem;
-    background: #D6D6D6;
-    background-image: url(${props.image});
-    background-size: cover;
-    border-radius: .5rem;
-    border: 2px solid black;
-
-    aspect-ratio: 4 / 6;
-    height: auto;
-    width: 100%;
-
-    max-width: 70px;
-    max-height: 97px;
-
-    font-size: 100%;
-    position: relative;
-    
-    box-sizing: border-box;
-    top: auto !important;
-    
-    /* pointer-events: ${props.disabled ? 'none' : 'default'};  */
-    &:before ${props.disabled ? `{
-        content: '';
-        position: absolute;
-        z-index: 2;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.5);
-    }` : '{}'};
+    background: #fbf2e1;
+    border: .2em solid black;
     cursor: grab;
     &:active{
         cursor: grabbing;
     }
+
+    ${props['data-candrop'] && css`
+        &:before{
+            content: '';
+            
+            position: absolute;
+            top: -.7em;
+            left: -.7em;
+    
+            width: calc(100% + 1.25em);
+            height: calc(100% + 1.25em);
+            background-repeat: no-repeat;
+            background: 
+                linear-gradient(90deg, transparent 50%, white 50%) repeat-x,
+                linear-gradient(90deg, transparent 50%, white 50%) repeat-x,
+                linear-gradient(180deg, transparent 50%, white 50%) repeat-y,
+                linear-gradient(180deg, transparent 50%, white 50%) repeat-y;
+                
+            background-size: 
+                2em .5em,
+                2em .5em,
+                .5em 2em,
+                .5em 2em;
+            ${css`animation: ${animationKeyframes} .8s linear infinite;`}
+        }
+    `}
 `)
 
-export const ContainerCardDetail = styled.div`
-    display: grid;
-    place-items: center;
-
-    z-index: 100;
-    position: fixed;
-    top: 0;
-    left: 0;
-    text-align: center;
-
-    width: 100%;
-    height: 100%;
-
-    background: rgba(0,0,0,0.5);
+export const CardHeader = styled.div`
+    background: #f7e4ad;
+    border-bottom: .2em solid black;
+    font-size: .8em;
 `
-
-export const PowerStyled = styled(Text)`
-    grid-area: power;
-    font-size: 14px;
-    place-self: end;
-`
-
-export const Name = styled(Text)`
-    grid-area: name;
-    text-align: center;
-    font-size: 7px;
-    width: 38px;
-    letter-spacing: 0.5px;
-`
-
-export const ManaValueStyled = styled(Text)`
-    place-self: end start;
-    font-size: 14px;
-    grid-area: mana;
-`
-
-export const Description = styled(Text)`
-    grid-area: description;
-`
-
-export const Icon = styled(Text)`
-    grid-area: icon;
-    font-size: 14px;
+export const ContainerChildren = styled.div`
+    position: relative;
+    top: 2.5em;
 `

@@ -1,11 +1,9 @@
 import * as ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux'
-import './index.css'
+import { Provider } from 'react-redux';
+import './index.css';
 
 import App from './app/app';
-import { store } from './app/store'
-import { io } from "socket.io-client"
-import { getRandomInt } from './utils/getRandomInt';
+import { store } from './app/store';
 
 
 const root = ReactDOM.createRoot(
@@ -17,10 +15,3 @@ root.render(
     <App />
   </Provider>
 );
-
-const id = localStorage.getItem("id") || getRandomInt(100000);
-localStorage.setItem("id", id.toString())
-
-export const socket = io("http://localhost:3000/", {
-  query: { id }
-});

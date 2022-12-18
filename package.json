@@ -4,7 +4,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nx serve",
+    "start": "nx serve --host=0.0.0.0",
     "server": "ts-node-esm ./apps/snaplex-server/src/index.ts",
     "create": "node ./scripts/create/index.cjs",
     "build": "nx build",

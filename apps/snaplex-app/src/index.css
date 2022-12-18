@@ -1,6 +1,31 @@
 @font-face {
-    font-family: titan;
-    src: url(./assets/TitanOne-Regular.ttf);
+    font-family: AveriaSansLibre-Bold;
+    src: url(./assets/AveriaSansLibre-Bold.ttf);
+}
+
+@font-face {
+    font-family: AveriaSansLibre-BoldItalic;
+    src: url(./assets/AveriaSansLibre-BoldItalic.ttf);
+}
+
+@font-face {
+    font-family: AveriaSansLibre-Italic;
+    src: url(./assets/AveriaSansLibre-Italic.ttf);
+}
+
+@font-face {
+    font-family: AveriaSansLibre-Light;
+    src: url(./assets/AveriaSansLibre-Light.ttf);
+}
+
+@font-face {
+    font-family: AveriaSansLibre-LightItalic;
+    src: url(./assets/AveriaSansLibre-LightItalic.ttf);
+}
+
+@font-face {
+    font-family: AveriaSansLibre-Regular;
+    src: url(./assets/AveriaSansLibre-Regular.ttf);
 }
 
 
@@ -16,15 +41,18 @@ body,
     place-items: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     user-select: none;
-    font-family: titan;
+    font-family: AveriaSansLibre-Bold;
     font-weight: 100;
 }
 
-body {
+html {
+    transition: 0.05s linear;
+    background: #95ba9b;
     font-size: 16px;
+}
 
-    max-width: 428px;
-    max-height: 926px;
-
+body {
+    font-size: 1em;
     position: relative;
 }
+
