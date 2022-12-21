@@ -39,20 +39,8 @@ body,
     overflow: hidden;
     display: grid;
     place-items: center;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     user-select: none;
     font-family: AveriaSansLibre-Bold;
     font-weight: 100;
-}
-
-html {
-    transition: 0.05s linear;
-    background: #95ba9b;
     font-size: 16px;
 }
-
-body {
-    font-size: 1em;
-    position: relative;
-}
-

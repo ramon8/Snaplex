@@ -1,32 +1,48 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Game } from '@types'
+import { oponentCardsMocks, oponentFiguresMocks, playerCardsMocks, playerFiguresMocks } from '@store/mocks';
+import { Card, Figure } from '@types'
 
-
-export interface SetGame { game: Game }
-export type SetGamePayload = PayloadAction<SetGame>
+export interface Game {
+  playerCards: Card[];
+  oponentCards: Card[];
+  playerFigures: Figure[];
+  oponentFigures: Figure[];
+  currentDragginCard: Card | null;
+}
 
 const initialState: Game = {
-  firstToReveal: '',
-  maxTurns: 0,
-  sites: [],
-  turn: 0,
-  turnStartedAt: new Date().getTime(),
-  maxTurnTime: 0,
-  winner: ''
+  currentDragginCard: null,
+  playerCards: playerCardsMocks,
+  oponentCards: oponentCardsMocks,
+  playerFigures: playerFiguresMocks,
+  oponentFigures: oponentFiguresMocks,
 }
 
 export const counterSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    setGame: (state, { payload: { game: { firstToReveal, maxTurns, sites, turn, turnStartedAt, winner, maxTurnTime } } }: SetGamePayload) => {
-      state.firstToReveal = firstToReveal;
-      state.maxTurns = maxTurns;
-      state.sites = sites;
-      state.turn = turn;
-      state.turnStartedAt = turnStartedAt;
-      state.winner = winner;
-      state.maxTurnTime = maxTurnTime;
+    setCurrentDragginCard: (state, { payload: { card } }) => {
+      state.currentDragginCard = card;
+    },
+
+    setPlayerCards: (state, { payload: { cards } }) => {
+      state.playerCards = cards;
+    },
+    setOponentCards: (state, { payload: { cards } }) => {
+      state.oponentCards = cards;
+    },
+
+    setPlayerFigures: (state, { payload: { figures } }) => {
+      state.playerFigures = figures;
+    },
+
+    addNewPlayersFigure: (state, { payload: { figures } }) => {
+      console.log({ figures })
+      state.playerFigures = [...state.playerFigures, figures];
+    },
+    setOponentFigures: (state, { payload: { figures } }) => {
+      state.oponentFigures = figures;
     }
   },
 })
