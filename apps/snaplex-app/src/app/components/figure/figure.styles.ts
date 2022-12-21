@@ -9,4 +9,9 @@ export const ContainerFigure = styled(motion.div)`
     height: 10rem;
     width: 6rem;
     border-radius: 50%;
+    box-sizing: border-box;
+`
+export const ContainerEmptyFigure = styled(motion.div)`
+    height: 10rem;
+    width: 6rem;
 `

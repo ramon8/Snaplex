@@ -14,7 +14,7 @@ export const Board = ({ ...props }: BoardProps) => {
     return <ContainerBoard {...props}>
         <Hand cards={oponentCards} />
         <Face />
-        {/* <Slots figures={oponentFigures} /> */}
+        <Slots figures={oponentFigures} />
         <Slots figures={playerFigures} />
         <Face />
         <Hand cards={playerCards} />

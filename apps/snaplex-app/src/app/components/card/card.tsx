@@ -6,48 +6,30 @@ import { CardProps } from "./card.interface"
 import { ContainerCard } from "./card.styles"
 
 export const Card = ({ ...props }: CardProps) => {
+  const [found, setFound] = useState('');
 
-    const [found, setFound] = useState(false);
+  const dispatch = useDispatch();
 
-    const playerFigures = useSelector((state: RootState) => state.game.playerFigures)
+  const onDrag = (e: any) => {
+    const slotId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-id'])?.attributes['data-id' as any]?.value;
+    if (slotId && slotId != found) setFound(slotId);
+    else if (!slotId) setFound('')
+  }
 
-    const dispatch = useDispatch();
+  useEffect(() => {
+    found && dispatch(gameActions.addNewPlayersFigure({ figure: { id: '100', value: 100, temporal: true }, index: +found }));
+    !found && dispatch(gameActions.removeTemporalPlayerFigure());
+  }, [found]);
 
-    const setNewFigure = () => {
-        console.log('setting...')
-        setFound(true);
-        dispatch(gameActions.addNewPlayersFigure({
-            figures: {
-                id: "100", value: 100,
-            }
-        }));
-    }
-    const removeNewFigure = () => {
-        setFound(false);
-        dispatch(gameActions.setPlayerFigures({ figures: playerFigures }));
-    }
-
-    const onDrag = (e: any, gesturePoint: any) => {
-        const slotId = document.elementsFromPoint(e.clientX, e.clientY).find((elem: any) => elem?.attributes['data-slot'])?.attributes['data-slot' as any]?.value;
-        if (slotId !== undefined && !found) setFound(true)
-        else if (slotId === undefined && found) setFound(false)
-    }
-
-    useEffect(() => {
-        if (found) setNewFigure();
-        else removeNewFigure();
-    }, [found]);
-
-    return <ContainerCard
-        drag
-        dragElastic={1}
-        dragMomentum={false}
-        dragConstraints={{ bottom: 0, left: 0, right: 0, top: 0 }}
-        onDrag={onDrag}
-        layoutId={'1'}
-        {...props}>
-        card
-    </ContainerCard>
+  return <ContainerCard
+    drag
+    dragElastic={1}
+    dragMomentum={false}
+    dragConstraints={{ bottom: 0, left: 0, right: 0, top: 0 }}
+    onDrag={onDrag}
+    {...props}>
+    card
+  </ContainerCard >
 }
 /**
  * const onDragEnd = (e: any) => {

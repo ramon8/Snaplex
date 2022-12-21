@@ -37,10 +37,17 @@ export const counterSlice = createSlice({
       state.playerFigures = figures;
     },
 
-    addNewPlayersFigure: (state, { payload: { figures } }) => {
-      console.log({ figures })
-      state.playerFigures = [...state.playerFigures, figures];
+    addNewPlayersFigure: (state, { payload: { figure, index } }) => {
+      console.log(index)
+      state.playerFigures.splice(index, 0, figure);
     },
+
+    removeTemporalPlayerFigure: (state) => {
+      const temporalIndex = state.playerFigures.findIndex(figure => figure.temporal === true);
+      console.log({ temporalIndex })
+      temporalIndex !== -1 && state.playerFigures.splice(temporalIndex, 1);
+    },
+
     setOponentFigures: (state, { payload: { figures } }) => {
       state.oponentFigures = figures;
     }
