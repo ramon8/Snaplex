@@ -16,6 +16,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "bcryptjs": "^2.4.3",
     "core-js": "^3.6.5",
+    "dotenv": "^16.0.3",
     "framer-motion": "^7.6.18",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.1",

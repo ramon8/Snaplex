@@ -1,11 +1,13 @@
 import express from 'express';
 import http from 'http';
 import cors from 'cors';
+import dotenv from 'dotenv';
 import { Server } from "socket.io";
 import { onConnect } from './events/onConnect';
 import AuthController from './routes/auth'
 import './database';
 
+dotenv.config();
 const app = express();
 app.use(cors({
   origin: '*'

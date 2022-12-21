@@ -10,9 +10,7 @@ export const TokenValidation = (req: Request, res: Response, next: NextFunction)
         const token = req.header('token');
         if (!token) return res.status(401).json('Access Denied');
 
-        //TODO: Apply .env
-        const payload = jwt.verify(token, 'snap' || '') as IPayload;
-        // const payload = jwt.verify(token, process.env['TOKEN_SECRET'] || '') as IPayload;
+        const payload = jwt.verify(token, process.env['TOKEN_SECRET'] || '') as IPayload;
         req.userId = payload._id;
         next();
         return
