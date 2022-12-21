@@ -1,0 +1,11 @@
+import mongoose from 'mongoose'
+
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/test', {
+// TODO: Apply .env
+mongoose.connect('mongodb+srv://alex:alex@cluster0.7nx6yjl.mongodb.net/test?retryWrites=true&w=majority' || 'mongodb://localhost/test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+})
+    .then(db => console.log('Database is connected'))
+    .catch(err => console.log(err));

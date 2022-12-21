@@ -1,5 +1,8 @@
 {
   "name": "@saplex-server",
   "version": "0.0.1",
-  "type": "commonjs"
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/jsonwebtoken": "^8.5.9"
+  }
 }
