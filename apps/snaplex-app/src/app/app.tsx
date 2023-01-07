@@ -1,11 +1,7 @@
-import { Game } from '@pages';
-import { Playground } from '@pages/playground';
 
 export function App() {
 
-  return (
-    <Game />
-  );
+  return (<div>App</div>);
 }
 
 export default App;
